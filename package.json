@@ -1,7 +1,7 @@
 {
-  "name": "boilerplate-react-webpack",
+  "name": "harvestr",
   "version": "0.1.0",
-  "description": "A webpack React starter",
+  "description": "Harvestr",
   "main": "server/server.js",
   "scripts": {
     "dev": "webpack-dev-server --content-base public/ --hot --inline",
@@ -14,7 +14,7 @@
       "react"
     ]
   },
-  "author": "EDA",
+  "author": "Kahikatea-2016",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.13.2",
