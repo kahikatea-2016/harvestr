@@ -1,12 +1,35 @@
 var db = require('/.db')
 
 module.exports = {
+  getDonors: getDonors,
+  getRecipients: getRecipients,
   getTickets: getTickets,
   getTicket: getTicket,
-  addTicket: addTicket
+  addTicket: addTicket,
+  updateTicket: updateTicket
 }
 
-function getTickets (req, res) {
+function getDonors(req, res) {
+  db.getDonors()
+    .then(function (donors) {
+      res.json(donors)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
+
+function getRecipients(req, res) {
+  db.getRecipients()
+    .then(function (recipients) {
+      res.json(recipients)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
+
+function getTickets(req, res) {
   db.getTickets()
     .then(function (tickets) {
       res.json(tickets)
@@ -16,7 +39,7 @@ function getTickets (req, res) {
     })
 }
 
-function getTicket (req, res) {
+function getTicket(req, res) {
   var ticketId = Number(req.params.id)
   if (isNaN(ticketId)) {
     res.send('invalid id').status(404)
@@ -31,19 +54,36 @@ function getTicket (req, res) {
   }
 }
 
-function addTicket (req, res) {
-  ticket = {
+function addTicket(req, res) {
+  var ticket = {
     recipId: req.body.recipId,
     donorId: req.body.donorId,
     expectedKg: req.body.expectedKg,
-    actualKg: req.body.actualKg,
-    isComplete: req.body.isComplete
+    isComplete: false
   }
   db.addTicket(ticket)
-  .then(function () {
-    res.json(project)
-  })
-  .catch(function (err) {
-    res.send(err.message).status(500)
-  })
+    .then(function () {
+      res.json(ticket)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
+
+function updateTicket(req, res) {
+  var ticket = {
+    recipId: req.body.recipId,
+    donorId: req.body.donorId,
+    actualKg: req.body.actualKg,
+    comments: req.body.comments,
+    isComplete: req.body.isComplete
+  }
+  db.updateTicket(ticket) {
+    .then(function () {
+        res.send(ticket)
+      })
+      .catch(function (err) {
+        res.send(err.message).status(500)
+      })
+  }
 }
