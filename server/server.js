@@ -12,6 +12,7 @@ app.use(express.static(path.join(__dirname, '../public')))
 
 app.get('/v1/tickets', routes.getTickets)
 app.get('/v1/tickets/:id', routes.getTicket)
+app.post('v1/tickets', routes.addTicket)
 
 app.listen(PORT, function () {
   console.log('Listening on port', PORT)
