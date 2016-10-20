@@ -1,4 +1,4 @@
-var development = require('../knexfile').development
+var development = require('./knexfile').development
 var knex = require('knex')(development)
 
 module.exports = {
@@ -17,23 +17,15 @@ function getRecipients () {
 }
 
 function getDonor (id) {
-  return knex('donors')
-    .join('details', 'donors.details_id', '=', 'details.id')
-    .where('donors.id', id)
-    .select('donors.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes')
-  }
+  knex('donors')
+  .join('details', 'donors.details_id', '=', 'details.id')
+  .where('donors.id', id)
+  .select('donors.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes')
+}
 
-  function getRecipient (id) {
-    return knex('recipients')
-    .join('details', 'recipients.details_id', '=', 'details.id')
-    .where('recipients.id', id)
-    .select('recipients.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes')
-  }
-
-
-
-
-
-    // SELECT * FROM donors
-    // JOIN details ON donors.detail_id = details.id
-    // WHERE donors.id = 1
+function getRecipient (id) {
+  knex('recipients')
+  .join('details', 'recipients.details_id', '=', 'details.id')
+  .where('recipients.id', id)
+  .select('recipients.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes')
+}

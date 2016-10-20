@@ -3,10 +3,8 @@ var db = require('./db')
 module.exports = {
   getDonors: getDonors,
   getRecipients: getRecipients,
-  // getTickets: getTickets,
-  getTicket: getTicket
-  // addTicket: addTicket,
-  // updateTicket: updateTicket
+  getDonor: getDonor,
+  getRecipient: getRecipient
 }
 
 function getDonors(req, res) {
@@ -29,16 +27,6 @@ function getRecipients(req, res) {
     })
 }
 
-// function getTickets(req, res) {
-//   db.getTickets()
-//     .then(function (tickets) {
-//       res.json(tickets)
-//     })
-//     .catch(function (err) {
-//       res.send(err.message).status(500)
-//     })
-// }
-
 function getTicket(req, res) {
   var ticketId = Number(req.params.id)
   if (isNaN(ticketId)) {
@@ -53,6 +41,16 @@ function getTicket(req, res) {
       })
   }
 }
+
+// function getTickets(req, res) {
+//   db.getTickets()
+//     .then(function (tickets) {
+//       res.json(tickets)
+//     })
+//     .catch(function (err) {
+//       res.send(err.message).status(500)
+//     })
+// }
 
 // function addTicket(req, res) {
 //   var ticket = {
