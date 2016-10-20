@@ -37,6 +37,7 @@
   "dependencies": {
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
+    "superagent": "^2.3.0",
     "knex": "^0.12.6",
     "sqlite3": "^3.1.6"
   }
