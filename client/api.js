@@ -20,7 +20,7 @@ export default {
           cb(null, donors)
         }
       })
-  }
+  },
 
   getRecipients(cb) {
     const getUrl = `${url}/recipients`
@@ -38,70 +38,96 @@ export default {
           cb(null, recipients)
         }
       })
-  }
+  },
 
-  getTickets(cb) {
-    const getUrl = `${url}/tickets`
+  getDonor(id, cb) {
+    const getUrl = `${url}/donors:${id}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
           cb(err)
         } else {
-          const tickets = res.body.map(tickets => {
-            return {
-              id: tickets.id,
-              name: tickets.name,
-              address: tickets.address,
-              weight: tickets.weight
-            }
-          })
-          cb(null, recipients)
+          const donor = {
+            name: res.body.name,
+            address: res.body.address,
+            contact: res.body.contact,
+            phone: res.body.phone,
+            notes: res.body.notes
+          }
+          cb(null, donor)
         }
       })
-  }
+  },
 
-  getTicket(id, cb) {
-    const getUrl = `${url}/ticket/:${id}`
+  getRecipient(id, cb) {
+    const getUrl = `${url}/recipients:${id}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
           cb(err)
         } else {
-          const ticket = res.body.map(ticket => {
-            return {
-              id: ticket.id,
-              name: ticket.name,
-              address: ticket.address,
-              person: ticket.person,
-              phone: ticket.phone,
-              expectedKg: ticket.expectedKg,
-              actualKg: ticket.actualKg,
-              notes: ticket.notes,
-              comments: ticket.comments,
-              isComplete: ticket.isComplete
-            }
-          })
-          cb(null, ticket)
+          const recipients = {
+            name: res.body.name,
+            address: res.body.address,
+            contact: res.body.contact,
+            phone: res.body.phone,
+            notes: res.body.notes
+          }
+          cb(null, recipient)
         }
       })
-  }
+  },
+
+  getDonorTicketList(id, cb) {
+    const getUrl = `${url}/donortickets:${id}`
+    request.get(getUrl)
+      .end((err, res) => {
+        if (err) {
+          cb(err)
+        } else {
+          const donorTicket = {
+            expectedKg: res.body.expected,
+            name: res.body.name,
+            address: res.body.address
+          }
+          cb(null, donorTicket)
+        }
+      })
+  },
+
+  getRecipientTicketList(id, cb) {
+    const getUrl = `${url}/recipientickets:${id}`
+    request.get(getUrl)
+      .end((err, res) => {
+        if (err) {
+          cb(err)
+        } else {
+          const recipientTicket = {
+            expectedKg: res.body.expected,
+            name: res.body.name,
+            address: res.body.address
+          }
+          cb(null, recipientTicket)
+        }
+      })
+  },
 
   addTicket(ticket, cb) {
     const addUrl = `${url}/ticket`
     request.post(addUrl)
-    .send(ticket)
-    .end((err, res) => {
-      cb(err)
-    })
-  }
+      .send(ticket)
+      .end((err, res) => {
+        cb(err)
+      })
+  },
 
   updateTicket(ticket, cb) {
     const updateUrl = `${url}/ticket`
     request.put(updateUrl)
-    .send(ticket)
-    .end((err, res) => {
-      cb(err)
-    })
+      .send(ticket)
+      .end((err, res) => {
+        cb(err)
+      })
   }
 
 }
