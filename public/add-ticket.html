@@ -3,8 +3,40 @@
   <head>
     <meta charset="UTF-8">
     <title>Harvestr - Add a ticket</title>
+    <link rel="stylesheet" href="styles.css" media="screen" title="no title">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,900" rel="stylesheet">
   </head>
   <body>
+
+    <div class="mainWrapper">
+      <div class="header">
+        <span class="logo"> Harvestr </span>
+        <div class="auth">
+          <a href=""> Login </a>
+          <a href=""> Sign up </a>
+        </div>
+      </div>
+      <div class="contentWrapper">
+        <div class="listWrapper">
+          <h2> Add a new ticket: </h2>
+              <div id="formWrapper">
+            <form action="" method="post">
+            <h3>Please mark what kind of delivery:</h3>
+            <input type="radio" name="pickup" value="pickup" checked>Pickup
+            <input type="radio" name="dropoff" value="dropoff">Dropoff<br/><br/>
+            Organisation name:<br/> <input type="text" placeholder="Organisation Name" class="formInput"> <br/><br/>
+            Adress: <br/><input type="text" placeholder="Street and suburb" class="formInput"> <br/><br/>
+            Contact Name: <br/><input type="text" placeholder="Contact Name" class="formInput"><br/><br/>
+            Contact Phone Number: <br/><input type="text" placeholder="Phone Number" class="formInput"><br/><br/>
+            Item (category or type): <br/><input type="text" placeholder="Produce? Dairy?" class="formInput"><br/><br/>
+            Quantity: <br/><input type="text" placeholder="Kg"><br/><br/>
+            Notes: <br/><input type="text" placeholder="Add your note here..." class="formInput" maxlength="200"><br/><br/>
+            <input type="submit">
+            <form>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </body>
 </html>
