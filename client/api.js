@@ -62,27 +62,36 @@ export default {
   getTicket(id, cb) {
     const getUrl = `${url}/ticket/:${id}`
     request.get(getUrl)
-    .end((err, res) => {
-      if (err) {
-        cb(err)
-      } else {
-        const ticket = res.body.map(ticket => {
-          return {
-            id: ticket.id,
-            name: ticket.name,
-            address: ticket.address,
-            person: ticket.person,
-            phone: ticket.phone,
-            expectedKg: ticket.expectedKg,
-            actualKg: ticket.actualKg,
-            notes: ticket.notes,
-            comments: ticket.comments,
-            isComplete: ticket.isComplete
-          }
-        })
-        cb(null, ticket)
-      }
-    })
+      .end((err, res) => {
+        if (err) {
+          cb(err)
+        } else {
+          const ticket = res.body.map(ticket => {
+            return {
+              id: ticket.id,
+              name: ticket.name,
+              address: ticket.address,
+              person: ticket.person,
+              phone: ticket.phone,
+              expectedKg: ticket.expectedKg,
+              actualKg: ticket.actualKg,
+              notes: ticket.notes,
+              comments: ticket.comments,
+              isComplete: ticket.isComplete
+            }
+          })
+          cb(null, ticket)
+        }
+      })
   }
+
+  addTicket(ticket, cb) {
+    const addUrl = `${url}/tickets`
+    request.post(addUrl)
+      .send(ticket)
+      .end((err, res) => {
+          cb(err)
+        }
+      })
 
 }
