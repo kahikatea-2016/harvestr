@@ -21,16 +21,28 @@
           <h2> Add a new ticket: </h2>
               <div id="formWrapper">
             <form action="" method="post">
-            <h3>Please mark what kind of delivery:</h3>
-            <input type="radio" name="pickup" value="pickup" checked>Pickup
-            <input type="radio" name="dropoff" value="dropoff">Dropoff<br/><br/>
-            Organisation name:<br/> <input type="text" placeholder="Organisation Name" class="formInput"> <br/><br/>
-            Adress: <br/><input type="text" placeholder="Street and suburb" class="formInput"> <br/><br/>
-            Contact Name: <br/><input type="text" placeholder="Contact Name" class="formInput"><br/><br/>
-            Contact Phone Number: <br/><input type="text" placeholder="Phone Number" class="formInput"><br/><br/>
-            Item (category or type): <br/><input type="text" placeholder="Produce? Dairy?" class="formInput"><br/><br/>
+            <h4>Please mark what kind of delivery:</h4>
+            <input type="radio" name="delivery" value="pickup">Pickup <input type="radio" name="delivery" value="dropoff">Dropoff<br/><br/>
+            <select>
+              <option value="">--</option>
+              <option value="Countdown">Countdown</option>
+              <option value="NOSH">NOSH</option>
+              <option value="New World">New World</option>
+            </select>
+            <select>
+              <option value="">--</option>
+              <option value="Salvation Army">Salvation Army</option>
+              <option value="Grey Lynn Family Trust">Grey Lynn Family Trust</option>
+              <option value="Womens Refugee">Womens Refugee</option>
+            </select>
+            <br/><br/>
+            Organisation name:<br/> Countdown <br/><br/>
+            Address: <br/>76 Quay Street, Auckland CBD <br/><br/>
+            Contact Name: <br/>Amanda<br/><br/>
+            Contact Phone Number: <br/>092468792<br/><br/>
+            Item (category or type): <br/><input type="text" placeholder="Produce? Dairy?"><br/><br/>
             Quantity: <br/><input type="text" placeholder="Kg"><br/><br/>
-            Notes: <br/><input type="text" placeholder="Add your note here..." class="formInput" maxlength="200"><br/><br/>
+            Notes: <br/>Do not pick up before 11am<br/><br/>
             <input type="submit">
             <form>
           </div>
