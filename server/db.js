@@ -51,9 +51,9 @@ function getRecipientTicketList (id) {
 }
 
 function addTicket (ticket) {
-  console.log('added ticket')
+  return console.log('added ticket')
 }
 
 function updateTicket (ticket) {
-  console.log('updated ticket')
+  return console.log('updated ticket')
 }
