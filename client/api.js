@@ -3,6 +3,7 @@ import request from 'superagent'
 const url = '/v1'
 
 export default {
+
   getDonors(cb) {
     const getUrl = `${url}/donors`
     request.get(getUrl)
@@ -86,12 +87,21 @@ export default {
   }
 
   addTicket(ticket, cb) {
-    const addUrl = `${url}/tickets`
+    const addUrl = `${url}/ticket`
     request.post(addUrl)
-      .send(ticket)
-      .end((err, res) => {
-          cb(err)
-        }
-      })
+    .send(ticket)
+    .end((err, res) => {
+      cb(err)
+    })
+  }
+
+  updateTicket(ticket, cb) {
+    const updateUrl = `${url}/ticket`
+    request.put(updateUrl)
+    .send(ticket)
+    .end((err, res) => {
+      cb(err)
+    })
+  }
 
 }
