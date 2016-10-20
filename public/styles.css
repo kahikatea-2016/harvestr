@@ -121,9 +121,19 @@ body {
   background-color: #4C53BA;
 }
 
+.pickUp:active {
+  border: 1px solid #2b2f6e;
+  background-color: #2b2f6e;
+}
+
 .dropOff {
   border: 1px solid #FF4C4C;
   background-color: #FF4C4C;
+}
+
+.dropOff:active {
+  border: 1px solid #cc0000;
+  background-color: #cc0000;
 }
 
 .weight {
@@ -265,15 +275,37 @@ body {
 .ticketWrapperSingle {
   max-width: 960px;
   background-color: #4C53BA;
+    text-align: center;
+}
+
+.ticketWrapperSingle h2 {
+  text-align: center;
 }
 
 .ticketWrapperSingle h4 {
   color: white;
   font-family: Raleway;
   font-weight: 400;
+  text-align: center;
 }
 
 .contact h2 {
+  font-family: Raleway;
+  font-size: 1.4em;
+  font-weight: 400;
+
+  text-align: center;
+  letter-spacing: 1px;
+  color: white;
+  margin: 7px 0px 5px 15px;
+}
+
+.inventory {
+  display: flex;
+  justify-content: space-around;
+}
+
+.inventory h2 {
   font-family: Raleway;
   font-size: 1.4em;
   font-weight: 400;
@@ -293,21 +325,11 @@ body {
   text-align: left;
 }
 
-.inventory h2 {
-  font-family: Raleway;
-  font-size: 1.4em;
-  font-weight: 400;
-
-  text-align: left;
-  letter-spacing: 1px;
-  color: white;
-  margin: 7px 0px 5px 15px;
-}
-
 .notes li {
   color: white;
   text-align: left;
   font-family: Raleway;
+  font-size: 1em;
 
   margin-left: 40px;
 }
@@ -322,6 +344,15 @@ body {
   color: white;
   margin: 7px 0px 5px 15px;
   padding:
+}
+
+.comments li {
+  color: white;
+  text-align: left;
+  font-family: Raleway;
+  font-size: .7em;
+
+  margin-left: 25px;
 }
 
 .button {
