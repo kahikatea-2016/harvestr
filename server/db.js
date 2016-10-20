@@ -22,14 +22,14 @@ function getRecipients () {
 
 function getDonor (id) {
   return knex('donors')
-  .join('details', 'donors.details_id', '=', 'details.id')
+  .join('details', 'donors.detail_id', '=', 'details.id')
   .where('donors.id', id)
   .select('donors.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes')
 }
 
 function getRecipient (id) {
   return knex('recipients')
-  .join('details', 'recipients.details_id', '=', 'details.id')
+  .join('details', 'recipients.detail_id', '=', 'details.id')
   .where('recipients.id', id)
   .select('recipients.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes')
 }

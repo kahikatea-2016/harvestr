@@ -43,7 +43,7 @@ function getDonor(req, res) {
 }
 
 function getRecipient(req, res) {
-  var recipientId = req.paramns.id
+  var recipientId = req.params.id
   db.getRecipient(recipientId)
     .then(function (recipient) {
       res.json(recipient)
