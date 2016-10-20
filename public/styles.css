@@ -71,6 +71,7 @@ body {
 .contentWrapper {
   width: 100%;
   height: auto;
+  margin: 0px auto;
 }
 
 .listWrapper {
@@ -89,10 +90,16 @@ body {
   font-size: 2em;
 }
 
+.listWrapper p {
+  padding: 10px 10px 10px 20px;
+  font-family: Raleway;
+  color: black;
+  font-size: 1.1em;
+}
+
 .ticketWrapper {
   padding: 0px 2s0px 0px 20px;
   margin: 20px;
-
 
   border-radius: 5px;
 
@@ -137,8 +144,46 @@ body {
 
   color: white;
   font-family: Raleway;
+  opacity: .8;
+}
+
+.pickUp {
+  border: 1px solid #4C53BA;
+  background-color: #4C53BA;
+}
+
+.dropOff {
+  border: 1px solid #FF4C4C;
+  background-color: #FF4C4C;
+}
+
+.ticketWrapper h2 {
+  font-family: Raleway;
+  font-size: 2em;
+  font-weight: 400;
+
+  color: white;
+  padding: 0px 0px 0px 10px;
+}
+
+.ticketWrapper h4 {
+  font-size: 1.2em;
+  font-style: italic;
 }
 
 .formInput {
     width:100%;
+}
+
+.photoWrapper {
+  max-width: 100%;
+  height: auto;
+  margin: 0px auto;
+}
+
+#homeText {
+  max-width: 80%;
+  height: auto;
+  margin: 0px auto;
+  padding: 0px;
 }
