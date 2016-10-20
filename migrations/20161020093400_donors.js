@@ -23,6 +23,7 @@ exports.up = function(knex, Promise) {
     table.integer('actual_kg')
     table.integer('donor_id').references('donors.id')
     table.integer('recipient_id').references('recipients.id')
+    table.integer('details_id').references('details.id')
     table.string('comments')
     table.boolean('is_complete')
   }),
