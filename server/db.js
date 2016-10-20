@@ -1,4 +1,4 @@
-var development = require('./knexfile').development
+var development = require('../knexfile').development
 var knex = require('knex')(development)
 
 module.exports = {
@@ -7,7 +7,9 @@ module.exports = {
   getDonor: getDonor,
   getRecipient: getRecipient,
   getDonorTicketList: getDonorTicketList,
-  getRecipientTicketList: getRecipientTicketList
+  getRecipientTicketList: getRecipientTicketList,
+  addTicket: addTicket,
+  updateTicket: updateTicket
 }
 
 function getDonors () {
@@ -46,4 +48,12 @@ function getRecipientTicketList (id) {
   .join ('details', 'tickets.details_id', '=', 'details.id')
   .where ('tickets.id', id)
   .select ('tickets.expected_kg as expected', 'recipients.name as name', 'details.address as address')
+}
+
+function addTicket (ticket) {
+  console.log('added ticket')
+}
+
+function updateTicket (ticket) {
+  console.log('updated ticket')
 }
