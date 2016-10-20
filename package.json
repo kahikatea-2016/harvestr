@@ -5,6 +5,7 @@
   "main": "server/server.js",
   "scripts": {
     "dev": "webpack-dev-server --content-base public/ --hot --inline",
+    "knex": "knex",
     "start": "nodemon server/server & webpack --watch",
     "knex": "knex",
     "test": "tape -r babel-register 'test/**/*.test.js' | tap-spec"
