@@ -3,8 +3,17 @@ import request from 'superagent'
 const url = '/v1'
 
 export default {
+  getDonors: getDonors,
+  getRecipients: getRecipients,
+  getDonor: getDonor,
+  getRecipient: getRecipient,
+  getDonorTicketList: getDonorTicketList,
+  getRecipientTicketList: getRecipientTicketList,
+  addTicket: addTicket,
+  updateTicket: updateTicket
+}
 
-  getDonors(cb) {
+  function getDonors(cb) {
     const getUrl = `${url}/donors`
     request.get(getUrl)
       .end((err, res) => {
@@ -20,9 +29,9 @@ export default {
           cb(null, donors)
         }
       })
-  },
+  }
 
-  getRecipients(cb) {
+  function getRecipients(cb) {
     const getUrl = `${url}/recipients`
     request.get(getUrl)
       .end((err, res) => {
@@ -38,9 +47,9 @@ export default {
           cb(null, recipients)
         }
       })
-  },
+  }
 
-  getDonor(id, cb) {
+  function getDonor(id, cb) {
     const getUrl = `${url}/donors:${id}`
     request.get(getUrl)
       .end((err, res) => {
@@ -57,9 +66,9 @@ export default {
           cb(null, donor)
         }
       })
-  },
+  }
 
-  getRecipient(id, cb) {
+  function getRecipient(id, cb) {
     const getUrl = `${url}/recipients:${id}`
     request.get(getUrl)
       .end((err, res) => {
@@ -76,9 +85,9 @@ export default {
           cb(null, recipient)
         }
       })
-  },
+  }
 
-  getDonorTicketList(id, cb) {
+  function getDonorTicketList(id, cb) {
     const getUrl = `${url}/donortickets:${id}`
     request.get(getUrl)
       .end((err, res) => {
@@ -93,9 +102,9 @@ export default {
           cb(null, donorTicket)
         }
       })
-  },
+  }
 
-  getRecipientTicketList(id, cb) {
+  function getRecipientTicketList(id, cb) {
     const getUrl = `${url}/recipientickets:${id}`
     request.get(getUrl)
       .end((err, res) => {
@@ -110,18 +119,18 @@ export default {
           cb(null, recipientTicket)
         }
       })
-  },
+  }
 
-  addTicket(ticket, cb) {
+  function addTicket(ticket, cb) {
     const addUrl = `${url}/ticket`
     request.post(addUrl)
       .send(ticket)
       .end((err, res) => {
         cb(err)
       })
-  },
+  }
 
-  updateTicket(ticket, cb) {
+  function updateTicket(ticket, cb) {
     const updateUrl = `${url}/ticket`
     request.put(updateUrl)
       .send(ticket)
@@ -129,5 +138,3 @@ export default {
         cb(err)
       })
   }
-
-}
