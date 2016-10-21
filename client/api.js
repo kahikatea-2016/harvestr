@@ -10,7 +10,9 @@ export default {
   updateTicket: updateTicket,
   updateComment: updateComment,
   addTicket: addTicket,
-  getTickets: getTickets
+  getTickets: getTickets,
+  getDonorTicket: getDonorTicket,
+  getRecipientTicket: getRecipientTicket
 }
 
   function getDonors(cb) {
@@ -116,6 +118,30 @@ export default {
 
   function getTickets (cb) {
     const getUrl = `${url}/tickets`
+    request.get(getUrl)
+      .end((err, res) => {
+        if (err) {
+          cb(err)
+        } else {
+          cb(null, res.body)
+        }
+      })
+  }
+
+  function getDonorTicket (ticketId, cb) {
+    const getUrl = `${url}/tickets/donors/${ticketId}`
+    request.get(getUrl)
+      .end((err, res) => {
+        if (err) {
+          cb(err)
+        } else {
+          cb(null, res.body)
+        }
+      })
+  }
+
+  function getRecipientTicket (ticketId, cb) {
+    const getUrl = `${url}/tickets/recipients/${ticketId}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
