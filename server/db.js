@@ -9,7 +9,8 @@ module.exports = {
   getDonorTicketList: getDonorTicketList,
   getRecipientTicketList: getRecipientTicketList,
   addTicket: addTicket,
-  updateTicket: updateTicket
+  updateTicket: updateTicket,
+  updateComment: updateComment
 }
 
 function getDonors () {
@@ -50,27 +51,23 @@ function getRecipientTicketList (id) {
   .select ('tickets.expected_kg as expected', 'recipients.name as name', 'details.address as address')
 }
 
-function addDonorTicket (id) {
-  return knex ('ticket')
-  .join ('donors', 'tickets.donor_id', '=', 'donors.id')
-  .join ('details', 'tickets.details_id', '=', 'details.id')
-  .join ('tickets.id', id)
-  .select ('donors.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', )
+function addTicket (ticket) {
+  return console.log('added ticket')
 }
 
-function updateTicket (id, ticket) {
+function updateTicket (ticket) {
   return knex ('tickets')
- .where('tickets.id', id)
+ .where('tickets.id', tickets.id)
  .update({
    expected_kg: ticket.expectedKg,
    is_complete: ticket.done
  })
 }
 
-function updateComment (id, comment) {
+function updateComment (comment) {
   return knex ('comments')
-  .where('ticket_id', id)
+  .where('ticket_id', comment.ticketId)
   .update({
-    comments: comment.comments  
+    comments: comment.comments
   })
 }
