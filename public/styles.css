@@ -116,6 +116,11 @@ body {
   opacity: .8;
 }
 
+.photoWrapper {
+  width: 100%;
+  height: auto;
+}
+
 .pickUp {
   border: 1px solid #4C53BA;
   background-color: #4C53BA;
