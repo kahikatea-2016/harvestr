@@ -3,7 +3,12 @@ OzHarvest yellow: #FBDF06
 KiwiHarvest green: #3BAF29
 Steel Blue: #4C53BA
 Tomatoish: #FF4C4C
-Grey: #A2AEBB */
+Grey: #A2AEBB
+
+Subpalette for form :
+lighter steel blue: #959EF9
+lighter tomatoish: #FF7F7F
+ */
 
 
 body {
@@ -126,15 +131,18 @@ body {
   height: auto;
 }
 
-.formWrapper {
+.donorFormWrapper {
   max-width: 960px;
   height: auto;
-  background-color: #A2AEBB;
+  background-color: #8B8EBA;
 
-  box-shadow: 2px 2px 1px grey;b
+  box-shadow: 2px 2px 1px grey;
 
   margin: 0px auto;
   padding: 10px;
+
+  color: white;
+  font-family: Raleway;
 }
 
 .pickUp {
@@ -383,6 +391,26 @@ body {
   border-radius: 5px;
   background-color: #4C53BA;
   padding: 5px 10px 5px 10px;
+}
+
+select {
+  -webkit-appearance: none;
+  font-family: Raleway;
+  font-size: 1em;
+  border: 1px solid white;
+  border-radius: 5px;
+
+}
+
+input[type="submit"] {
+  color: white;
+  font-size: 1em;
+  border: 1px solid #3BAF29;
+  border-radius: 5px;
+  background-color: #3BAF29;
+  padding: 5px 10px 5px 10px;
+  margin: 10px;
+  font-family: Raleway;
 }
 
 /* Media Queries */
