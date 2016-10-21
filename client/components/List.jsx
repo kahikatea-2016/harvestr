@@ -6,9 +6,10 @@ export default React.createClass({
   render() {
     return (
       <div className="listWrapper">
-        {this.props.tickets.map((tickets, i) => {
+        {this.props.tickets.map((tickets) => {
           return <ListItem
-          key={i}
+          key={tickets.ticketId}
+          ticketId={tickets.ticketId}
           donorId={tickets.donorId}
           donorName={tickets.donorName}
           recipientId={tickets.recipientId}
