@@ -1,29 +1,22 @@
 import React from 'react'
-import {Link} from 'react-router'
+
+import ListItem from './ListItem'
 
 export default React.createClass({
   render() {
     return (
       <div className="listWrapper">
-        {this.props.tickets.map(tickets => {
-          return(
-            <Link to={`/donortickets/${tickets.name}`}>
-              <div className="ticketWrapper">
-                <div className="weight"> TicketWeight </div>
-                <div className="orgInfo">
-                  <h2> OrganisationName </h2>
-                  <h4> Address </h4>
-                </div>
-                <div class="nav-icon">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </div>
-            </Link>
-          )
+        {this.props.tickets.map((tickets, i) => {
+          return <ListItem
+          key={i}
+          donorId={tickets.donorId}
+          recipientName={tickets.recipientId}
+          address={tickets.address}
+          donorName={tickets.donorName}
+          recipientName={tickets.recipientName}
+          recipientId={tickets.recipientId}
+          weight={tickets.expectedKg} />
         })}
-        List View
       </div>
     )
   }
