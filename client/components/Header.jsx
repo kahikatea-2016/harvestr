@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router'
 
 export default React.createClass({
   render() {
@@ -6,7 +7,8 @@ export default React.createClass({
         <div className="header">
           <span className="logo"> Harvestr </span>
           <div className="auth">
-            <a href=""> Login </a>
+            <Link to='/list'> Login </Link>
+            <Link to='/'> Home </Link>
           </div>
         </div>
     )

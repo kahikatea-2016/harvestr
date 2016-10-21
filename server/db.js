@@ -9,7 +9,9 @@ module.exports = {
   updateTicket: updateTicket,
   updateComment: updateComment,
   getTickets: getTickets,
-  addTicket: addTicket
+  addTicket: addTicket,
+  getDonorTicket: getDonorTicket,
+  getRecipientTicket: getRecipientTicket
 }
 
 // gets list of all donors
@@ -72,4 +74,20 @@ function getTickets () {
 //Ops adds a new ticket
 function addTicket (ticket) {
   return knex('tickets').insert(ticket)
+}
+
+function getDonorTicket (ticketId) {
+  return knex ('tickets')
+ .join ('donors', 'tickets.donor_id', '=', 'donors.id')
+ .join ('details', 'tickets.details_id', '=', 'details.id')
+ .where ('tickets.id', ticketId)
+ .select ('tickets.id as id', 'tickets.expected_kg as expected', 'donors.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes')
+}
+
+function getRecipientTicket (ticketId) {
+  return knex ('tickets')
+  .join ('recipients', 'tickets.recipient_id', '=', 'recipients.id')
+  .join ('details', 'tickets.details_id', '=', 'details.id')
+  .where ('tickets.id', ticketId)
+  .select ('tickets.id as id','tickets.expected_kg as expected', 'recipients.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes')
 }
