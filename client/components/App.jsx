@@ -19,6 +19,7 @@ export default React.createClass({
   },
 
   renderResults (err, allTickets) {
+    console.log(allTickets)
     this.setState({
       tickets: allTickets
     })

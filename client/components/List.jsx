@@ -10,12 +10,12 @@ export default React.createClass({
           return <ListItem
           key={i}
           donorId={tickets.donorId}
-          recipientName={tickets.recipientId}
-          address={tickets.address}
           donorName={tickets.donorName}
-          recipientName={tickets.recipientName}
           recipientId={tickets.recipientId}
-          weight={tickets.expectedKg} />
+          recipientName={tickets.recipientName}
+          address={tickets.address}
+          weight={tickets.expectedKg}
+          isComplete={tickets.isComplete}/>
         })}
       </div>
     )
