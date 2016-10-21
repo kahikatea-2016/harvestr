@@ -30,10 +30,10 @@ export default React.createClass({
       <div className="mainWrapper">
         <Header />
         <Banner />
-        {/* <List tickets={this.state.tickets} /> */}
+        <List tickets={this.state.tickets} />
         <Link to='/add'> Add </Link>
         <br/>
-        <Link to='/list' tickets={this.state.tickets}> View Tickets </Link>
+        <Link to='/list'> View Tickets </Link>
       </div>
     )
   }

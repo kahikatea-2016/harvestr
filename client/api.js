@@ -7,8 +7,6 @@ export default {
   getRecipients: getRecipients,
   getDonor: getDonor,
   getRecipient: getRecipient,
-  getDonorTicketList: getDonorTicketList,
-  getRecipientTicketList: getRecipientTicketList,
   updateTicket: updateTicket,
   updateComment: updateComment,
   addTicket: addTicket,
@@ -85,41 +83,6 @@ export default {
             notes: res.body.notes
           }
           cb(null, recipient)
-        }
-      })
-  }
-
-  function getDonorTicketList(id, cb) {
-    const getUrl = `${url}/donortickets/${id}`
-    request.get(getUrl)
-      .end((err, res) => {
-        if (err) {
-          cb(err)
-        } else {
-          const expectedTickets = res.body.data
-          const donorTicket = {
-            expectedKg: res.body[0].expected,
-            name: res.body[0].name,
-            address: res.body[0].address
-          }
-          cb(null, donorTicket)
-        }
-      })
-  }
-
-  function getRecipientTicketList(id, cb) {
-    const getUrl = `${url}/recipientickets/${id}`
-    request.get(getUrl)
-      .end((err, res) => {
-        if (err) {
-          cb(err)
-        } else {
-          const recipientTicket = {
-            expectedKg: res.body.expected,
-            name: res.body.name,
-            address: res.body.address
-          }
-          cb(null, recipientTicket)
         }
       })
   }

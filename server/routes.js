@@ -5,12 +5,10 @@ module.exports = {
   getRecipients: getRecipients,
   getDonor: getDonor,
   getRecipient: getRecipient,
-  getDonorTicketList: getDonorTicketList,
-  getRecipientTicketList: getRecipientTicketList,
-  addTicket: addTicket,
   updateTicket: updateTicket,
   updateComment: updateComment,
-  getTickets: getTickets
+  getTickets: getTickets,
+  addTicket: addTicket
 }
 
 function getDonors(req, res) {
@@ -55,33 +53,11 @@ function getRecipient(req, res) {
     })
 }
 
-function getDonorTicketList(req, res) {
-  var ticketId = req.params.id
-  db.getDonorTicketList(ticketId)
-    .then(function (donorTicket) {
-      res.json(donorTicket)
-    })
-    .catch(function (err) {
-      res.send(err.message).status(500)
-    })
-}
-
-function getRecipientTicketList(req, res) {
-  var ticketId = req.params.id
-  db.getRecipientTicketList(ticketId)
-    .then(function (recipientTicket) {
-      res.json(recipientTicket)
-    })
-    .catch(function (err) {
-      res.send(err.message).status(500)
-    })
-  }
-
   function updateTicket(req, res) {
     var ticket = {
       id: req.body.recipId,
-      expectedKg: req.body.expectedKg,
-      isComplete: req.body.done
+      expected_kg: req.body.expectedKg,
+      is_complete: req.body.done
     }
     db.updateTicket(ticket)
       .then(function () {
@@ -94,7 +70,7 @@ function getRecipientTicketList(req, res) {
 
   function updateComment(req, res) {
     var comment = {
-      ticketId: req.body.ticketId,
+      ticket_id: req.body.ticketId,
       comments: req.body.comments
     }
     db.updateComment(comment)
@@ -106,12 +82,13 @@ function getRecipientTicketList(req, res) {
       })
   }
 
+// "has to match table column name, use _": req.body.useCamelCase
   function addTicket(req, res) {
     var ticket = {
-      recipId: req.body.recipId,
-      donorId: req.body.donorId,
-      expectedKg: req.body.expectedKg,
-      isComplete: false
+      expected_kg: req.body.expectedKg,
+      recipient_id: req.body.recipientId,
+      donor_id: req.body.donorId,
+      is_complete: 0
     }
     db.addTicket(ticket)
       .then(function () {
