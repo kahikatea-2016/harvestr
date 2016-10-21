@@ -10,7 +10,8 @@ module.exports = {
   getRecipientTicketList: getRecipientTicketList,
   addTicket: addTicket,
   updateTicket: updateTicket,
-  updateComment: updateComment
+  updateComment: updateComment,
+  getTickets: getTickets
 }
 
 function getDonors () {
@@ -70,4 +71,16 @@ function updateComment (comment) {
   .update({
     comments: comment.comments
   })
+}
+
+function getTickets () {
+  return knex('tickets')
+    .leftJoin('donors', 'tickets.donor_id', 'donors.id')
+    .leftJoin('recipients', 'tickets.recipient_id', 'recipients.id')
+    .leftJoin('details', function () {
+      this
+        .on('details.id', '=', 'donors.detail_id')
+        .orOn('details.id', '=', 'recipients.detail_id')
+    })
+    .select('donors.name as donorName', 'donors.id as donorId', 'recipients.name as recipientName', 'recipients.id as recipientId', 'expected_kg as expectedKg', 'details.address as address', 'is_complete as isComplete')
 }

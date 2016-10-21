@@ -5,9 +5,9 @@ export default React.createClass({
   render() {
     return (
       <div className="listWrapper">
-        {this.props.tickets.map(ticket => {
+        {this.props.tickets.map(tickets => {
           return(
-            <Link to={`/donortickets/${donorTicket.name}`}>
+            <Link to={`/donortickets/${tickets.name}`}>
               <div className="ticketWrapper">
                 <div className="weight"> TicketWeight </div>
                 <div className="orgInfo">

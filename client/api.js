@@ -11,7 +11,8 @@ export default {
   getRecipientTicketList: getRecipientTicketList,
   updateTicket: updateTicket,
   updateComment: updateComment,
-  addTicket: addTicket
+  addTicket: addTicket,
+  getTickets: getTickets
 }
 
   function getDonors(cb) {
@@ -51,7 +52,7 @@ export default {
   }
 
   function getDonor(id, cb) {
-    const getUrl = `${url}/donors/:${id}`
+    const getUrl = `${url}/donors/${id}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
@@ -70,7 +71,7 @@ export default {
   }
 
   function getRecipient(id, cb) {
-    const getUrl = `${url}/recipients/:${id}`
+    const getUrl = `${url}/recipients/${id}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
@@ -89,16 +90,17 @@ export default {
   }
 
   function getDonorTicketList(id, cb) {
-    const getUrl = `${url}/donortickets/:${id}`
+    const getUrl = `${url}/donortickets/${id}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
           cb(err)
         } else {
+          const expectedTickets = res.body.data
           const donorTicket = {
-            expectedKg: res.body.expected,
-            name: res.body.name,
-            address: res.body.address
+            expectedKg: res.body[0].expected,
+            name: res.body[0].name,
+            address: res.body[0].address
           }
           cb(null, donorTicket)
         }
@@ -106,7 +108,7 @@ export default {
   }
 
   function getRecipientTicketList(id, cb) {
-    const getUrl = `${url}/recipientickets/:${id}`
+    const getUrl = `${url}/recipientickets/${id}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
@@ -146,5 +148,17 @@ export default {
       .send(ticket)
       .end((err, res) => {
         cb(err)
+      })
+  }
+
+  function getTickets (cb) {
+    const getUrl = `${url}/tickets`
+    request.get(getUrl)
+      .end((err, res) => {
+        if (err) {
+          cb(err)
+        } else {
+          cb(null, res.body)
+        }
       })
   }

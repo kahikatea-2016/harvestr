@@ -9,7 +9,8 @@ module.exports = {
   getRecipientTicketList: getRecipientTicketList,
   addTicket: addTicket,
   updateTicket: updateTicket,
-  updateComment: updateComment
+  updateComment: updateComment,
+  getTickets: getTickets
 }
 
 function getDonors(req, res) {
@@ -115,6 +116,16 @@ function getRecipientTicketList(req, res) {
     db.addTicket(ticket)
       .then(function () {
         res.json(ticket)
+      })
+      .catch(function (err) {
+        res.send(err.message).status(500)
+      })
+  }
+
+  function getTickets(req, res) {
+    db.getTickets()
+      .then(function (tickets) {
+        res.json(tickets)
       })
       .catch(function (err) {
         res.send(err.message).status(500)
