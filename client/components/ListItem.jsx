@@ -20,7 +20,7 @@ export default React.createClass({
     return (
       <Link className="link" to={`/v1/tickets/${this.props.ticketId}`}>
         <div className={`ticketWrapper ${ticketStyle}`}>
-          <div className="weight"> {this.props.weight} </div>
+          <div className="weight"> {this.props.weight}kg </div>
           <div className="orgInfo">
             <h4> {name} </h4>
             <h2> {this.props.address} </h2>
