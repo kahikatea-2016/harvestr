@@ -9,8 +9,9 @@ export default {
   getRecipient: getRecipient,
   getDonorTicketList: getDonorTicketList,
   getRecipientTicketList: getRecipientTicketList,
-  addTicket: addTicket,
-  updateTicket: updateTicket
+  updateTicket: updateTicket,
+  updateComment: updateComment,
+  addTicket: addTicket
 }
 
   function getDonors(cb) {
@@ -50,7 +51,7 @@ export default {
   }
 
   function getDonor(id, cb) {
-    const getUrl = `${url}/donors:${id}`
+    const getUrl = `${url}/donors/:${id}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
@@ -69,7 +70,7 @@ export default {
   }
 
   function getRecipient(id, cb) {
-    const getUrl = `${url}/recipients:${id}`
+    const getUrl = `${url}/recipients/:${id}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
@@ -88,7 +89,7 @@ export default {
   }
 
   function getDonorTicketList(id, cb) {
-    const getUrl = `${url}/donortickets:${id}`
+    const getUrl = `${url}/donortickets/:${id}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
@@ -105,7 +106,7 @@ export default {
   }
 
   function getRecipientTicketList(id, cb) {
-    const getUrl = `${url}/recipientickets:${id}`
+    const getUrl = `${url}/recipientickets/:${id}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
@@ -121,18 +122,27 @@ export default {
       })
   }
 
-  function addTicket(ticket, cb) {
-    const addUrl = `${url}/ticket`
-    request.post(addUrl)
+  function updateTicket(ticket, cb) {
+    const updateUrl = `${url}/tickets`
+    request.put(updateUrl)
       .send(ticket)
       .end((err, res) => {
         cb(err)
       })
   }
 
-  function updateTicket(ticket, cb) {
-    const updateUrl = `${url}/ticket`
+  function updateComment(comments, cb) {
+    const updateUrl = `${url}/comments`
     request.put(updateUrl)
+      .send(comments)
+      .end((err, res) => {
+        cb(err)
+      })
+  }
+
+  function addTicket(ticket, cb) {
+    const addUrl = `${url}/tickets`
+    request.post(addUrl)
       .send(ticket)
       .end((err, res) => {
         cb(err)

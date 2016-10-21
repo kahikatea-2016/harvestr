@@ -8,7 +8,8 @@ module.exports = {
   getDonorTicketList: getDonorTicketList,
   getRecipientTicketList: getRecipientTicketList,
   addTicket: addTicket,
-  updateDonorTicket: updateDonorTicket,
+  updateTicket: updateTicket,
+  updateComment: updateComment
 }
 
 function getDonors(req, res) {
@@ -75,14 +76,13 @@ function getRecipientTicketList(req, res) {
     })
   }
 
-  function updateDonorTicket(req, res) {
+  function updateTicket(req, res) {
     var ticket = {
-      donorId: req.body.donorId,
-      actualKg: req.body.actualKg,
-      comments: req.body.comments,
-      isComplete: req.body.isComplete
+      id: req.body.recipId,
+      expectedKg: req.body.expectedKg,
+      isComplete: req.body.done
     }
-    db.updateDonorTicket(ticket)
+    db.updateTicket(ticket)
       .then(function () {
         res.json(ticket)
       })
@@ -91,16 +91,14 @@ function getRecipientTicketList(req, res) {
       })
   }
 
-  function updateRecipientTicket(req, res) {
-    var ticket = {
-      recipId: req.body.recipId,
-      actualKg: req.body.actualKg,
-      comments: req.body.comments,
-      isComplete: req.body.isComplete
+  function updateComment(req, res) {
+    var comment = {
+      ticketId: req.body.ticketId,
+      comments: req.body.comments
     }
-    db.updateRecipientTicket(ticket)
+    db.updateComment(comment)
       .then(function () {
-        res.json(ticket)
+        res.json(comment)
       })
       .catch(function (err) {
         res.send(err.message).status(500)
