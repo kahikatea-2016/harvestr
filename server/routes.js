@@ -8,7 +8,8 @@ module.exports = {
   getDonorTicketList: getDonorTicketList,
   getRecipientTicketList: getRecipientTicketList,
   addTicket: addTicket,
-  updateTicket: updateTicket
+  updateTicket: updateTicket,
+  updateComment: updateComment
 }
 
 function getDonors(req, res) {
@@ -43,7 +44,7 @@ function getDonor(req, res) {
 }
 
 function getRecipient(req, res) {
-  var recipientId = req.paramns.id
+  var recipientId = req.params.id
   db.getRecipient(recipientId)
     .then(function (recipient) {
       res.json(recipient)
@@ -75,14 +76,13 @@ function getRecipientTicketList(req, res) {
     })
   }
 
-  function addTicket(req, res) {
+  function updateTicket(req, res) {
     var ticket = {
-      recipId: req.body.recipId,
-      donorId: req.body.donorId,
+      id: req.body.recipId,
       expectedKg: req.body.expectedKg,
-      isComplete: false
+      isComplete: req.body.done
     }
-    db.addTicket(ticket)
+    db.updateTicket(ticket)
       .then(function () {
         res.json(ticket)
       })
@@ -91,15 +91,28 @@ function getRecipientTicketList(req, res) {
       })
   }
 
-  function updateTicket(req, res) {
+  function updateComment(req, res) {
+    var comment = {
+      ticketId: req.body.ticketId,
+      comments: req.body.comments
+    }
+    db.updateComment(comment)
+      .then(function () {
+        res.json(comment)
+      })
+      .catch(function (err) {
+        res.send(err.message).status(500)
+      })
+  }
+
+  function addTicket(req, res) {
     var ticket = {
       recipId: req.body.recipId,
       donorId: req.body.donorId,
-      actualKg: req.body.actualKg,
-      comments: req.body.comments,
-      isComplete: req.body.isComplete
+      expectedKg: req.body.expectedKg,
+      isComplete: false
     }
-    db.updateTicket(ticket)
+    db.addTicket(ticket)
       .then(function () {
         res.json(ticket)
       })

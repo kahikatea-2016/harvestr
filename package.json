@@ -7,7 +7,8 @@
     "dev": "webpack-dev-server --content-base public/ --hot --inline",
     "knex": "knex",
     "start": "nodemon server/server & webpack --watch",
-    "test": "tape -r babel-register babel-tape-runner 'test/**/*.test.js' | tap-spec"
+    "test": "tape -r babel-register babel-tape-runner 'test/**/*.test.js' | tap-spec",
+    "api-test": "node client/TEMP-api-postman-testing.js"
   },
   "babel": {
     "presets": [

@@ -9,7 +9,8 @@ module.exports = {
   getDonorTicketList: getDonorTicketList,
   getRecipientTicketList: getRecipientTicketList,
   addTicket: addTicket,
-  updateTicket: updateTicket
+  updateTicket: updateTicket,
+  updateComment: updateComment
 }
 
 function getDonors () {
@@ -22,14 +23,14 @@ function getRecipients () {
 
 function getDonor (id) {
   return knex('donors')
-  .join('details', 'donors.details_id', '=', 'details.id')
+  .join('details', 'donors.detail_id', '=', 'details.id')
   .where('donors.id', id)
   .select('donors.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes')
 }
 
 function getRecipient (id) {
   return knex('recipients')
-  .join('details', 'recipients.details_id', '=', 'details.id')
+  .join('details', 'recipients.detail_id', '=', 'details.id')
   .where('recipients.id', id)
   .select('recipients.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes')
 }
@@ -51,9 +52,22 @@ function getRecipientTicketList (id) {
 }
 
 function addTicket (ticket) {
-  console.log('added ticket')
+  return console.log('added ticket')
 }
 
 function updateTicket (ticket) {
-  console.log('updated ticket')
+  return knex ('tickets')
+ .where('tickets.id', tickets.id)
+ .update({
+   expected_kg: ticket.expectedKg,
+   is_complete: ticket.done
+ })
+}
+
+function updateComment (comment) {
+  return knex ('comments')
+  .where('ticket_id', comment.ticketId)
+  .update({
+    comments: comment.comments
+  })
 }
