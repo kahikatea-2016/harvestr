@@ -16,8 +16,8 @@ app.get('/v1/donors/:id', routes.getDonor)
 app.get('/v1/recipients/:id', routes.getRecipient)
 app.get('/v1/donortickets/:id', routes.getDonorTicketList)
 app.get('/v1/recipientickets/:id', routes.getRecipientTicketList)
-app.put('/v1/tickets', routes.updateTicket)
-app.put('/v1/comments', routes.updateComment)
+// app.put('/v1/tickets', routes.updateTicket)
+// app.put('/v1/comments', routes.updateComment)
 app.post('/v1/tickets', routes.addTicket)
 
 

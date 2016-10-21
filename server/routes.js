@@ -7,9 +7,7 @@ module.exports = {
   getRecipient: getRecipient,
   getDonorTicketList: getDonorTicketList,
   getRecipientTicketList: getRecipientTicketList,
-  addTicket: addTicket,
-  updateTicket: updateTicket,
-  updateComment: updateComment
+  addTicket: addTicket
 }
 
 function getDonors(req, res) {
@@ -79,8 +77,8 @@ function getRecipientTicketList(req, res) {
   function updateTicket(req, res) {
     var ticket = {
       id: req.body.recipId,
-      expectedKg: req.body.expectedKg,
-      isComplete: req.body.done
+      expected_kg: req.body.expectedKg,
+      is_complete: req.body.done
     }
     db.updateTicket(ticket)
       .then(function () {
@@ -93,7 +91,7 @@ function getRecipientTicketList(req, res) {
 
   function updateComment(req, res) {
     var comment = {
-      ticketId: req.body.ticketId,
+      ticket_id: req.body.ticketId,
       comments: req.body.comments
     }
     db.updateComment(comment)
@@ -105,12 +103,13 @@ function getRecipientTicketList(req, res) {
       })
   }
 
+// "has to match table column name, use _": req.body.useCamelCase
   function addTicket(req, res) {
     var ticket = {
-      recipId: req.body.recipId,
-      donorId: req.body.donorId,
-      expectedKg: req.body.expectedKg,
-      isComplete: false
+      expected_kg: req.body.expectedKg,
+      recipient_id: req.body.recipientId,
+      donor_id: req.body.donorId,
+      is_complete: 0
     }
     db.addTicket(ticket)
       .then(function () {
