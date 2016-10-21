@@ -8,7 +8,9 @@ module.exports = {
   updateTicket: updateTicket,
   updateComment: updateComment,
   getTickets: getTickets,
-  addTicket: addTicket
+  addTicket: addTicket,
+  getDonorTicket: getDonorTicket,
+  getRecipientTicket: getRecipientTicket
 }
 
 function getDonors(req, res) {
@@ -108,3 +110,25 @@ function getRecipient(req, res) {
         res.send(err.message).status(500)
       })
   }
+
+  function getDonorTicket(req, res) {
+  var ticketId = req.params.id
+  db.getDonorTicket(ticketId)
+    .then(function (donorTicket) {
+      res.json(donorTicket)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
+
+  function getRecipientTicket(req, res) {
+  var ticketId = req.params.id
+  db.getRecipientTicket(ticketId)
+    .then(function (recipientTicket) {
+      res.json(recipientTicket)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
