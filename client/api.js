@@ -7,11 +7,10 @@ export default {
   getRecipients: getRecipients,
   getDonor: getDonor,
   getRecipient: getRecipient,
-  getDonorTicketList: getDonorTicketList,
-  getRecipientTicketList: getRecipientTicketList,
   updateTicket: updateTicket,
   updateComment: updateComment,
-  addTicket: addTicket
+  addTicket: addTicket,
+  getTickets: getTickets
 }
 
   function getDonors(cb) {
@@ -51,7 +50,7 @@ export default {
   }
 
   function getDonor(id, cb) {
-    const getUrl = `${url}/donors/:${id}`
+    const getUrl = `${url}/donors/${id}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
@@ -70,7 +69,7 @@ export default {
   }
 
   function getRecipient(id, cb) {
-    const getUrl = `${url}/recipients/:${id}`
+    const getUrl = `${url}/recipients/${id}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
@@ -84,40 +83,6 @@ export default {
             notes: res.body.notes
           }
           cb(null, recipient)
-        }
-      })
-  }
-
-  function getDonorTicketList(id, cb) {
-    const getUrl = `${url}/donortickets/:${id}`
-    request.get(getUrl)
-      .end((err, res) => {
-        if (err) {
-          cb(err)
-        } else {
-          const donorTicket = {
-            expectedKg: res.body.expected,
-            name: res.body.name,
-            address: res.body.address
-          }
-          cb(null, donorTicket)
-        }
-      })
-  }
-
-  function getRecipientTicketList(id, cb) {
-    const getUrl = `${url}/recipientickets/:${id}`
-    request.get(getUrl)
-      .end((err, res) => {
-        if (err) {
-          cb(err)
-        } else {
-          const recipientTicket = {
-            expectedKg: res.body.expected,
-            name: res.body.name,
-            address: res.body.address
-          }
-          cb(null, recipientTicket)
         }
       })
   }
@@ -146,5 +111,17 @@ export default {
       .send(ticket)
       .end((err, res) => {
         cb(err)
+      })
+  }
+
+  function getTickets (cb) {
+    const getUrl = `${url}/tickets`
+    request.get(getUrl)
+      .end((err, res) => {
+        if (err) {
+          cb(err)
+        } else {
+          cb(null, res.body)
+        }
       })
   }

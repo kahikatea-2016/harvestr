@@ -12,6 +12,10 @@ body {
   margin: 0;
 }
 
+.link {
+  text-decoration: none;
+}
+
 .mainWrapper {
   width: 100%;
   height: auto;
@@ -114,6 +118,11 @@ body {
   color: white;
   font-family: Raleway;
   opacity: .8;
+}
+
+.photoWrapper {
+  width: 100%;
+  height: auto;
 }
 
 .pickUp {

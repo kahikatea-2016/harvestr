@@ -6,10 +6,9 @@ module.exports = {
   getRecipients: getRecipients,
   getDonor: getDonor,
   getRecipient: getRecipient,
-  getDonorTicketList: getDonorTicketList,
-  getRecipientTicketList: getRecipientTicketList,
   updateTicket: updateTicket,
   updateComment: updateComment,
+  getTickets: getTickets,
   addTicket: addTicket
 }
 
@@ -39,24 +38,6 @@ function getRecipient (id) {
   .select('recipients.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes')
 }
 
-//gets ALL the donors tickets for pick up
-function getDonorTicketList (id) {
- return knex ('tickets')
- .join ('donors', 'tickets.donor_id', '=', 'donors.id')
- .join ('details', 'tickets.details_id', '=', 'details.id')
- .where ('tickets.id', id)
- .select ('tickets.expected_kg as expected', 'donors.name as name', 'details.address as address')
-}
-
-//gets ALL the recipients tickets for drop off
-function getRecipientTicketList (id) {
-  return knex ('tickets')
-  .join ('recipients', 'tickets.recipient_id', '=', 'recipients.id')
-  .join ('details', 'tickets.details_id', '=', 'details.id')
-  .where ('tickets.id', id)
-  .select ('tickets.expected_kg as expected', 'recipients.name as name', 'details.address as address')
-}
-
 //Ops updates ticket
 function updateTicket (ticket) {
   return knex ('tickets')
@@ -75,6 +56,18 @@ function updateComment (id, comment) {
     comments: comment.comments
   })
 }
+
+function getTickets () {
+  return knex('tickets')
+    .leftJoin('donors', 'tickets.donor_id', 'donors.id')
+    .leftJoin('recipients', 'tickets.recipient_id', 'recipients.id')
+    .leftJoin('details', function () {
+      this
+        .on('details.id', '=', 'donors.detail_id')
+        .orOn('details.id', '=', 'recipients.detail_id')
+    })
+    .select('donors.name as donorName', 'donors.id as donorId', 'recipients.name as recipientName', 'recipients.id as recipientId', 'expected_kg as expectedKg', 'details.address as address', 'is_complete as isComplete')
+  }
 
 //Ops adds a new ticket
 function addTicket (ticket) {

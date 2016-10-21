@@ -5,8 +5,9 @@ module.exports = {
   getRecipients: getRecipients,
   getDonor: getDonor,
   getRecipient: getRecipient,
-  getDonorTicketList: getDonorTicketList,
-  getRecipientTicketList: getRecipientTicketList,
+  updateTicket: updateTicket,
+  updateComment: updateComment,
+  getTickets: getTickets,
   addTicket: addTicket
 }
 
@@ -52,28 +53,6 @@ function getRecipient(req, res) {
     })
 }
 
-function getDonorTicketList(req, res) {
-  var ticketId = req.params.id
-  db.getDonorTicketList(ticketId)
-    .then(function (donorTicket) {
-      res.json(donorTicket)
-    })
-    .catch(function (err) {
-      res.send(err.message).status(500)
-    })
-}
-
-function getRecipientTicketList(req, res) {
-  var ticketId = req.params.id
-  db.getRecipientTicketList(ticketId)
-    .then(function (recipientTicket) {
-      res.json(recipientTicket)
-    })
-    .catch(function (err) {
-      res.send(err.message).status(500)
-    })
-  }
-
   function updateTicket(req, res) {
     var ticket = {
       id: req.body.recipId,
@@ -114,6 +93,16 @@ function getRecipientTicketList(req, res) {
     db.addTicket(ticket)
       .then(function () {
         res.json(ticket)
+      })
+      .catch(function (err) {
+        res.send(err.message).status(500)
+      })
+  }
+
+  function getTickets(req, res) {
+    db.getTickets()
+      .then(function (tickets) {
+        res.json(tickets)
       })
       .catch(function (err) {
         res.send(err.message).status(500)
