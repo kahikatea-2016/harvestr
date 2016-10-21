@@ -38,9 +38,10 @@
     "babel-tape-runner": "^2.0.1",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
-    "superagent": "^2.3.0",
     "knex": "^0.12.6",
+    "react-router": "^2.8.1",
     "sqlite3": "^3.1.6",
+    "superagent": "^2.3.0",
     "tape": "^4.6.2"
   }
 }
