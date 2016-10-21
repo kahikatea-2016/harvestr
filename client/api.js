@@ -3,8 +3,18 @@ import request from 'superagent'
 const url = '/v1'
 
 export default {
+  getDonors: getDonors,
+  getRecipients: getRecipients,
+  getDonor: getDonor,
+  getRecipient: getRecipient,
+  getDonorTicketList: getDonorTicketList,
+  getRecipientTicketList: getRecipientTicketList,
+  updateTicket: updateTicket,
+  updateComment: updateComment,
+  addTicket: addTicket
+}
 
-  getDonors(cb) {
+  function getDonors(cb) {
     const getUrl = `${url}/donors`
     request.get(getUrl)
       .end((err, res) => {
@@ -20,9 +30,9 @@ export default {
           cb(null, donors)
         }
       })
-  },
+  }
 
-  getRecipients(cb) {
+  function getRecipients(cb) {
     const getUrl = `${url}/recipients`
     request.get(getUrl)
       .end((err, res) => {
@@ -38,10 +48,10 @@ export default {
           cb(null, recipients)
         }
       })
-  },
+  }
 
-  getDonor(id, cb) {
-    const getUrl = `${url}/donors:${id}`
+  function getDonor(id, cb) {
+    const getUrl = `${url}/donors/:${id}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
@@ -57,10 +67,10 @@ export default {
           cb(null, donor)
         }
       })
-  },
+  }
 
-  getRecipient(id, cb) {
-    const getUrl = `${url}/recipients:${id}`
+  function getRecipient(id, cb) {
+    const getUrl = `${url}/recipients/:${id}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
@@ -76,10 +86,10 @@ export default {
           cb(null, recipient)
         }
       })
-  },
+  }
 
-  getDonorTicketList(id, cb) {
-    const getUrl = `${url}/donortickets:${id}`
+  function getDonorTicketList(id, cb) {
+    const getUrl = `${url}/donortickets/:${id}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
@@ -93,10 +103,10 @@ export default {
           cb(null, donorTicket)
         }
       })
-  },
+  }
 
-  getRecipientTicketList(id, cb) {
-    const getUrl = `${url}/recipientickets:${id}`
+  function getRecipientTicketList(id, cb) {
+    const getUrl = `${url}/recipientickets/:${id}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
@@ -110,19 +120,10 @@ export default {
           cb(null, recipientTicket)
         }
       })
-  },
+  }
 
-  addTicket(ticket, cb) {
-    const addUrl = `${url}/ticket`
-    request.post(addUrl)
-      .send(ticket)
-      .end((err, res) => {
-        cb(err)
-      })
-  },
-
-  updateTicket(ticket, cb) {
-    const updateUrl = `${url}/ticket`
+  function updateTicket(ticket, cb) {
+    const updateUrl = `${url}/tickets`
     request.put(updateUrl)
       .send(ticket)
       .end((err, res) => {
@@ -130,4 +131,20 @@ export default {
       })
   }
 
-}
+  function updateComment(comments, cb) {
+    const updateUrl = `${url}/comments`
+    request.put(updateUrl)
+      .send(comments)
+      .end((err, res) => {
+        cb(err)
+      })
+  }
+
+  function addTicket(ticket, cb) {
+    const addUrl = `${url}/tickets`
+    request.post(addUrl)
+      .send(ticket)
+      .end((err, res) => {
+        cb(err)
+      })
+  }

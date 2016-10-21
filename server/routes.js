@@ -7,8 +7,7 @@ module.exports = {
   getRecipient: getRecipient,
   getDonorTicketList: getDonorTicketList,
   getRecipientTicketList: getRecipientTicketList,
-  addTicket: addTicket,
-  updateTicket: updateTicket
+  addTicket: addTicket
 }
 
 function getDonors(req, res) {
@@ -43,7 +42,7 @@ function getDonor(req, res) {
 }
 
 function getRecipient(req, res) {
-  var recipientId = req.paramns.id
+  var recipientId = req.params.id
   db.getRecipient(recipientId)
     .then(function (recipient) {
       res.json(recipient)
@@ -75,14 +74,13 @@ function getRecipientTicketList(req, res) {
     })
   }
 
-  function addTicket(req, res) {
+  function updateTicket(req, res) {
     var ticket = {
-      recipId: req.body.recipId,
-      donorId: req.body.donorId,
-      expectedKg: req.body.expectedKg,
-      isComplete: false
+      id: req.body.recipId,
+      expected_kg: req.body.expectedKg,
+      is_complete: req.body.done
     }
-    db.addTicket(ticket)
+    db.updateTicket(ticket)
       .then(function () {
         res.json(ticket)
       })
@@ -91,15 +89,29 @@ function getRecipientTicketList(req, res) {
       })
   }
 
-  function updateTicket(req, res) {
-    var ticket = {
-      recipId: req.body.recipId,
-      donorId: req.body.donorId,
-      actualKg: req.body.actualKg,
-      comments: req.body.comments,
-      isComplete: req.body.isComplete
+  function updateComment(req, res) {
+    var comment = {
+      ticket_id: req.body.ticketId,
+      comments: req.body.comments
     }
-    db.updateTicket(ticket)
+    db.updateComment(comment)
+      .then(function () {
+        res.json(comment)
+      })
+      .catch(function (err) {
+        res.send(err.message).status(500)
+      })
+  }
+
+// "has to match table column name, use _": req.body.useCamelCase
+  function addTicket(req, res) {
+    var ticket = {
+      expected_kg: req.body.expectedKg,
+      recipient_id: req.body.recipientId,
+      donor_id: req.body.donorId,
+      is_complete: 0
+    }
+    db.addTicket(ticket)
       .then(function () {
         res.json(ticket)
       })

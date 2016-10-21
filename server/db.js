@@ -9,7 +9,8 @@ module.exports = {
   getDonorTicketList: getDonorTicketList,
   getRecipientTicketList: getRecipientTicketList,
   updateTicket: updateTicket,
-  updateComment: updateComment
+  updateComment: updateComment,
+  addTicket: addTicket
 }
 
 // gets list of all donors
@@ -57,9 +58,9 @@ function getRecipientTicketList (id) {
 }
 
 //Ops updates ticket
-function updateTicket (id, ticket) {
+function updateTicket (ticket) {
   return knex ('tickets')
- .where('tickets.id', id)
+ .where('tickets.id', tickets.id)
  .update({
    expected_kg: ticket.expectedKg,
    is_complete: ticket.done
@@ -69,33 +70,13 @@ function updateTicket (id, ticket) {
 //driver updates comments
 function updateComment (id, comment) {
   return knex ('comments')
-  .where('ticket_id', id)
+  .where('ticket_id', comment.ticketId)
   .update({
     comments: comment.comments
   })
 }
 
-//Ops adds a new pick up or drop off ticket
-function createDonorTicket (id, ticket) {
-  return knex ('tickets')
-  .join ('donors', 'tickets.donor_id', '=', 'donors.id')
-  .where('donors.id', id)
-  .select('donors.donor_id as donorId', 'tickets.expected_kg as expectedKg', 'tickets.is_complete as done')
-  .insert({
-    donor_id: ticket.donorId,
-    expected_kg: ticket.expectedKg,
-    is_complete: ticket.done
-  })
-}
-
-function createRecipientTicket (id, ticket) {
-  return knex ('tickets')
-  .join ('recipients', 'tickets.recipient_id', '=', 'recipients.id')
-  .where('recipients.id', id)
-  .select('recipients.recipient_id as recipientId', 'tickets.expected_kg as expectedKg', 'tickets.is_complete as done')
-  .insert({
-    recipient_id: ticket.recipientId,
-    expected_kg: ticket.expectedKg,
-    is_complete: ticket.done
-  })
+//Ops adds a new ticket
+function addTicket (ticket) {
+  return knex('tickets').insert(ticket)
 }
