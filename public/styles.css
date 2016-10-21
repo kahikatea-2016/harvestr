@@ -10,6 +10,7 @@ body {
   width: 100%;
   height: auto;
   margin: 0;
+  font-family: Raleway;
 }
 
 .link {
@@ -123,6 +124,17 @@ body {
 .photoWrapper {
   width: 100%;
   height: auto;
+}
+
+.formWrapper {
+  max-width: 960px;
+  height: auto;
+  background-color: #A2AEBB;
+
+  box-shadow: 2px 2px 1px grey;b
+
+  margin: 0px auto;
+  padding: 10px;
 }
 
 .pickUp {
