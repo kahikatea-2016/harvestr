@@ -23,7 +23,8 @@ export default {
           const donors = res.body.map(donors => {
             return {
               id: donors.id,
-              donorName: donors.donorName
+              donorName: donors.donorName,
+              donorDetailId: donors.donorDetailId
             }
           })
           cb(null, donors)
@@ -41,7 +42,8 @@ export default {
           const recipients = res.body.map(recipients => {
             return {
               id: recipients.id,
-              recipientName: recipients.recipientName
+              recipientName: recipients.recipientName,
+              recipientDetailId: recipients.recipientDetailId
             }
           })
           cb(null, recipients)

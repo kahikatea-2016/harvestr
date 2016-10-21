@@ -27,7 +27,7 @@ function getDonor (id) {
   return knex('donors')
   .join('details', 'donors.detail_id', '=', 'details.id')
   .where('donors.id', id)
-  .select('donors.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes')
+  .select('donors.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes', 'donors.detail_id as detailId')
 }
 
 //gets details of recipients
@@ -35,7 +35,7 @@ function getRecipient (id) {
   return knex('recipients')
   .join('details', 'recipients.detail_id', '=', 'details.id')
   .where('recipients.id', id)
-  .select('recipients.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes')
+  .select('recipients.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes', 'recipients.detail_id as detailId')
 }
 
 //Ops updates ticket
