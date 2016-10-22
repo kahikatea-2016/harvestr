@@ -145,6 +145,11 @@ body {
   background-color: #cc0000;
 }
 
+.complete {
+  border: 1px solid #A2AEBB;
+  background-color: #A2AEBB;
+}
+
 .weight {
   margin: 10px;
 

@@ -43,19 +43,19 @@ function getRecipient (id) {
 //Ops updates ticket
 function updateTicket (ticket) {
   return knex ('tickets')
- .where('tickets.id', tickets.id)
+ .where('tickets.id', ticket.id)
  .update({
-   actual_kg: ticket.expectedKg,
-   is_complete: ticket.done
+   actual_kg: ticket.actualKg,
+   is_complete: true
  })
 }
 
 //driver updates comments
-function updateComment (id, comment) {
+function updateComment (comment) {
   return knex ('comments')
-  .where('ticket_id', comment.ticketId)
-  .update({
-    comments: comment.comments
+  .insert({
+    ticket_id: comment.ticketId,
+    comments: comment.comment
   })
 }
 
@@ -68,7 +68,7 @@ function getTickets () {
         .on('details.id', '=', 'donors.detail_id')
         .orOn('details.id', '=', 'recipients.detail_id')
     })
-    .select('tickets.id as ticketId', 'donors.name as donorName', 'donors.id as donorId', 'recipients.name as recipientName', 'recipients.id as recipientId', 'expected_kg as expectedKg', 'details.address as address', 'is_complete as isComplete')
+    .select('tickets.id as ticketId', 'donors.name as donorName', 'donors.id as donorId', 'recipients.name as recipientName', 'recipients.id as recipientId', 'expected_kg as expectedKg', 'actual_kg as actualKg', 'details.address as address', 'is_complete as isComplete')
   }
 
 //Ops adds a new ticket

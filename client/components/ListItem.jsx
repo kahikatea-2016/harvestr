@@ -18,16 +18,27 @@ export default React.createClass({
     }
 
     let ticketStyle = null
-    if(this.props.donorId) {
+    let status = null
+    let weight = null
+    if(this.props.isComplete) {
+      ticketStyle = 'complete'
+      status = 'actual'
+      weight = this.props.actualKg
+    } else if(this.props.donorId) {
       ticketStyle = 'pickUp'
+      status = 'expected'
+      weight = this.props.expectedKg
     } else {
       ticketStyle = 'dropOff'
+      status = 'expected'
+      weight = this.props.expectedKg
     }
 
     return (
       <Link className="link" to={`/ticket/${param}/${this.props.ticketId}`}>
         <div className={`ticketWrapper ${ticketStyle}`}>
-          <div className="weight"> {this.props.weight}kg </div>
+          {status}
+          <div className="weight">{weight}kg </div>
           <div className="orgInfo">
             <h4> {name} </h4>
             <h2> {this.props.address} </h2>
