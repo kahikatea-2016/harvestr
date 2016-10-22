@@ -22,10 +22,11 @@ export default {
         if (err) {
           cb(err)
         } else {
-          const donors = res.body.map(donors => {
+          const donors = res.body.map(donor => {
             return {
-              id: donors.id,
-              donorName: donors.donorName
+              id: donor.id,
+              donorName: donor.name,
+              donorDetailsId: donor.detail_id
             }
           })
           cb(null, donors)
@@ -40,10 +41,11 @@ export default {
         if (err) {
           cb(err)
         } else {
-          const recipients = res.body.map(recipients => {
+          const recipients = res.body.map(recipient => {
             return {
-              id: recipients.id,
-              recipientName: recipients.recipientName
+              id: recipient.id,
+              recipientName: recipient.name,
+              recipientDetailsId: recipient.detail_id
             }
           })
           cb(null, recipients)
