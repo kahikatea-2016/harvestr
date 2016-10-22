@@ -18,6 +18,7 @@ export default React.createClass({
   },
 
   renderResults (err, singleTicket) {
+    console.log(singleTicket[0])
     this.setState({
       ticket: singleTicket[0]
     })
@@ -41,7 +42,8 @@ export default React.createClass({
           </div>
           <span className="fade_line"></span>
           <div className="inventory">
-            <h2> Expected Weight: {ticket.expected}kg </h2>
+            <h2> Expected: {ticket.expected}kg </h2>
+            <input type="text" placeholder="Actual kg" />
           </div>
           <span className="fade_line"></span>
           <div className="notes">
@@ -55,12 +57,12 @@ export default React.createClass({
             <label> Comments </label>
             <br/>
             <ul>
-              <li> TicketComment </li>
+              <li> {ticket.comments} </li>
             </ul>
             <br/>
             <textarea rows="4" cols="40" className="textInput" placeholder="Write a Comment"></textarea>
             <br/>
-            <input className="button" type="submit" value="Post"/>
+            <input className="button" type="submit" value="Complete"/>
           </div>
         </div>
     </div>
