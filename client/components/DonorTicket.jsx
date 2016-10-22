@@ -15,7 +15,8 @@ export default React.createClass({
   getInitialState () {
     return {
       ticket: [],
-      comments: []
+      comments: [],
+      actualKg: ''
     }
   },
 
@@ -27,32 +28,38 @@ export default React.createClass({
 
   renderTicketInfo (err, singleTicket) {
     this.setState({
-      ticket: singleTicket[0]
+      ticket: singleTicket[0],
+      actualKg: singleTicket[0].actual
     })
   },
 
   renderTicketComments (err, ticketComments) {
-    console.log(ticketComments)
     this.setState({
       comments: ticketComments
     })
   },
 
-  getTicketInfo () {
+  updateTicket () {
     let addActualKg = {
       ticketId: ticket.id,
       actualKg: actualKg.value
     }
     api.updateTicket(addActualKg)
 
-    let addComment = {
-      ticketId: ticket.id,
-      comment: comment.value
+    if(comment.value === '') {
+      console.log('No comment added')
+    } else {
+      let addComment = {
+        ticketId: ticket.id,
+        comment: comment.value
+      }
+      api.updateComment(addComment)
     }
-    api.updateComment(addComment)
   },
 
-
+  onChange (e) {
+    this.setState( {actualKg: parseInt(e.target.value, 10) })
+  },
 
   render () {
     ticket = this.state.ticket
@@ -73,10 +80,15 @@ export default React.createClass({
           <span className="fade_line"></span>
           <div className="inventory">
             <h2> Expected: {ticket.expected}kg </h2>
-            <input type="number" placeholder="Actual kg"
+            <h2>Actual:</h2>
+            <input type="number"
+              placeholder="Actual kg"
+              value={this.state.actualKg}
+              onChange={(e) => this.onChange(e)}
               ref={function (input) {
                 actualKg = input
               }} />
+            <h2>kg</h2>
           </div>
           <span className="fade_line"></span>
           <div className="notes">
@@ -90,7 +102,11 @@ export default React.createClass({
             <label> Comments </label>
             <br/>
             <ul>
-              <li> {ticket.comments} </li>
+              {this.state.comments.map((comments, i) => {
+                return (
+                  <li key={i}>{comments.comments}</li>
+                )
+              })}
             </ul>
             <br/>
             <textarea rows="4" cols="40" className="textInput" placeholder="Write a Comment"
@@ -98,8 +114,9 @@ export default React.createClass({
                 comment = input
               }}></textarea>
             <br/>
+            <Link to='/list'><button className="button">back</button></Link>
             <Link to='/list'>
-            <input className="button" type="submit" value="Complete" onClick={() => this.getTicketInfo()}/>
+            <input className="button" type="submit" value="Complete" onClick={() => this.updateTicket()}/>
             </Link>
           </div>
         </div>

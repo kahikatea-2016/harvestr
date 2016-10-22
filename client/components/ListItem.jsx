@@ -9,12 +9,15 @@ export default React.createClass({
   render() {
     let name = null
     let param = null
+    let job = null
     if(this.props.donorName) {
       name = this.props.donorName
       param = 'donor'
+      job = 'pickup'
     } else {
       name = this.props.recipientName
       param = 'recipient'
+      job = 'drop off'
     }
 
     let ticketStyle = null
@@ -37,7 +40,7 @@ export default React.createClass({
     return (
       <Link className="link" to={`/ticket/${param}/${this.props.ticketId}`}>
         <div className={`ticketWrapper ${ticketStyle}`}>
-          {status}
+          {job}<br/>{status}
           <div className="weight">{weight}kg </div>
           <div className="orgInfo">
             <h4> {name} </h4>
