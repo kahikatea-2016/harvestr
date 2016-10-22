@@ -3,8 +3,20 @@ import request from 'superagent'
 const url = '/v1'
 
 export default {
+  getDonors: getDonors,
+  getRecipients: getRecipients,
+  getDonor: getDonor,
+  getRecipient: getRecipient,
+  updateTicket: updateTicket,
+  updateComment: updateComment,
+  addTicket: addTicket,
+  getTickets: getTickets,
+  getDonorTicket: getDonorTicket,
+  getRecipientTicket: getRecipientTicket,
+  getTicketComments: getTicketComments
+}
 
-  getDonors(cb) {
+  function getDonors(cb) {
     const getUrl = `${url}/donors`
     request.get(getUrl)
       .end((err, res) => {
@@ -14,7 +26,8 @@ export default {
           const donors = res.body.map(donors => {
             return {
               id: donors.id,
-              donorName: donors.donorName
+              donorName: donors.donorName,
+              donorDetailId: donors.donorDetailId
             }
           })
           cb(null, donors)
@@ -22,7 +35,7 @@ export default {
       })
   }
 
-  getRecipients(cb) {
+  function getRecipients(cb) {
     const getUrl = `${url}/recipients`
     request.get(getUrl)
       .end((err, res) => {
@@ -32,7 +45,8 @@ export default {
           const recipients = res.body.map(recipients => {
             return {
               id: recipients.id,
-              recipientName: recipients.recipientName
+              recipientName: recipients.recipientName,
+              recipientDetailId: recipients.recipientDetailId
             }
           })
           cb(null, recipients)
@@ -40,68 +54,111 @@ export default {
       })
   }
 
-  getTickets(cb) {
+  function getDonor(id, cb) {
+    const getUrl = `${url}/donors/${id}`
+    request.get(getUrl)
+      .end((err, res) => {
+        if (err) {
+          cb(err)
+        } else {
+          const donor = {
+            name: res.body.name,
+            address: res.body.address,
+            contact: res.body.contact,
+            phone: res.body.phone,
+            notes: res.body.notes
+          }
+          cb(null, donor)
+        }
+      })
+  }
+
+  function getRecipient(id, cb) {
+    const getUrl = `${url}/recipients/${id}`
+    request.get(getUrl)
+      .end((err, res) => {
+        if (err) {
+          cb(err)
+        } else {
+          const recipients = {
+            name: res.body.name,
+            address: res.body.address,
+            contact: res.body.contact,
+            phone: res.body.phone,
+            notes: res.body.notes
+          }
+          cb(null, recipient)
+        }
+      })
+  }
+
+  function updateTicket(ticket) {
+    const updateUrl = `${url}/tickets`
+    request.put(updateUrl)
+      .send(ticket)
+      .end()
+  }
+
+  function updateComment(comments) {
+    const updateUrl = `${url}/comments`
+    request.put(updateUrl)
+      .send(comments)
+      .end()
+  }
+
+  function addTicket(ticket, cb) {
+    const addUrl = `${url}/tickets`
+    request.post(addUrl)
+      .send(ticket)
+      .end((err, res) => {
+        cb(err)
+      })
+  }
+
+  function getTickets (cb) {
     const getUrl = `${url}/tickets`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
           cb(err)
         } else {
-          const tickets = res.body.map(tickets => {
-            return {
-              id: tickets.id,
-              name: tickets.name,
-              address: tickets.address,
-              weight: tickets.weight
-            }
-          })
-          cb(null, recipients)
+          cb(null, res.body)
         }
       })
   }
 
-  getTicket(id, cb) {
-    const getUrl = `${url}/ticket/:${id}`
+  function getDonorTicket (ticketId, cb) {
+    const getUrl = `${url}/tickets/donors/${ticketId}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
           cb(err)
         } else {
-          const ticket = res.body.map(ticket => {
-            return {
-              id: ticket.id,
-              name: ticket.name,
-              address: ticket.address,
-              person: ticket.person,
-              phone: ticket.phone,
-              expectedKg: ticket.expectedKg,
-              actualKg: ticket.actualKg,
-              notes: ticket.notes,
-              comments: ticket.comments,
-              isComplete: ticket.isComplete
-            }
-          })
-          cb(null, ticket)
+          cb(null, res.body)
         }
       })
   }
 
-  addTicket(ticket, cb) {
-    const addUrl = `${url}/ticket`
-    request.post(addUrl)
-    .send(ticket)
-    .end((err, res) => {
-      cb(err)
-    })
+  function getRecipientTicket (ticketId, cb) {
+    const getUrl = `${url}/tickets/recipients/${ticketId}`
+    request.get(getUrl)
+      .end((err, res) => {
+        if (err) {
+          cb(err)
+        } else {
+          cb(null, res.body)
+        }
+      })
   }
 
-  updateTicket(ticket, cb) {
-    const updateUrl = `${url}/ticket`
-    request.put(updateUrl)
-    .send(ticket)
-    .end((err, res) => {
-      cb(err)
-    })
+  function getTicketComments (ticketId, cb) {
+    const getUrl = `${url}/tickets/comments/${ticketId}`
+    request.get(getUrl)
+      .end((err, res) => {
+        if (err) {
+          cb(err)
+        } else {
+          cb(null, res.body)
+        }
+      })
   }
-
-}

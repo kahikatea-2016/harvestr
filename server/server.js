@@ -12,10 +12,15 @@ app.use(express.static(path.join(__dirname, '../public')))
 
 app.get('/v1/donors', routes.getDonors)
 app.get('/v1/recipients', routes.getRecipients)
-// app.get('/v1/tickets', routes.getTickets)
-app.get('/v1/tickets/:id', routes.getTicket)
-// app.post('/v1/tickets', routes.addTicket)
-// app.put('/v1/tickets', routes.updateTicket)
+app.get('/v1/donors/:id', routes.getDonor)
+app.get('/v1/recipients/:id', routes.getRecipient)
+app.get('/v1/tickets', routes.getTickets)
+app.get('/v1/tickets/donors/:id', routes.getDonorTicket)
+app.get('/v1/tickets/recipients/:id', routes.getRecipientTicket)
+app.get('/v1/tickets/comments/:id', routes.getTicketComments)
+app.put('/v1/tickets', routes.updateTicket)
+app.put('/v1/comments', routes.updateComment)
+app.post('/v1/tickets', routes.addTicket)
 
 
 app.listen(PORT, function () {

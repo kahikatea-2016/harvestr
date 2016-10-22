@@ -7,7 +7,8 @@
     "dev": "webpack-dev-server --content-base public/ --hot --inline",
     "knex": "knex",
     "start": "nodemon server/server & webpack --watch",
-    "test": "tape -r babel-register babel-tape-runner 'test/**/*.test.js' | tap-spec"
+    "test": "tape -r babel-register babel-tape-runner 'test/**/*.test.js' | tap-spec",
+    "api-test": "node client/TEMP-api-postman-testing.js"
   },
   "babel": {
     "presets": [
@@ -38,9 +39,11 @@
     "babel-tape-runner": "^2.0.1",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
-    "superagent": "^2.3.0",
     "knex": "^0.12.6",
+    "pg": "6.1.0",
+    "react-router": "^2.8.1",
     "sqlite3": "^3.1.6",
+    "superagent": "^2.3.0",
     "tape": "^4.6.2"
   }
 }
