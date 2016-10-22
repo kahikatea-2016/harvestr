@@ -67,17 +67,17 @@ export default React.createClass({
       <div>
         <Header />
         <Banner />
-      <div className="ticketWrapperSingle">
+      <div className="ticketWrapperSingle recipColor">
           <div className="orgInfo">
             <h2> {ticket.name} </h2>
             <h4> {ticket.address} </h4>
           </div>
-          <span className="fade_line"></span>
+          <span className="fade_line_recip"></span>
           <div className="contact">
             <h2> {ticket.contact} </h2>
             <h2> {ticket.phone} </h2>
           </div>
-          <span className="fade_line"></span>
+          <span className="fade_line_recip"></span>
           <div className="inventory">
             <h2> Expected: {ticket.expected}kg </h2>
             <h2>Actual:</h2>
@@ -90,14 +90,14 @@ export default React.createClass({
               }} />
             <h2>kg</h2>
           </div>
-          <span className="fade_line"></span>
+          <span className="fade_line_recip"></span>
           <div className="notes">
             <h2> Notes </h2>
             <ul>
               <li> {ticket.notes} </li>
             </ul>
           </div>
-          <span className="fade_line"></span>
+          <span className="fade_line_recip"></span>
           <div className="comments">
             <label> Comments </label>
             <br/>
@@ -114,9 +114,9 @@ export default React.createClass({
                 comment = input
               }}></textarea>
             <br/>
-            <Link to='/list'><button className="button">back</button></Link>
+            <Link to='/list'><button className="button buttonRecip">back</button></Link>
             <Link to='/list'>
-            <input className="button" type="submit" value="Complete" onClick={() => this.updateTicket()}/>
+            <input className="button buttonRecip" type="submit" value="Complete" onClick={() => this.updateTicket()}/>
             </Link>
           </div>
         </div>

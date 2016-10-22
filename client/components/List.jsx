@@ -19,6 +19,7 @@ export default React.createClass({
   },
 
   renderResults (err, allTickets) {
+    console.log(allTickets)
     this.setState({
       tickets: allTickets
     })
@@ -28,8 +29,10 @@ export default React.createClass({
     return (
       <div>
         <Header />
-        <Banner />
         <div className="listWrapper">
+          <h2>Today's Tickets</h2>
+          <h3>Total picked up:</h3>
+          <h3>Total dropped off:</h3>
           {this.state.tickets.map((tickets) => {
             return <ListItem
             key={tickets.ticketId}
