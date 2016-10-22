@@ -55,7 +55,7 @@ export default React.createClass({
             <label> Comments </label>
             <br/>
             <ul>
-              <li> TicketComment </li>
+              <li> {ticket.comments} </li>
             </ul>
             <br/>
             <textarea rows="4" cols="40" className="textInput" placeholder="Write a Comment"></textarea>

@@ -9,6 +9,7 @@ export default React.createClass({
           <div className="auth">
             <Link to='/list'> Login </Link>
             <Link to='/'> Home </Link>
+            <Link to ='/add'> Add </Link>
           </div>
         </div>
     )
