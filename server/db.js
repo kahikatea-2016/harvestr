@@ -80,7 +80,7 @@ function getDonorTicket (ticketId) {
   return knex ('tickets')
  .join ('donors', 'tickets.donor_id', '=', 'donors.id')
  .join ('details', 'tickets.details_id', '=', 'details.id')
- .join ('comments', 'tickets.comment_id', '=', 'comments.id')
+ .join ('comments', 'tickets.comment_id', '=', 'comments.ticket_id')
  .where ('tickets.id', ticketId)
  .select ('tickets.id as id', 'tickets.expected_kg as expected', 'donors.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes', 'comments.comments as comments', 'tickets.is_complete as isComplete')
 }

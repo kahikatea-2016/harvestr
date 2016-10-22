@@ -22,7 +22,7 @@ export default React.createClass({
     let weight = null
     if(this.props.isComplete) {
       ticketStyle = 'complete'
-      status = 'actual'
+      status = 'complete actual'
       weight = this.props.actualKg
     } else if(this.props.donorId) {
       ticketStyle = 'pickUp'

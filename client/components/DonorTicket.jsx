@@ -1,4 +1,6 @@
 import React from 'react'
+import {Link} from 'react-router'
+
 
 import api from '../api'
 
@@ -22,7 +24,6 @@ export default React.createClass({
   },
 
   renderResults (err, singleTicket) {
-    console.log(singleTicket[0])
     this.setState({
       ticket: singleTicket[0]
     })
@@ -88,7 +89,9 @@ export default React.createClass({
                 comment = input
               }}></textarea>
             <br/>
+            <Link to='/list'>
             <input className="button" type="submit" value="Complete" onClick={() => this.getTicketInfo()}/>
+            </Link>
           </div>
         </div>
     </div>

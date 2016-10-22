@@ -45,11 +45,12 @@ knex('comments').del()
 
     .then(function () {
       return knex ('comments').insert([
-        {id: 1, ticket_id: '1', comments: 'Picked up more 10 kgs of potatos'},
-        {id: 2, ticket_id: '2', comments: 'Traffic was congested today'},
-        {id: 3, ticket_id: '3', comments: 'Delivered and helped move some meals'},
-        {id: 4, ticket_id: '4', comments: 'We were late because of traffic'},
-        {id: 5, ticket_id: '5', comments: 'They were happy with the potatos as well'}
+        {id: 1, ticket_id: 1, comments: 'Picked up more 10 kgs of potatos'},
+        {id: 6, ticket_id: 1, comments: 'Ran a little late'},
+        {id: 2, ticket_id: 2, comments: 'Traffic was congested today'},
+        {id: 3, ticket_id: 3, comments: 'Delivered and helped move some meals'},
+        {id: 4, ticket_id: 4, comments: 'We were late because of traffic'},
+        {id: 5, ticket_id: 5, comments: 'They were happy with the potatos as well'}
       ])
     })
 };
