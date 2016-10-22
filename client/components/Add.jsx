@@ -14,7 +14,10 @@ export default React.createClass({
     },
 
     handleChange(event) {
-      this.setState({value: event.target.value});
+      this.setState({
+        value: event.target.value,
+        id: event.target.id
+      })
     },
 
     componentDidMount() {
@@ -26,13 +29,10 @@ export default React.createClass({
     },
 
     addDonorTicket () {
-      // const donorId = {
-      //   donorId: donor.id
-      // }
-      // api.addTicket(donorId)
       let newTicket = {
-        donorId: selectDonor.id,
-        expectedKg: expectedKg.value
+        donorId: selectDonor.value,
+        expectedKg: expectedKg.value,
+        detailId: selectDonor.value
       }
       console.log(newTicket)
       api.addTicket(newTicket)
@@ -44,14 +44,13 @@ export default React.createClass({
           <Header />
           <div className="donorForm">
             <h2> Create a Donor Ticket </h2>
-            <select value={this.state.value} onChange={this.handleChange}>
+            <select value={this.state.value} id={this.state.id} onChange={this.handleChange} ref={function (input) {
+                selectDonor = input
+              }}>
               <option value="0"> Select Donor Name </option>
               {this.state.donors.map((donor) => {
                 return (
-                  <option key={donor.id} id={donor.id} value={donor.donorName}
-                  ref={function (input) {
-                    selectDonor = input
-                  }} >
+                  <option key={donor.id} id={donor.id} value={donor.id}>
                     {donor.donorName}
                   </option>
                 )
