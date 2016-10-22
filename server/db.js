@@ -43,19 +43,19 @@ function getRecipient (id) {
 //Ops updates ticket
 function updateTicket (ticket) {
   return knex ('tickets')
- .where('tickets.id', tickets.id)
+ .where('tickets.id', ticket.id)
  .update({
-   actual_kg: ticket.expectedKg,
-   is_complete: ticket.done
+   actual_kg: ticket.actualKg,
+   is_complete: true
  })
 }
 
 //driver updates comments
-function updateComment (id, comment) {
+function updateComment (comment) {
   return knex ('comments')
-  .where('ticket_id', comment.ticketId)
-  .update({
-    comments: comment.comments
+  .insert({
+    ticket_id: comment.ticketId,
+    comments: comment.comment
   })
 }
 

@@ -57,9 +57,8 @@ function getRecipient(req, res) {
 
   function updateTicket(req, res) {
     var ticket = {
-      id: req.body.recipId,
-      expected_kg: req.body.expectedKg,
-      is_complete: req.body.done
+      id: req.body.ticketId,
+      actualKg: req.body.actualKg,
     }
     db.updateTicket(ticket)
       .then(function () {
@@ -72,8 +71,8 @@ function getRecipient(req, res) {
 
   function updateComment(req, res) {
     var comment = {
-      ticket_id: req.body.ticketId,
-      comments: req.body.comments
+      ticketId: req.body.ticketId,
+      comment: req.body.comment
     }
     db.updateComment(comment)
       .then(function () {

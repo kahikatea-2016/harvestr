@@ -89,22 +89,18 @@ export default {
       })
   }
 
-  function updateTicket(ticket, cb) {
+  function updateTicket(ticket) {
     const updateUrl = `${url}/tickets`
     request.put(updateUrl)
       .send(ticket)
-      .end((err, res) => {
-        cb(err)
-      })
+      .end()
   }
 
-  function updateComment(comments, cb) {
+  function updateComment(comments) {
     const updateUrl = `${url}/comments`
     request.put(updateUrl)
       .send(comments)
-      .end((err, res) => {
-        cb(err)
-      })
+      .end()
   }
 
   function addTicket(ticket, cb) {
