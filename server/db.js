@@ -68,7 +68,7 @@ function getTickets () {
         .on('details.id', '=', 'donors.detail_id')
         .orOn('details.id', '=', 'recipients.detail_id')
     })
-    .select('tickets.id as ticketId', 'donors.name as donorName', 'donors.id as donorId', 'recipients.name as recipientName', 'recipients.id as recipientId', 'expected_kg as expectedKg', 'details.address as address', 'is_complete as isComplete')
+    .select('tickets.id as ticketId', 'donors.name as donorName', 'donors.id as donorId', 'recipients.name as recipientName', 'recipients.id as recipientId', 'expected_kg as expectedKg', 'actual_kg as actualKg', 'details.address as address', 'is_complete as isComplete')
   }
 
 //Ops adds a new ticket
