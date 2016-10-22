@@ -19,6 +19,7 @@ export default React.createClass({
   },
 
   renderResults (err, allTickets) {
+    console.log(allTickets)
     this.setState({
       tickets: allTickets
     })
@@ -39,7 +40,8 @@ export default React.createClass({
             recipientId={tickets.recipientId}
             recipientName={tickets.recipientName}
             address={tickets.address}
-            weight={tickets.expectedKg}
+            expectedKg={tickets.expectedKg}
+            actualKg={tickets.actualKg}
             isComplete={tickets.isComplete}/>
           })}
         </div>

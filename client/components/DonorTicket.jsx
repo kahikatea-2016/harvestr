@@ -5,6 +5,10 @@ import api from '../api'
 import Header from './Header'
 import Banner from './Banner'
 
+let ticket = null
+let actualKg = null
+let comment = null
+
 export default React.createClass({
   getInitialState () {
     return {
@@ -24,8 +28,24 @@ export default React.createClass({
     })
   },
 
+  getTicketInfo () {
+    let addActualKg = {
+      ticketId: ticket.id,
+      actualKg: actualKg.value
+    }
+    api.updateTicket(addActualKg)
+
+    let addComment = {
+      ticketId: ticket.id,
+      comment: comment.value
+    }
+    api.updateComment(addComment)
+  },
+
+
+
   render () {
-    const ticket = this.state.ticket
+    ticket = this.state.ticket
     return (
       <div>
         <Header />
@@ -43,7 +63,10 @@ export default React.createClass({
           <span className="fade_line"></span>
           <div className="inventory">
             <h2> Expected: {ticket.expected}kg </h2>
-            <input type="text" placeholder="Actual kg" />
+            <input type="number" placeholder="Actual kg"
+              ref={function (input) {
+                actualKg = input
+              }} />
           </div>
           <span className="fade_line"></span>
           <div className="notes">
@@ -60,9 +83,12 @@ export default React.createClass({
               <li> {ticket.comments} </li>
             </ul>
             <br/>
-            <textarea rows="4" cols="40" className="textInput" placeholder="Write a Comment"></textarea>
+            <textarea rows="4" cols="40" className="textInput" placeholder="Write a Comment"
+              ref={function (input) {
+                comment = input
+              }}></textarea>
             <br/>
-            <input className="button" type="submit" value="Complete"/>
+            <input className="button" type="submit" value="Complete" onClick={() => this.getTicketInfo()}/>
           </div>
         </div>
     </div>
