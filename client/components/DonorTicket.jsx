@@ -18,6 +18,7 @@ export default React.createClass({
   },
 
   renderResults (err, singleTicket) {
+    console.log(singleTicket[0])
     this.setState({
       ticket: singleTicket[0]
     })
