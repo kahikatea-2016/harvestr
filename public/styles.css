@@ -393,13 +393,36 @@ body {
   padding: 5px 10px 5px 10px;
 }
 
+.donorForm {
+  width: 960px;
+  margin: 0px auto;
+  background-color: #4C53BA;
+
+  color: white;
+  text-align: center;
+}
+
+.donorForm h2 {
+  font-weight: 400;
+  padding: 10px;
+}
+
 select {
-  -webkit-appearance: none;
+  margin: 10px;
   font-family: Raleway;
   font-size: 1em;
-  border: 1px solid white;
+  border: 1px solid black;
   border-radius: 5px;
 
+}
+
+input[type="number"] {
+  margin: 10px;
+  font-family: Raleway;
+  font-size: 1em;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 172px;
 }
 
 input[type="submit"] {
@@ -411,6 +434,14 @@ input[type="submit"] {
   padding: 5px 10px 5px 10px;
   margin: 10px;
   font-family: Raleway;
+  transition: .3s;
+}
+
+input[type="submit"]:hover {
+  color: #3BAF29;
+  background-color: white;
+  border: 1px solid #3BAF29;
+  transition: .3s;
 }
 
 /* Media Queries */
