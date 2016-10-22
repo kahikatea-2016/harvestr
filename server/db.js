@@ -29,7 +29,7 @@ function getDonor (id) {
   return knex('donors')
   .join('details', 'donors.detail_id', '=', 'details.id')
   .where('donors.id', id)
-  .select('donors.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes')
+  .select('donors.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes', 'donors.detail_id as detailId')
 }
 
 //gets details of recipients
@@ -37,25 +37,25 @@ function getRecipient (id) {
   return knex('recipients')
   .join('details', 'recipients.detail_id', '=', 'details.id')
   .where('recipients.id', id)
-  .select('recipients.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes')
+  .select('recipients.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes', 'recipients.detail_id as detailId')
 }
 
 //Ops updates ticket
 function updateTicket (ticket) {
   return knex ('tickets')
- .where('tickets.id', tickets.id)
+ .where('tickets.id', ticket.id)
  .update({
-   actual_kg: ticket.expectedKg,
-   is_complete: ticket.done
+   actual_kg: ticket.actualKg,
+   is_complete: true
  })
 }
 
 //driver updates comments
-function updateComment (id, comment) {
+function updateComment (comment) {
   return knex ('comments')
-  .where('ticket_id', comment.ticketId)
-  .update({
-    comments: comment.comments
+  .insert({
+    ticket_id: comment.ticketId,
+    comments: comment.comment
   })
 }
 
@@ -68,7 +68,7 @@ function getTickets () {
         .on('details.id', '=', 'donors.detail_id')
         .orOn('details.id', '=', 'recipients.detail_id')
     })
-    .select('tickets.id as ticketId', 'donors.name as donorName', 'donors.id as donorId', 'recipients.name as recipientName', 'recipients.id as recipientId', 'expected_kg as expectedKg', 'details.address as address', 'is_complete as isComplete')
+    .select('tickets.id as ticketId', 'donors.name as donorName', 'donors.id as donorId', 'recipients.name as recipientName', 'recipients.id as recipientId', 'expected_kg as expectedKg', 'actual_kg as actualKg', 'details.address as address', 'is_complete as isComplete')
   }
 
 //Ops adds a new ticket
