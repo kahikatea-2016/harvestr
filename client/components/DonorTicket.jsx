@@ -14,18 +14,27 @@ let comment = null
 export default React.createClass({
   getInitialState () {
     return {
-      ticket: []
+      ticket: [],
+      comments: []
     }
   },
 
   componentDidMount () {
     const ticketId = this.props.params.ticket
-    api.getDonorTicket(ticketId, this.renderResults)
+    api.getDonorTicket(ticketId, this.renderTicketInfo)
+    api.getTicketComments(ticketId, this.renderTicketComments)
   },
 
-  renderResults (err, singleTicket) {
+  renderTicketInfo (err, singleTicket) {
     this.setState({
       ticket: singleTicket[0]
+    })
+  },
+
+  renderTicketComments (err, ticketComments) {
+    console.log(ticketComments)
+    this.setState({
+      comments: ticketComments
     })
   },
 

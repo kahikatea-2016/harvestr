@@ -11,7 +11,8 @@ module.exports = {
   getTickets: getTickets,
   addTicket: addTicket,
   getDonorTicket: getDonorTicket,
-  getRecipientTicket: getRecipientTicket
+  getRecipientTicket: getRecipientTicket,
+  getTicketComments: getTicketComments
 }
 
 // gets list of all donors
@@ -92,4 +93,10 @@ function getRecipientTicket (ticketId) {
   .join ('comments', 'tickets.comment_id', '=', 'comments.id')
   .where ('tickets.id', ticketId)
   .select ('tickets.id as id','tickets.expected_kg as expected', 'recipients.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes', 'comments.comments as comments')
+}
+
+function getTicketComments (ticketId) {
+  return knex ('comments')
+  .where ('ticket_id', ticketId)
+  .select()
 }

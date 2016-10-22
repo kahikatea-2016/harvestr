@@ -10,7 +10,8 @@ module.exports = {
   getTickets: getTickets,
   addTicket: addTicket,
   getDonorTicket: getDonorTicket,
-  getRecipientTicket: getRecipientTicket
+  getRecipientTicket: getRecipientTicket,
+  getTicketComments: getTicketComments
 }
 
 function getDonors(req, res) {
@@ -114,23 +115,6 @@ function getDonorTicket(req, res) {
   var ticketId = req.params.id
   db.getDonorTicket(ticketId)
     .then(function (donorTicket) {
-      var ticket = []
-      var foundComments = []
-      for (var i = 0; i < donorTicket.length; i++) {
-        if(!donorTicket[i].comments) {
-          ticket.push(donorTicket[i])
-        }
-      }
-
-      for (var i = 0; i < donorTicket.length; i++) {
-        if (!foundComments.includes(donorTicket[i].comments)) {
-          ticket.push({
-            comments: donorTicket[i].comments
-          })
-          foundComments.push(donorTicket[i].comments)
-        }
-      }
-      console.log(ticket)
       res.json(donorTicket)
     })
     .catch(function (err) {
@@ -143,6 +127,27 @@ function getRecipientTicket(req, res) {
   db.getRecipientTicket(ticketId)
     .then(function (recipientTicket) {
       res.json(recipientTicket)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
+
+function getTicketComments(req, res) {
+  var ticketId = req.params.id
+  db.getTicketComments(ticketId)
+    .then(function (ticketComments) {
+      var singleTicketComments = []
+      var foundComments = []
+      for (var i = 0; i < ticketComments.length; i++) {
+        if (!foundComments.includes(ticketComments[i].comments)) {
+          singleTicketComments.push({
+            comments: ticketComments[i].comments
+          })
+          foundComments.push(ticketComments[i].comments)
+        }
+      }
+      res.json(singleTicketComments)
     })
     .catch(function (err) {
       res.send(err.message).status(500)
