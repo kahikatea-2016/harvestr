@@ -10,9 +10,9 @@ export default React.createClass({
       <div className="header">
         <Link to="/"> <span className="logo"> Harvestr </span> </Link>
         <div className="auth">
-          <AuthButton />
           <AddTicketButton />
           <ViewListButton />
+          <AuthButton />
         </div>
       </div>
     )

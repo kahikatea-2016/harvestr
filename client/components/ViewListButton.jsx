@@ -4,7 +4,7 @@ import {Link} from 'react-router'
 export default React.createClass({
   render() {
     return (
-      <div>
+      <div className="listButton">
         <Link to='/list'>View list</Link>
       </div>
     )

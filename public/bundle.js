@@ -60,23 +60,23 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
-	var _AddRecipientTicket = __webpack_require__(238);
+	var _AddRecipientTicket = __webpack_require__(241);
 	
 	var _AddRecipientTicket2 = _interopRequireDefault(_AddRecipientTicket);
 	
-	var _AddDonorTicket = __webpack_require__(245);
+	var _AddDonorTicket = __webpack_require__(248);
 	
 	var _AddDonorTicket2 = _interopRequireDefault(_AddDonorTicket);
 	
-	var _List = __webpack_require__(246);
+	var _List = __webpack_require__(249);
 	
 	var _List2 = _interopRequireDefault(_List);
 	
-	var _DonorTicket = __webpack_require__(248);
+	var _DonorTicket = __webpack_require__(251);
 	
 	var _DonorTicket2 = _interopRequireDefault(_DonorTicket);
 	
-	var _RecipientTicket = __webpack_require__(249);
+	var _RecipientTicket = __webpack_require__(252);
 	
 	var _RecipientTicket2 = _interopRequireDefault(_RecipientTicket);
 	
@@ -27134,19 +27134,19 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _Banner = __webpack_require__(237);
+	var _Banner = __webpack_require__(240);
 	
 	var _Banner2 = _interopRequireDefault(_Banner);
 	
-	var _AddRecipientTicket = __webpack_require__(238);
+	var _AddRecipientTicket = __webpack_require__(241);
 	
 	var _AddRecipientTicket2 = _interopRequireDefault(_AddRecipientTicket);
 	
-	var _AddDonorTicket = __webpack_require__(245);
+	var _AddDonorTicket = __webpack_require__(248);
 	
 	var _AddDonorTicket2 = _interopRequireDefault(_AddDonorTicket);
 	
-	var _List = __webpack_require__(246);
+	var _List = __webpack_require__(249);
 	
 	var _List2 = _interopRequireDefault(_List);
 	
@@ -27181,15 +27181,15 @@
 	
 	var _reactRouter = __webpack_require__(172);
 	
-	var _AddTicketButton = __webpack_require__(250);
+	var _AddTicketButton = __webpack_require__(237);
 	
 	var _AddTicketButton2 = _interopRequireDefault(_AddTicketButton);
 	
-	var _AuthButton = __webpack_require__(251);
+	var _AuthButton = __webpack_require__(238);
 	
 	var _AuthButton2 = _interopRequireDefault(_AuthButton);
 	
-	var _ViewListButton = __webpack_require__(252);
+	var _ViewListButton = __webpack_require__(239);
 	
 	var _ViewListButton2 = _interopRequireDefault(_ViewListButton);
 	
@@ -27215,9 +27215,9 @@
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'auth' },
-	        _react2.default.createElement(_AuthButton2.default, null),
 	        _react2.default.createElement(_AddTicketButton2.default, null),
-	        _react2.default.createElement(_ViewListButton2.default, null)
+	        _react2.default.createElement(_ViewListButton2.default, null),
+	        _react2.default.createElement(_AuthButton2.default, null)
 	      )
 	    );
 	  }
@@ -27225,6 +27225,107 @@
 
 /***/ },
 /* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'AddTicketButton',
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'dropdownAdd' },
+	      'Add a Ticket',
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'dropdownAddContent' },
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/addDonorTicket' },
+	          ' Add a Donor Ticket '
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/addRecipientTicket' },
+	          ' Add a Recipient Ticket '
+	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 238 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'AuthButton',
+	  render: function render() {
+	    return _react2.default.createElement('div', { className: 'g-signin2', 'data-onsuccess': 'onSignIn' });
+	  }
+	});
+
+/***/ },
+/* 239 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'ViewListButton',
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'listButton' },
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/list' },
+	        'View list'
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27269,7 +27370,7 @@
 	});
 
 /***/ },
-/* 238 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27288,7 +27389,7 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _api = __webpack_require__(239);
+	var _api = __webpack_require__(242);
 	
 	var _api2 = _interopRequireDefault(_api);
 	
@@ -27383,7 +27484,7 @@
 	});
 
 /***/ },
-/* 239 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27392,7 +27493,7 @@
 	  value: true
 	});
 	
-	var _superagent = __webpack_require__(240);
+	var _superagent = __webpack_require__(243);
 	
 	var _superagent2 = _interopRequireDefault(_superagent);
 	
@@ -27547,7 +27648,7 @@
 	}
 
 /***/ },
-/* 240 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -27564,9 +27665,9 @@
 	  root = this;
 	}
 	
-	var Emitter = __webpack_require__(241);
-	var requestBase = __webpack_require__(242);
-	var isObject = __webpack_require__(243);
+	var Emitter = __webpack_require__(244);
+	var requestBase = __webpack_require__(245);
+	var isObject = __webpack_require__(246);
 	
 	/**
 	 * Noop.
@@ -27578,7 +27679,7 @@
 	 * Expose `request`.
 	 */
 	
-	var request = module.exports = __webpack_require__(244).bind(null, Request);
+	var request = module.exports = __webpack_require__(247).bind(null, Request);
 	
 	/**
 	 * Determine XHR.
@@ -28529,7 +28630,7 @@
 
 
 /***/ },
-/* 241 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -28698,13 +28799,13 @@
 
 
 /***/ },
-/* 242 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
-	var isObject = __webpack_require__(243);
+	var isObject = __webpack_require__(246);
 	
 	/**
 	 * Clear previous timeout.
@@ -29076,7 +29177,7 @@
 
 
 /***/ },
-/* 243 */
+/* 246 */
 /***/ function(module, exports) {
 
 	/**
@@ -29095,7 +29196,7 @@
 
 
 /***/ },
-/* 244 */
+/* 247 */
 /***/ function(module, exports) {
 
 	// The node and browser modules expose versions of this with the
@@ -29133,7 +29234,7 @@
 
 
 /***/ },
-/* 245 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29152,7 +29253,7 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _api = __webpack_require__(239);
+	var _api = __webpack_require__(242);
 	
 	var _api2 = _interopRequireDefault(_api);
 	
@@ -29246,7 +29347,7 @@
 	});
 
 /***/ },
-/* 246 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29261,7 +29362,7 @@
 	
 	var _reactRouter = __webpack_require__(172);
 	
-	var _api = __webpack_require__(239);
+	var _api = __webpack_require__(242);
 	
 	var _api2 = _interopRequireDefault(_api);
 	
@@ -29269,11 +29370,11 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _Banner = __webpack_require__(237);
+	var _Banner = __webpack_require__(240);
 	
 	var _Banner2 = _interopRequireDefault(_Banner);
 	
-	var _ListItem = __webpack_require__(247);
+	var _ListItem = __webpack_require__(250);
 	
 	var _ListItem2 = _interopRequireDefault(_ListItem);
 	
@@ -29360,7 +29461,7 @@
 	});
 
 /***/ },
-/* 247 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29375,11 +29476,11 @@
 	
 	var _reactRouter = __webpack_require__(172);
 	
-	var _DonorTicket = __webpack_require__(248);
+	var _DonorTicket = __webpack_require__(251);
 	
 	var _DonorTicket2 = _interopRequireDefault(_DonorTicket);
 	
-	var _RecipientTicket = __webpack_require__(249);
+	var _RecipientTicket = __webpack_require__(252);
 	
 	var _RecipientTicket2 = _interopRequireDefault(_RecipientTicket);
 	
@@ -29457,7 +29558,7 @@
 	});
 
 /***/ },
-/* 248 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29472,7 +29573,7 @@
 	
 	var _reactRouter = __webpack_require__(172);
 	
-	var _api = __webpack_require__(239);
+	var _api = __webpack_require__(242);
 	
 	var _api2 = _interopRequireDefault(_api);
 	
@@ -29480,7 +29581,7 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _Banner = __webpack_require__(237);
+	var _Banner = __webpack_require__(240);
 	
 	var _Banner2 = _interopRequireDefault(_Banner);
 	
@@ -29685,7 +29786,7 @@
 	});
 
 /***/ },
-/* 249 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29700,7 +29801,7 @@
 	
 	var _reactRouter = __webpack_require__(172);
 	
-	var _api = __webpack_require__(239);
+	var _api = __webpack_require__(242);
 	
 	var _api2 = _interopRequireDefault(_api);
 	
@@ -29708,7 +29809,7 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _Banner = __webpack_require__(237);
+	var _Banner = __webpack_require__(240);
 	
 	var _Banner2 = _interopRequireDefault(_Banner);
 	
@@ -29907,107 +30008,6 @@
 	              } })
 	          )
 	        )
-	      )
-	    );
-	  }
-	});
-
-/***/ },
-/* 250 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(172);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = _react2.default.createClass({
-	  displayName: 'AddTicketButton',
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      { className: 'dropdownAdd' },
-	      'Add a Ticket',
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'dropdownAddContent' },
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/addDonorTicket' },
-	          ' Add a Donor Ticket '
-	        ),
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/addRecipientTicket' },
-	          ' Add a Recipient Ticket '
-	        )
-	      )
-	    );
-	  }
-	});
-
-/***/ },
-/* 251 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(172);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = _react2.default.createClass({
-	  displayName: 'AuthButton',
-	  render: function render() {
-	    return _react2.default.createElement('div', { className: 'g-signin2', 'data-onsuccess': 'onSignIn' });
-	  }
-	});
-
-/***/ },
-/* 252 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(172);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = _react2.default.createClass({
-	  displayName: 'ViewListButton',
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      null,
-	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/list' },
-	        'View list'
 	      )
 	    );
 	  }
