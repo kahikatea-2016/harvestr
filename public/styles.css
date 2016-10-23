@@ -284,6 +284,16 @@ body {
     background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 150, from(#fff), to(#4C53BA));
 }
 
+.fade_line_recip {
+  margin: 15px 0px 15px 0px;
+  display:block;
+  border:none;
+  color:white;
+  height:1px;
+  background:black;
+  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 150, from(#fff), to(#FF4C4C));
+}
+
 /* Single ticket page */
 
 .ticketWrapperSingle {
@@ -302,6 +312,11 @@ body {
   font-weight: 400;
   text-align: center;
 }
+
+.recipColor {
+  background-color: #FF4C4C
+}
+
 
 .contact h2 {
   font-family: Raleway;
@@ -376,6 +391,10 @@ body {
   border-radius: 5px;
   background-color: #4C53BA;
   padding: 5px 10px 5px 10px;
+}
+
+.buttonRecip {
+  background-color: #FF4C4C;
 }
 
 /* Media Queries */

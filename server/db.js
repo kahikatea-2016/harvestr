@@ -11,7 +11,8 @@ module.exports = {
   getTickets: getTickets,
   addTicket: addTicket,
   getDonorTicket: getDonorTicket,
-  getRecipientTicket: getRecipientTicket
+  getRecipientTicket: getRecipientTicket,
+  getTicketComments: getTicketComments
 }
 
 // gets list of all donors
@@ -80,16 +81,22 @@ function getDonorTicket (ticketId) {
   return knex ('tickets')
  .join ('donors', 'tickets.donor_id', '=', 'donors.id')
  .join ('details', 'tickets.details_id', '=', 'details.id')
- .join ('comments', 'tickets.comment_id', '=', 'comments.id')
+ .join ('comments', 'tickets.comment_id', '=', 'comments.ticket_id')
  .where ('tickets.id', ticketId)
- .select ('tickets.id as id', 'tickets.expected_kg as expected', 'donors.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes', 'comments.comments as comments', 'tickets.is_complete as isComplete')
+ .select ('tickets.id as id', 'tickets.expected_kg as expected', 'tickets.actual_kg as actual', 'donors.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes', 'comments.comments as comments', 'tickets.is_complete as isComplete')
 }
 
 function getRecipientTicket (ticketId) {
   return knex ('tickets')
   .join ('recipients', 'tickets.recipient_id', '=', 'recipients.id')
   .join ('details', 'tickets.details_id', '=', 'details.id')
-  .join ('comments', 'tickets.comment_id', '=', 'comments.id')
+  .join ('comments', 'tickets.comment_id', '=', 'comments.ticket_id')
   .where ('tickets.id', ticketId)
-  .select ('tickets.id as id','tickets.expected_kg as expected', 'recipients.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes', 'comments.comments as comments')
+  .select ('tickets.id as id', 'tickets.expected_kg as expected', 'tickets.actual_kg as actual', 'recipients.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes', 'comments.comments as comments', 'tickets.is_complete as isComplete')
+}
+
+function getTicketComments (ticketId) {
+  return knex ('comments')
+  .where ('ticket_id', ticketId)
+  .select()
 }
