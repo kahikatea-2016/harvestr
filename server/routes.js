@@ -85,21 +85,32 @@ function updateComment(req, res) {
 }
 
 // "has to match table column name, use _": req.body.useCamelCase
-function addTicket(req, res) {
-  var ticket = {
-    expected_kg: req.body.expectedKg,
-    recipient_id: req.body.recipientId,
-    donor_id: req.body.donorId,
-    is_complete: 0
+  function addTicket(req, res) {
+    console.log(req.body.recipientId)
+    if (!req.body.recipientId) {
+      var ticket = {
+        expected_kg: req.body.expectedKg,
+        donor_id: req.body.donorId.split('|')[0],
+        details_id: req.body.donorId.split('|')[1],
+        is_complete: 0
+      }
+    } else {
+      var ticket = {
+        expected_kg: req.body.expectedKg,
+        recipient_id: req.body.recipientId.split('|')[0],
+        details_id: req.body.recipientId.split('|')[1],
+        is_complete: 0
+      }
+    }
+    console.log(ticket)
+    db.addTicket(ticket)
+      .then(function () {
+        res.json(ticket)
+      })
+      .catch(function (err) {
+        res.send(err.message).status(500)
+      })
   }
-  db.addTicket(ticket)
-    .then(function () {
-      res.json(ticket)
-    })
-    .catch(function (err) {
-      res.send(err.message).status(500)
-    })
-}
 
 function getTickets(req, res) {
   db.getTickets()

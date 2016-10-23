@@ -9,7 +9,13 @@ export default React.createClass({
           <div className="auth">
             <Link to='/list'> Login </Link>
             <Link to='/'> Home </Link>
-            <Link to ='/add'> Add </Link>
+            <div className="dropdownAdd">
+              Add a Ticket
+              <div className="dropdownAddContent">
+                <Link to='/addDonorTicket'> Add a Donor Ticket </Link>
+                <Link to='/addRecipientTicket'> Add a Recipient Ticket </Link>
+              </div>
+            </div>
           </div>
         </div>
     )

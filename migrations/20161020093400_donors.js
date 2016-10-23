@@ -14,7 +14,7 @@ exports.up = function(knex, Promise) {
     table.increments('id').primary()
     table.string('address')
     table.string('contact_person')
-    table.integer('phone')
+    table.string('phone')
     table.string('notes')
   }),
   knex.schema.createTable('tickets', function(table) {

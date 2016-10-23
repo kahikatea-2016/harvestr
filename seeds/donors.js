@@ -27,7 +27,7 @@ exports.seed = function(knex, Promise) {
     return knex ('recipients').insert([
       {id: 1, name: 'Salvation Army', detail_id: 4},
       {id: 2, name: 'Grey Lynn Family Trust', detail_id: 5},
-      {id: 3, name: 'Womens Refugee', detail_id: 6}
+      {id: 3, name: 'Womens Refuge', detail_id: 6}
     ])
   })
   .then(function () {
