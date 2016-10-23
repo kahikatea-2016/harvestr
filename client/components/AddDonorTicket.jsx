@@ -35,7 +35,6 @@ export default React.createClass({
         donorId: selectDonor.value,
         expectedKg: expectedKg.value,
       }
-      console.log(newTicket)
       api.addTicket(newTicket)
     },
 
@@ -51,7 +50,7 @@ export default React.createClass({
               <option value="0"> Select Donor Name </option>
               {this.state.donors.map((donor) => {
                 return (
-                  <option key={donor.id} id={donor.id} value={donor.id}>
+                  <option key={donor.id} id={donor.id} value={`${donor.id}|${donor.donorDetailsId}`}>
                     {donor.donorName}
                   </option>
                 )
@@ -72,7 +71,3 @@ export default React.createClass({
       )
     }
   })
-
-  <Link to='/list'>
-  <input className="button" type="submit" value="Submit" onClick={() => this.addDonorTicket()}/>
-  </Link>

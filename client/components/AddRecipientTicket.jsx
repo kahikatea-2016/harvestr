@@ -28,7 +28,6 @@ export default React.createClass({
 
     renderResults(err, recipients) {
       this.setState({recipients: recipients})
-      console.log(recipients)
     },
 
     addRecipientTicket () {
