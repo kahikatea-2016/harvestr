@@ -10,7 +10,8 @@ module.exports = {
   getTickets: getTickets,
   addTicket: addTicket,
   getDonorTicket: getDonorTicket,
-  getRecipientTicket: getRecipientTicket
+  getRecipientTicket: getRecipientTicket,
+  getTicketComments: getTicketComments
 }
 
 function getDonors(req, res) {
@@ -55,33 +56,33 @@ function getRecipient(req, res) {
     })
 }
 
-  function updateTicket(req, res) {
-    var ticket = {
-      id: req.body.ticketId,
-      actualKg: req.body.actualKg,
-    }
-    db.updateTicket(ticket)
-      .then(function () {
-        res.json(ticket)
-      })
-      .catch(function (err) {
-        res.send(err.message).status(500)
-      })
+function updateTicket(req, res) {
+  var ticket = {
+    id: req.body.ticketId,
+    actualKg: req.body.actualKg,
   }
+  db.updateTicket(ticket)
+    .then(function () {
+      res.json(ticket)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
 
-  function updateComment(req, res) {
-    var comment = {
-      ticketId: req.body.ticketId,
-      comment: req.body.comment
-    }
-    db.updateComment(comment)
-      .then(function () {
-        res.json(comment)
-      })
-      .catch(function (err) {
-        res.send(err.message).status(500)
-      })
+function updateComment(req, res) {
+  var comment = {
+    ticketId: req.body.ticketId,
+    comment: req.body.comment
   }
+  db.updateComment(comment)
+    .then(function () {
+      res.json(comment)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
 
 // "has to match table column name, use _": req.body.useCamelCase
   function addTicket(req, res) {
@@ -111,17 +112,17 @@ function getRecipient(req, res) {
       })
   }
 
-  function getTickets(req, res) {
-    db.getTickets()
-      .then(function (tickets) {
-        res.json(tickets)
-      })
-      .catch(function (err) {
-        res.send(err.message).status(500)
-      })
-  }
+function getTickets(req, res) {
+  db.getTickets()
+    .then(function (tickets) {
+      res.json(tickets)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
 
-  function getDonorTicket(req, res) {
+function getDonorTicket(req, res) {
   var ticketId = req.params.id
   db.getDonorTicket(ticketId)
     .then(function (donorTicket) {
@@ -132,11 +133,32 @@ function getRecipient(req, res) {
     })
 }
 
-  function getRecipientTicket(req, res) {
+function getRecipientTicket(req, res) {
   var ticketId = req.params.id
   db.getRecipientTicket(ticketId)
     .then(function (recipientTicket) {
       res.json(recipientTicket)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
+
+function getTicketComments(req, res) {
+  var ticketId = req.params.id
+  db.getTicketComments(ticketId)
+    .then(function (ticketComments) {
+      var singleTicketComments = []
+      var foundComments = []
+      for (var i = 0; i < ticketComments.length; i++) {
+        if (!foundComments.includes(ticketComments[i].comments)) {
+          singleTicketComments.push({
+            comments: ticketComments[i].comments
+          })
+          foundComments.push(ticketComments[i].comments)
+        }
+      }
+      res.json(singleTicketComments)
     })
     .catch(function (err) {
       res.send(err.message).status(500)
