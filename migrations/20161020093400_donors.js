@@ -1,6 +1,13 @@
 exports.up = function(knex, Promise) {
   return Promise.all([
-    knex.schema.createTable('donors', function(table) {
+  knex.schema.createTable('details', function(table) {
+    table.increments('id').primary()
+    table.string('address')
+    table.string('contact_person')
+    table.string('phone')
+    table.string('notes')
+  }),
+  knex.schema.createTable('donors', function(table) {
     table.increments('id').primary()
     table.string('name')
     table.integer('detail_id').references('details.id')
@@ -10,13 +17,6 @@ exports.up = function(knex, Promise) {
     table.string('name')
     table.integer('detail_id').references('details.id')
   }),
-  knex.schema.createTable('details', function(table) {
-    table.increments('id').primary()
-    table.string('address')
-    table.string('contact_person')
-    table.string('phone')
-    table.string('notes')
-  }),
   knex.schema.createTable('tickets', function(table) {
     table.increments('id').primary()
     table.integer('expected_kg')
@@ -24,7 +24,6 @@ exports.up = function(knex, Promise) {
     table.integer('donor_id').references('donors.id')
     table.integer('recipient_id').references('recipients.id')
     table.integer('details_id').references('details.id')
-    table.string('comments')
     table.boolean('is_complete')
   }),
   knex.schema.createTable('comments', function(table) {
