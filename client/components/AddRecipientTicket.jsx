@@ -1,10 +1,12 @@
 import React from 'react'
+import {Link} from 'react-router'
 import Header from './Header'
 import api from '../api'
 
 let ticket = null
 let selectRecipient = null
 let expectedKg = null
+let detailId = null
 
 export default React.createClass({
     getInitialState() {
@@ -24,17 +26,16 @@ export default React.createClass({
       api.getRecipients(this.renderResults)
     },
 
-    renderResults(err, donors) {
+    renderResults(err, recipients) {
       this.setState({recipients: recipients})
+      console.log(recipients)
     },
 
     addRecipientTicket () {
       let newTicket = {
         recipientId: selectRecipient.value,
-        expectedKg: expectedKg.value,
-        detailId: selectRecipient.value
+        expectedKg: expectedKg.value
       }
-      console.log(newTicket)
       api.addTicket(newTicket)
     },
 
@@ -50,7 +51,7 @@ export default React.createClass({
               <option value="0"> Select Recipient Name </option>
               {this.state.recipients.map((recipient) => {
                 return (
-                  <option key={recipient.id} id={recipient.id} value={recipient.id}>
+                  <option key={recipient.id} id={recipient.id} value={`${recipient.id}|${recipient.recipientDetailsId}`}>
                     {recipient.recipientName}
                   </option>
                 )
@@ -63,7 +64,9 @@ export default React.createClass({
               expectedKg = input
             }} />
             <br/>
+            <Link to='/list'>
             <input className="button" type="submit" value="Submit" onClick={() => this.addRecipientTicket()}/>
+            </Link>
           </div>
         </div>
       )

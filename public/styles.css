@@ -468,7 +468,6 @@ input[type="submit"]:hover {
   position: relative;
   display: inline-block;
   width: 150px;
-  height: 30px;
 
   text-decoration: none;
   border: 2px solid white;

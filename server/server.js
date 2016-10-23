@@ -20,7 +20,7 @@ app.get('/v1/tickets/recipients/:id', routes.getRecipientTicket)
 
 app.put('/v1/update-ticket', routes.updateTicket)
 app.put('/v1/comments', routes.updateComment)
-app.post('/v1/create-ticket', routes.addTicket)
+app.post('/v1/tickets', routes.addTicket)
 
 
 app.listen(PORT, function () {

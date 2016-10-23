@@ -105,13 +105,11 @@ export default {
       .end()
   }
 
-  function addTicket(ticket, cb) {
+  function addTicket( ticket) {
     const addUrl = `${url}/tickets`
     request.post(addUrl)
       .send(ticket)
-      .end((err, res) => {
-        cb(err)
-      })
+      .end()
   }
 
   function getTickets (cb) {

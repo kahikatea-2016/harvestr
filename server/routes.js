@@ -87,10 +87,12 @@ function getRecipient(req, res) {
   function addTicket(req, res) {
     var ticket = {
       expected_kg: req.body.expectedKg,
-      recipient_id: req.body.recipientId,
+      recipient_id: req.body.recipientId.split('|')[0],
+      details_id: req.body.recipientId.split('|')[1],
       donor_id: req.body.donorId,
       is_complete: 0
     }
+    console.log(ticket)
     db.addTicket(ticket)
       .then(function () {
         res.json(ticket)
