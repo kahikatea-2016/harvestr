@@ -82,7 +82,7 @@ export default React.createClass({
             <h2>Actual:</h2>
             <input type="number"
               placeholder="Actual kg"
-              value={this.state.actualKg}
+              value={this.state.actualKg || 0}
               onChange={(e) => this.onChange(e)}
               ref={function (input) {
                 actualKg = input
