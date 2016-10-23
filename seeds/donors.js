@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
       {id: 3, address: '2 College Hill, Freemans Bay', contact_person: 'Olivia', phone: '092648732', notes: 'Call first before pick up'},
       {id: 4, address: '200 Dominion Road, Mount Eden', contact_person: 'Jack', phone: '0927684315', notes: 'Parking available at back'},
       {id: 5, address: '3/449 Richmond Road, Grey Lynn', contact_person: 'Stevie', phone: '092647351', notes: 'Look for the red building'},
-      {id: 6, address: '4 Warnock Street, Waitakere', contact_person: 'Sandy', phone: '092687493', notes: 'Ask for Carol if Sandy is not available'}
+      {id: 6, address: '4 Warnock Street, Grey Lynn', contact_person: 'Sandy', phone: '092687493', notes: 'Ask for Carol if Sandy is not available'}
     ])
   })
   .then(function () {

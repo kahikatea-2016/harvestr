@@ -29565,11 +29565,15 @@
 	            ' '
 	          ),
 	          _react2.default.createElement(
-	            'h4',
-	            null,
-	            ' ',
-	            ticket.address,
-	            ' '
+	            'a',
+	            { href: 'comgooglemaps://?q=' + ticket.address },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              ' ',
+	              ticket.address,
+	              ' '
+	            )
 	          )
 	        ),
 	        _react2.default.createElement('span', { className: 'fade_line' }),
@@ -29584,11 +29588,15 @@
 	            ' '
 	          ),
 	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            ' ',
-	            ticket.phone,
-	            ' '
+	            'a',
+	            { href: 'tel:' + ticket.phone },
+	            _react2.default.createElement(
+	              'h2',
+	              null,
+	              ' ',
+	              ticket.phone,
+	              ' '
+	            )
 	          )
 	        ),
 	        _react2.default.createElement('span', { className: 'fade_line' }),
@@ -29686,7 +29694,12 @@
 	                return _this.updateTicket();
 	              } })
 	          )
-	        )
+	        ),
+	        _react2.default.createElement('iframe', {
+	          className: 'map-embed',
+	          width: '600',
+	          height: '450',
+	          src: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&q=' + ticket.address })
 	      )
 	    );
 	  }
@@ -29793,11 +29806,15 @@
 	            ' '
 	          ),
 	          _react2.default.createElement(
-	            'h4',
-	            null,
-	            ' ',
-	            ticket.address,
-	            ' '
+	            'a',
+	            { href: 'comgooglemaps://?q=' + ticket.address },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              ' ',
+	              ticket.address,
+	              ' '
+	            )
 	          )
 	        ),
 	        _react2.default.createElement('span', { className: 'fade_line_recip' }),
@@ -29812,11 +29829,15 @@
 	            ' '
 	          ),
 	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            ' ',
-	            ticket.phone,
-	            ' '
+	            'a',
+	            { href: 'tel:' + ticket.phone },
+	            _react2.default.createElement(
+	              'h2',
+	              null,
+	              ' ',
+	              ticket.phone,
+	              ' '
+	            )
 	          )
 	        ),
 	        _react2.default.createElement('span', { className: 'fade_line_recip' }),
@@ -29914,7 +29935,12 @@
 	                return _this.updateTicket();
 	              } })
 	          )
-	        )
+	        ),
+	        _react2.default.createElement('iframe', {
+	          className: 'map-embed',
+	          width: '600',
+	          height: '450',
+	          src: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&q=' + ticket.address })
 	      )
 	    );
 	  }
