@@ -1,10 +1,10 @@
 exports.seed = function(knex, Promise) {
   return Promise.all ([
-    knex('details').del(),
+    knex('comments').del(),
+    knex('tickets').del(),
     knex('donors').del(),
     knex('recipients').del(),
-    knex('tickets').del(),
-    knex('comments').del()
+    knex('details').del()
   ])
   .then(function () {
     return knex ('details').insert([
