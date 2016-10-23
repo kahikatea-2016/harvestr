@@ -58,7 +58,7 @@ export default React.createClass({
   },
 
   onChange (e) {
-    this.setState( {actualKg: parseInt(e.target.value, 10) })
+    this.setState({ actualKg: e.target.value })
   },
 
   render () {
@@ -66,7 +66,6 @@ export default React.createClass({
     return (
       <div>
         <Header />
-        <Banner />
       <div className="ticketWrapperSingle">
           <div className="orgInfo">
             <h2> {ticket.name} </h2>
