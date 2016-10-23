@@ -60,19 +60,23 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
-	var _Add = __webpack_require__(238);
+	var _AddRecipientTicket = __webpack_require__(238);
 	
-	var _Add2 = _interopRequireDefault(_Add);
+	var _AddRecipientTicket2 = _interopRequireDefault(_AddRecipientTicket);
 	
-	var _List = __webpack_require__(239);
+	var _AddDonorTicket = __webpack_require__(245);
+	
+	var _AddDonorTicket2 = _interopRequireDefault(_AddDonorTicket);
+	
+	var _List = __webpack_require__(246);
 	
 	var _List2 = _interopRequireDefault(_List);
 	
-	var _DonorTicket = __webpack_require__(247);
+	var _DonorTicket = __webpack_require__(248);
 	
 	var _DonorTicket2 = _interopRequireDefault(_DonorTicket);
 	
-	var _RecipientTicket = __webpack_require__(248);
+	var _RecipientTicket = __webpack_require__(249);
 	
 	var _RecipientTicket2 = _interopRequireDefault(_RecipientTicket);
 	
@@ -83,7 +87,8 @@
 	    _reactRouter.Router,
 	    { history: _reactRouter.hashHistory },
 	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: _App2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/add', component: _Add2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/addDonorTicket', component: _AddDonorTicket2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/addRecipientTicket', component: _AddRecipientTicket2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/list', component: _List2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/ticket/donor/:ticket', component: _DonorTicket2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/ticket/recipient/:ticket', component: _RecipientTicket2.default })
@@ -27133,11 +27138,15 @@
 	
 	var _Banner2 = _interopRequireDefault(_Banner);
 	
-	var _Add = __webpack_require__(238);
+	var _AddRecipientTicket = __webpack_require__(238);
 	
-	var _Add2 = _interopRequireDefault(_Add);
+	var _AddRecipientTicket2 = _interopRequireDefault(_AddRecipientTicket);
 	
-	var _List = __webpack_require__(239);
+	var _AddDonorTicket = __webpack_require__(245);
+	
+	var _AddDonorTicket2 = _interopRequireDefault(_AddDonorTicket);
+	
+	var _List = __webpack_require__(246);
 	
 	var _List2 = _interopRequireDefault(_List);
 	
@@ -27199,9 +27208,23 @@
 	          ' Home '
 	        ),
 	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/add' },
-	          ' Add '
+	          'div',
+	          { className: 'dropdownAdd' },
+	          'Add a Ticket',
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'dropdownAddContent' },
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/addDonorTicket' },
+	              ' Add a Donor Ticket '
+	            ),
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/addRecipientTicket' },
+	              ' Add a Recipient Ticket '
+	            )
+	          )
 	        )
 	      )
 	    );
@@ -27267,15 +27290,102 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactRouter = __webpack_require__(172);
+	
+	var _Header = __webpack_require__(236);
+	
+	var _Header2 = _interopRequireDefault(_Header);
+	
+	var _api = __webpack_require__(239);
+	
+	var _api2 = _interopRequireDefault(_api);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	var ticket = null;
+	var selectRecipient = null;
+	var expectedKg = null;
+	var detailId = null;
+	
 	exports.default = _react2.default.createClass({
-	  displayName: 'Add',
+	  displayName: 'AddRecipientTicket',
+	  getInitialState: function getInitialState() {
+	    return {
+	      recipients: []
+	    };
+	  },
+	  handleChange: function handleChange(event) {
+	    this.setState({
+	      value: event.target.value,
+	      id: event.target.id
+	    });
+	  },
+	  componentDidMount: function componentDidMount() {
+	    _api2.default.getRecipients(this.renderResults);
+	  },
+	  renderResults: function renderResults(err, recipients) {
+	    this.setState({ recipients: recipients });
+	  },
+	  addRecipientTicket: function addRecipientTicket() {
+	    var newTicket = {
+	      recipientId: selectRecipient.value,
+	      expectedKg: expectedKg.value
+	    };
+	    console.log(newTicket);
+	    _api2.default.addTicket(newTicket);
+	  },
 	  render: function render() {
+	    var _this = this;
+	
 	    return _react2.default.createElement(
 	      'div',
 	      null,
-	      'Add a ticket.'
+	      _react2.default.createElement(_Header2.default, null),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'recipientForm' },
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          ' Create a Recipient Ticket '
+	        ),
+	        _react2.default.createElement(
+	          'select',
+	          { value: this.state.value, id: this.state.id, onChange: this.handleChange, ref: function ref(input) {
+	              selectRecipient = input;
+	            } },
+	          _react2.default.createElement(
+	            'option',
+	            { value: '0' },
+	            ' Select Recipient Name '
+	          ),
+	          this.state.recipients.map(function (recipient) {
+	            return _react2.default.createElement(
+	              'option',
+	              { key: recipient.id, id: recipient.id, value: recipient.id + '|' + recipient.recipientDetailsId },
+	              recipient.recipientName
+	            );
+	          })
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'weight' },
+	          ' Expected Weight: '
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { name: 'weight', type: 'number', min: '1', max: '999', placeholder: 'Kilograms', ref: function ref(input) {
+	            expectedKg = input;
+	          } }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/list' },
+	          _react2.default.createElement('input', { className: 'button', type: 'submit', value: 'Submit', onClick: function onClick() {
+	              return _this.addRecipientTicket();
+	            } })
+	        )
+	      )
 	    );
 	  }
 	});
@@ -27290,121 +27400,7 @@
 	  value: true
 	});
 	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(172);
-	
-	var _api = __webpack_require__(240);
-	
-	var _api2 = _interopRequireDefault(_api);
-	
-	var _Header = __webpack_require__(236);
-	
-	var _Header2 = _interopRequireDefault(_Header);
-	
-	var _Banner = __webpack_require__(237);
-	
-	var _Banner2 = _interopRequireDefault(_Banner);
-	
-	var _ListItem = __webpack_require__(246);
-	
-	var _ListItem2 = _interopRequireDefault(_ListItem);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var pickUpWeight = 0;
-	var dropOffWeight = 0;
-	
-	exports.default = _react2.default.createClass({
-	  displayName: 'List',
-	  getInitialState: function getInitialState() {
-	    return {
-	      tickets: []
-	    };
-	  },
-	  componentDidMount: function componentDidMount() {
-	    _api2.default.getTickets(this.renderResults);
-	  },
-	  renderResults: function renderResults(err, allTickets) {
-	    pickUpWeight = 0;
-	    dropOffWeight = 0;
-	    for (var i = 0; i < allTickets.length; i++) {
-	      if (allTickets[i].donorId) {
-	        if (allTickets[i].actualKg) {
-	          pickUpWeight += allTickets[i].actualKg;
-	        }
-	      }
-	    }
-	    for (var i = 0; i < allTickets.length; i++) {
-	      if (allTickets[i].recipientId) {
-	        if (allTickets[i].actualKg) {
-	          dropOffWeight += allTickets[i].actualKg;
-	        }
-	      }
-	    }
-	
-	    this.setState({
-	      tickets: allTickets
-	    });
-	  },
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      null,
-	      _react2.default.createElement(_Header2.default, null),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'listWrapper' },
-	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          'Today\'s Tickets'
-	        ),
-	        _react2.default.createElement(
-	          'h3',
-	          null,
-	          'Total picked up: ',
-	          pickUpWeight,
-	          'kg'
-	        ),
-	        _react2.default.createElement(
-	          'h3',
-	          null,
-	          'Total dropped off: ',
-	          dropOffWeight,
-	          'kg'
-	        ),
-	        this.state.tickets.map(function (tickets) {
-	          return _react2.default.createElement(_ListItem2.default, {
-	            key: tickets.ticketId,
-	            ticketId: tickets.ticketId,
-	            donorId: tickets.donorId,
-	            donorName: tickets.donorName,
-	            recipientId: tickets.recipientId,
-	            recipientName: tickets.recipientName,
-	            address: tickets.address,
-	            expectedKg: tickets.expectedKg,
-	            actualKg: tickets.actualKg,
-	            isComplete: tickets.isComplete });
-	        })
-	      )
-	    );
-	  }
-	});
-
-/***/ },
-/* 240 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _superagent = __webpack_require__(241);
+	var _superagent = __webpack_require__(240);
 	
 	var _superagent2 = _interopRequireDefault(_superagent);
 	
@@ -27433,11 +27429,11 @@
 	    if (err) {
 	      cb(err);
 	    } else {
-	      var donors = res.body.map(function (donors) {
+	      var donors = res.body.map(function (donor) {
 	        return {
-	          id: donors.id,
-	          donorName: donors.donorName,
-	          donorDetailId: donors.donorDetailId
+	          id: donor.id,
+	          donorName: donor.name,
+	          donorDetailsId: donor.detail_id
 	        };
 	      });
 	      cb(null, donors);
@@ -27451,11 +27447,11 @@
 	    if (err) {
 	      cb(err);
 	    } else {
-	      var recipients = res.body.map(function (recipients) {
+	      var recipients = res.body.map(function (recipient) {
 	        return {
-	          id: recipients.id,
-	          recipientName: recipients.recipientName,
-	          recipientDetailId: recipients.recipientDetailId
+	          id: recipient.id,
+	          recipientName: recipient.name,
+	          recipientDetailsId: recipient.detail_id
 	        };
 	      });
 	      cb(null, recipients);
@@ -27509,11 +27505,9 @@
 	  _superagent2.default.put(updateUrl).send(comments).end();
 	}
 	
-	function addTicket(ticket, cb) {
+	function addTicket(ticket) {
 	  var addUrl = url + '/tickets';
-	  _superagent2.default.post(addUrl).send(ticket).end(function (err, res) {
-	    cb(err);
-	  });
+	  _superagent2.default.post(addUrl).send(ticket).end();
 	}
 	
 	function getTickets(cb) {
@@ -27561,7 +27555,7 @@
 	}
 
 /***/ },
-/* 241 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -27578,9 +27572,9 @@
 	  root = this;
 	}
 	
-	var Emitter = __webpack_require__(242);
-	var requestBase = __webpack_require__(243);
-	var isObject = __webpack_require__(244);
+	var Emitter = __webpack_require__(241);
+	var requestBase = __webpack_require__(242);
+	var isObject = __webpack_require__(243);
 	
 	/**
 	 * Noop.
@@ -27592,7 +27586,7 @@
 	 * Expose `request`.
 	 */
 	
-	var request = module.exports = __webpack_require__(245).bind(null, Request);
+	var request = module.exports = __webpack_require__(244).bind(null, Request);
 	
 	/**
 	 * Determine XHR.
@@ -28543,7 +28537,7 @@
 
 
 /***/ },
-/* 242 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -28712,13 +28706,13 @@
 
 
 /***/ },
-/* 243 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
-	var isObject = __webpack_require__(244);
+	var isObject = __webpack_require__(243);
 	
 	/**
 	 * Clear previous timeout.
@@ -29090,7 +29084,7 @@
 
 
 /***/ },
-/* 244 */
+/* 243 */
 /***/ function(module, exports) {
 
 	/**
@@ -29109,7 +29103,7 @@
 
 
 /***/ },
-/* 245 */
+/* 244 */
 /***/ function(module, exports) {
 
 	// The node and browser modules expose versions of this with the
@@ -29147,6 +29141,119 @@
 
 
 /***/ },
+/* 245 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	var _Header = __webpack_require__(236);
+	
+	var _Header2 = _interopRequireDefault(_Header);
+	
+	var _api = __webpack_require__(239);
+	
+	var _api2 = _interopRequireDefault(_api);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var ticket = null;
+	var selectDonor = null;
+	var expectedKg = null;
+	var detailId = null;
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'AddDonorTicket',
+	  getInitialState: function getInitialState() {
+	    return {
+	      donors: []
+	    };
+	  },
+	  handleChange: function handleChange(event) {
+	    this.setState({
+	      value: event.target.value,
+	      id: event.target.id
+	    });
+	  },
+	  componentDidMount: function componentDidMount() {
+	    _api2.default.getDonors(this.renderResults);
+	  },
+	  renderResults: function renderResults(err, donors) {
+	    this.setState({ donors: donors });
+	  },
+	  addDonorTicket: function addDonorTicket() {
+	    var newTicket = {
+	      donorId: selectDonor.value,
+	      expectedKg: expectedKg.value
+	    };
+	    _api2.default.addTicket(newTicket);
+	  },
+	  render: function render() {
+	    var _this = this;
+	
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(_Header2.default, null),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'donorForm' },
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          ' Create a Donor Ticket '
+	        ),
+	        _react2.default.createElement(
+	          'select',
+	          { value: this.state.value, id: this.state.id, onChange: this.handleChange, ref: function ref(input) {
+	              selectDonor = input;
+	            } },
+	          _react2.default.createElement(
+	            'option',
+	            { value: '0' },
+	            ' Select Donor Name '
+	          ),
+	          this.state.donors.map(function (donor) {
+	            return _react2.default.createElement(
+	              'option',
+	              { key: donor.id, id: donor.id, value: donor.id + '|' + donor.donorDetailsId },
+	              donor.donorName
+	            );
+	          })
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'weight' },
+	          ' Expected Weight: '
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { name: 'weight', type: 'number', min: '1', max: '999', placeholder: 'Kilograms', ref: function ref(input) {
+	            expectedKg = input;
+	          } }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/list' },
+	          _react2.default.createElement('input', { className: 'button', type: 'submit', value: 'Submit', onClick: function onClick() {
+	              return _this.addDonorTicket();
+	            } })
+	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
 /* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -29162,11 +29269,125 @@
 	
 	var _reactRouter = __webpack_require__(172);
 	
-	var _DonorTicket = __webpack_require__(247);
+	var _api = __webpack_require__(239);
+	
+	var _api2 = _interopRequireDefault(_api);
+	
+	var _Header = __webpack_require__(236);
+	
+	var _Header2 = _interopRequireDefault(_Header);
+	
+	var _Banner = __webpack_require__(237);
+	
+	var _Banner2 = _interopRequireDefault(_Banner);
+	
+	var _ListItem = __webpack_require__(247);
+	
+	var _ListItem2 = _interopRequireDefault(_ListItem);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var pickUpWeight = 0;
+	var dropOffWeight = 0;
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'List',
+	  getInitialState: function getInitialState() {
+	    return {
+	      tickets: []
+	    };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    _api2.default.getTickets(this.renderResults);
+	  },
+	  renderResults: function renderResults(err, allTickets) {
+	    pickUpWeight = 0;
+	    dropOffWeight = 0;
+	    for (var i = 0; i < allTickets.length; i++) {
+	      if (allTickets[i].donorId) {
+	        if (allTickets[i].actualKg) {
+	          pickUpWeight += allTickets[i].actualKg;
+	        }
+	      }
+	    }
+	    for (var i = 0; i < allTickets.length; i++) {
+	      if (allTickets[i].recipientId) {
+	        if (allTickets[i].actualKg) {
+	          dropOffWeight += allTickets[i].actualKg;
+	        }
+	      }
+	    }
+	
+	    this.setState({
+	      tickets: allTickets
+	    });
+	  },
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(_Header2.default, null),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'listWrapper' },
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Today\'s Tickets'
+	        ),
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          'Total picked up: ',
+	          pickUpWeight,
+	          'kg'
+	        ),
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          'Total dropped off: ',
+	          dropOffWeight,
+	          'kg'
+	        ),
+	        this.state.tickets.map(function (tickets) {
+	          return _react2.default.createElement(_ListItem2.default, {
+	            key: tickets.ticketId,
+	            ticketId: tickets.ticketId,
+	            donorId: tickets.donorId,
+	            donorName: tickets.donorName,
+	            recipientId: tickets.recipientId,
+	            recipientName: tickets.recipientName,
+	            address: tickets.address,
+	            expectedKg: tickets.expectedKg,
+	            actualKg: tickets.actualKg,
+	            isComplete: tickets.isComplete });
+	        })
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 247 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	var _DonorTicket = __webpack_require__(248);
 	
 	var _DonorTicket2 = _interopRequireDefault(_DonorTicket);
 	
-	var _RecipientTicket = __webpack_require__(248);
+	var _RecipientTicket = __webpack_require__(249);
 	
 	var _RecipientTicket2 = _interopRequireDefault(_RecipientTicket);
 	
@@ -29244,7 +29465,7 @@
 	});
 
 /***/ },
-/* 247 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29259,7 +29480,7 @@
 	
 	var _reactRouter = __webpack_require__(172);
 	
-	var _api = __webpack_require__(240);
+	var _api = __webpack_require__(239);
 	
 	var _api2 = _interopRequireDefault(_api);
 	
@@ -29283,7 +29504,7 @@
 	    return {
 	      ticket: [],
 	      comments: [],
-	      actualKg: ''
+	      actualKg: 0
 	    };
 	  },
 	  componentDidMount: function componentDidMount() {
@@ -29320,7 +29541,7 @@
 	    }
 	  },
 	  onChange: function onChange(e) {
-	    this.setState({ actualKg: e.target.value });
+	    this.setState({ actualKg: parseInt(e.target.value, 10) });
 	  },
 	  render: function render() {
 	    var _this = this;
@@ -29388,7 +29609,7 @@
 	          ),
 	          _react2.default.createElement('input', { type: 'number',
 	            placeholder: 'Actual kg',
-	            value: this.state.actualKg,
+	            value: this.state.actualKg || 0,
 	            onChange: function onChange(e) {
 	              return _this.onChange(e);
 	            },
@@ -29472,7 +29693,7 @@
 	});
 
 /***/ },
-/* 248 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29487,7 +29708,7 @@
 	
 	var _reactRouter = __webpack_require__(172);
 	
-	var _api = __webpack_require__(240);
+	var _api = __webpack_require__(239);
 	
 	var _api2 = _interopRequireDefault(_api);
 	
@@ -29616,7 +29837,7 @@
 	          ),
 	          _react2.default.createElement('input', { type: 'number',
 	            placeholder: 'Actual kg',
-	            value: this.state.actualKg,
+	            value: this.state.actualKg || 0,
 	            onChange: function onChange(e) {
 	              return _this.onChange(e);
 	            },
