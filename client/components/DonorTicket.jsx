@@ -16,7 +16,7 @@ export default React.createClass({
     return {
       ticket: [],
       comments: [],
-      actualKg: ''
+      actualKg: 0
     }
   },
 
@@ -58,7 +58,7 @@ export default React.createClass({
   },
 
   onChange (e) {
-    this.setState({ actualKg: e.target.value })
+    this.setState({ actualKg: parseInt(e.target.value, 10) })
   },
 
   render () {
@@ -82,7 +82,7 @@ export default React.createClass({
             <h2>Actual:</h2>
             <input type="number"
               placeholder="Actual kg"
-              value={this.state.actualKg}
+              value={this.state.actualKg || 0}
               onChange={(e) => this.onChange(e)}
               ref={function (input) {
                 actualKg = input
