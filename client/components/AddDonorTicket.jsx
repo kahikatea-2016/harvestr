@@ -1,10 +1,12 @@
 import React from 'react'
+import {Link} from 'react-router'
 import Header from './Header'
 import api from '../api'
 
 let ticket = null
 let selectDonor = null
 let expectedKg = null
+let detailId = null
 
 export default React.createClass({
     getInitialState() {
@@ -32,7 +34,6 @@ export default React.createClass({
       let newTicket = {
         donorId: selectDonor.value,
         expectedKg: expectedKg.value,
-        detailId: selectDonor.value
       }
       console.log(newTicket)
       api.addTicket(newTicket)
@@ -63,9 +64,15 @@ export default React.createClass({
               expectedKg = input
             }} />
             <br/>
+            <Link to='/list'>
             <input className="button" type="submit" value="Submit" onClick={() => this.addDonorTicket()}/>
+            </Link>
           </div>
         </div>
       )
     }
   })
+
+  <Link to='/list'>
+  <input className="button" type="submit" value="Submit" onClick={() => this.addDonorTicket()}/>
+  </Link>
