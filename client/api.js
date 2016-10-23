@@ -23,11 +23,11 @@ export default {
         if (err) {
           cb(err)
         } else {
-          const donors = res.body.map(donors => {
+          const donors = res.body.map(donor => {
             return {
-              id: donors.id,
-              donorName: donors.donorName,
-              donorDetailId: donors.donorDetailId
+              id: donor.id,
+              donorName: donor.name,
+              donorDetailsId: donor.detail_id
             }
           })
           cb(null, donors)
@@ -42,11 +42,11 @@ export default {
         if (err) {
           cb(err)
         } else {
-          const recipients = res.body.map(recipients => {
+          const recipients = res.body.map(recipient => {
             return {
-              id: recipients.id,
-              recipientName: recipients.recipientName,
-              recipientDetailId: recipients.recipientDetailId
+              id: recipient.id,
+              recipientName: recipient.name,
+              recipientDetailsId: recipient.detail_id
             }
           })
           cb(null, recipients)
@@ -106,13 +106,11 @@ export default {
       .end()
   }
 
-  function addTicket(ticket, cb) {
+  function addTicket( ticket) {
     const addUrl = `${url}/tickets`
     request.post(addUrl)
       .send(ticket)
-      .end((err, res) => {
-        cb(err)
-      })
+      .end()
   }
 
   function getTickets (cb) {

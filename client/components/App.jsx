@@ -3,7 +3,8 @@ import {Link} from 'react-router'
 
 import Header from './Header'
 import Banner from './Banner'
-import Add from './Add'
+import AddRecipientTicket from './AddRecipientTicket'
+import AddDonorTicket from './AddDonorTicket'
 import List from './List'
 
 export default React.createClass({
