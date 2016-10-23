@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "webpack-dev-server --content-base public/ --hot --inline",
     "knex": "knex",
-    "start": "nodemon server/server & webpack --watch",
+    "local": "export NODE_ENV=development; nodemon server/server & webpack --watch",
+    "start": "node server/server",
     "test": "tape -r babel-register babel-tape-runner 'test/**/*.test.js' | tap-spec",
+    "heroku-postbuild": "npm run knex migrate:latest && npm run knex seed:run",
     "api-test": "node client/TEMP-api-postman-testing.js"
   },
   "babel": {

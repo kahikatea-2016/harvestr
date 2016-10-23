@@ -1,5 +1,5 @@
-var development = require('../knexfile').development
-var knex = require('knex')(development)
+var config = require('../knexfile')[process.env.NODE_ENV]
+var knex = require('knex')(config)
 
 module.exports = {
   getDonors: getDonors,
