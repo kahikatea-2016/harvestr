@@ -27200,7 +27200,13 @@
 	        _react2.default.createElement(
 	          _reactRouter.Link,
 	          { to: '/list' },
-	          ' Login '
+	          ' ',
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'g-signin2', 'data-onsuccess': 'onSignIn' },
+	            ' '
+	          ),
+	          ' '
 	        ),
 	        _react2.default.createElement(
 	          _reactRouter.Link,
@@ -27227,7 +27233,9 @@
 	          )
 	        )
 	      )
-	    );
+	    )
+	    // </div>
+	    ;
 	  }
 	});
 
