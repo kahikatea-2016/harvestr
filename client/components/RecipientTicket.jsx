@@ -47,7 +47,6 @@ export default React.createClass({
     api.updateTicket(addActualKg)
 
     if(comment.value === '') {
-      console.log('No comment added')
     } else {
       let addComment = {
         ticketId: ticket.id,

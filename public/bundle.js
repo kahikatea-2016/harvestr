@@ -27331,7 +27331,6 @@
 	      recipientId: selectRecipient.value,
 	      expectedKg: expectedKg.value
 	    };
-	    console.log(newTicket);
 	    _api2.default.addTicket(newTicket);
 	  },
 	  render: function render() {
@@ -29530,9 +29529,7 @@
 	    };
 	    _api2.default.updateTicket(addActualKg);
 	
-	    if (comment.value === '') {
-	      console.log('No comment added');
-	    } else {
+	    if (comment.value === '') {} else {
 	      var addComment = {
 	        ticketId: ticket.id,
 	        comment: comment.value
@@ -29771,9 +29768,7 @@
 	    };
 	    _api2.default.updateTicket(addActualKg);
 	
-	    if (comment.value === '') {
-	      console.log('No comment added');
-	    } else {
+	    if (comment.value === '') {} else {
 	      var addComment = {
 	        ticketId: ticket.id,
 	        comment: comment.value

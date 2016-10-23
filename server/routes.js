@@ -84,9 +84,7 @@ function updateComment(req, res) {
     })
 }
 
-// "has to match table column name, use _": req.body.useCamelCase
   function addTicket(req, res) {
-    console.log(req.body.recipientId)
     if (!req.body.recipientId) {
       var ticket = {
         expected_kg: req.body.expectedKg,
@@ -102,7 +100,6 @@ function updateComment(req, res) {
         is_complete: 0
       }
     }
-    console.log(ticket)
     db.addTicket(ticket)
       .then(function () {
         res.json(ticket)
