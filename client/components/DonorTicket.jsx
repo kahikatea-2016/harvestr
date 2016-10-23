@@ -58,7 +58,7 @@ export default React.createClass({
   },
 
   onChange (e) {
-    this.setState( {actualKg: parseInt(e.target.value, 10) })
+    this.setState({ actualKg: e.target.value })
   },
 
   render () {
