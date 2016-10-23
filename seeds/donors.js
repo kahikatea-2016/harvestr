@@ -31,6 +31,15 @@ exports.seed = function(knex, Promise) {
     ])
   })
   .then(function () {
+    return knex ('tickets').insert([
+      {id: 1, expected_kg: 50, actual_kg: null, donor_id: 1, recipient_id: null, details_id: 1, is_complete: false},
+      {id: 2, expected_kg: 70, actual_kg: null, donor_id: 2, recipient_id: null, details_id: 2, is_complete: false},
+      {id: 3, expected_kg: 40, actual_kg: null, donor_id: null, recipient_id: 1, details_id: 4, is_complete: false},
+      {id: 4, expected_kg: 10, actual_kg: null, donor_id: null, recipient_id: 2, details_id: 5, is_complete: false},
+      {id: 5, expected_kg: 70, actual_kg: null, donor_id: null, recipient_id: 3, details_id: 6, is_complete: false}
+    ])
+  })
+  .then(function () {
     return knex ('comments').insert([
       {id: 1, ticket_id: 1, comments: 'Picked up more 10 kgs of potatos'},
       {id: 6, ticket_id: 1, comments: 'Ran a little late'},
@@ -38,15 +47,6 @@ exports.seed = function(knex, Promise) {
       {id: 3, ticket_id: 3, comments: 'Delivered and helped move some meals'},
       {id: 4, ticket_id: 4, comments: 'We were late because of traffic'},
       {id: 5, ticket_id: 5, comments: 'They were happy with the potatos as well'}
-    ])
-  })
-  .then(function () {
-    return knex ('tickets').insert([
-      {id: 1, expected_kg: 50, actual_kg: null, donor_id: 1, recipient_id: null, details_id: 1, is_complete: false},
-      {id: 2, expected_kg: 70, actual_kg: null, donor_id: 2, recipient_id: null, details_id: 2, is_complete: false},
-      {id: 3, expected_kg: 40, actual_kg: null, donor_id: null, recipient_id: 1, details_id: 4, is_complete: false},
-      {id: 4, expected_kg: 10, actual_kg: null, donor_id: null, recipient_id: 2, details_id: 5, is_complete: false},
-      {id: 5, expected_kg: 70, actual_kg: null, donor_id: null, recipient_id: 3, details_id: 6, is_complete: false}
     ])
   })
 };
