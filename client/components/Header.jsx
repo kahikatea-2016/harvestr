@@ -1,28 +1,20 @@
 import React from 'react'
 import {Link} from 'react-router'
+import AddTicketButton from './AddTicketButton'
+import AuthButton from './AuthButton'
+import ViewListButton from './ViewListButton'
 
 export default React.createClass({
   render() {
     return (
       <div className="header">
-        <span className="logo"> Harvestr </span>
-
-          <div className="auth">
-          <Link to='/list'> <div className="g-signin2" data-onsuccess="onSignIn"> </div> </Link>
-            <Link to='/'> Home </Link>
-
-          <div className="dropdownAdd">
-            Add a Ticket
-            <div className="dropdownAddContent">
-              <Link to='/addDonorTicket'> Add a Donor Ticket </Link>
-              <Link to='/addRecipientTicket'> Add a Recipient Ticket </Link>
-            </div>
-          </div>
-
+        <Link to="/"> <span className="logo"> Harvestr </span> </Link>
+        <div className="auth">
+          <AuthButton />
+          <AddTicketButton />
+          <ViewListButton />
         </div>
-
       </div>
-      // </div>
     )
   }
 })

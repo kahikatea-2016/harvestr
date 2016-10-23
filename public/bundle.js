@@ -27181,6 +27181,18 @@
 	
 	var _reactRouter = __webpack_require__(172);
 	
+	var _AddTicketButton = __webpack_require__(250);
+	
+	var _AddTicketButton2 = _interopRequireDefault(_AddTicketButton);
+	
+	var _AuthButton = __webpack_require__(251);
+	
+	var _AuthButton2 = _interopRequireDefault(_AuthButton);
+	
+	var _ViewListButton = __webpack_require__(252);
+	
+	var _ViewListButton2 = _interopRequireDefault(_ViewListButton);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = _react2.default.createClass({
@@ -27190,52 +27202,24 @@
 	      'div',
 	      { className: 'header' },
 	      _react2.default.createElement(
-	        'span',
-	        { className: 'logo' },
-	        ' Harvestr '
+	        _reactRouter.Link,
+	        { to: '/' },
+	        ' ',
+	        _react2.default.createElement(
+	          'span',
+	          { className: 'logo' },
+	          ' Harvestr '
+	        ),
+	        ' '
 	      ),
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'auth' },
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/list' },
-	          ' ',
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'g-signin2', 'data-onsuccess': 'onSignIn' },
-	            ' '
-	          ),
-	          ' '
-	        ),
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/' },
-	          ' Home '
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'dropdownAdd' },
-	          'Add a Ticket',
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'dropdownAddContent' },
-	            _react2.default.createElement(
-	              _reactRouter.Link,
-	              { to: '/addDonorTicket' },
-	              ' Add a Donor Ticket '
-	            ),
-	            _react2.default.createElement(
-	              _reactRouter.Link,
-	              { to: '/addRecipientTicket' },
-	              ' Add a Recipient Ticket '
-	            )
-	          )
-	        )
+	        _react2.default.createElement(_AuthButton2.default, null),
+	        _react2.default.createElement(_AddTicketButton2.default, null),
+	        _react2.default.createElement(_ViewListButton2.default, null)
 	      )
-	    )
-	    // </div>
-	    ;
+	    );
 	  }
 	});
 
@@ -29923,6 +29907,107 @@
 	              } })
 	          )
 	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 250 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'AddTicketButton',
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'dropdownAdd' },
+	      'Add a Ticket',
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'dropdownAddContent' },
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/addDonorTicket' },
+	          ' Add a Donor Ticket '
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/addRecipientTicket' },
+	          ' Add a Recipient Ticket '
+	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 251 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'AuthButton',
+	  render: function render() {
+	    return _react2.default.createElement('div', { className: 'g-signin2', 'data-onsuccess': 'onSignIn' });
+	  }
+	});
+
+/***/ },
+/* 252 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'ViewListButton',
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/list' },
+	        'View list'
 	      )
 	    );
 	  }
