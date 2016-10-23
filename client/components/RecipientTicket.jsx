@@ -66,7 +66,6 @@ export default React.createClass({
     return (
       <div>
         <Header />
-        <Banner />
       <div className="ticketWrapperSingle recipColor">
           <div className="orgInfo">
             <h2> {ticket.name} </h2>
