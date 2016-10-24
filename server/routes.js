@@ -13,7 +13,7 @@ module.exports = {
   getRecipientTicket: getRecipientTicket,
   getTicketComments: getTicketComments,
   createDonor: createDonor,
-  // createRecipient: createRecipient
+  createRecipient: createRecipient
 }
 
 function getDonors(req, res) {
@@ -165,6 +165,18 @@ function getTicketComments(req, res) {
       res.send(err.message).status(500)
     })
 }
+
+function createRecipient(req, res) {
+  console.log(req.body)
+  db.createRecipientProfile(req.body)
+    .then(function () {
+      res.json(recipient)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
+
 
 function createDonor(req, res) {
   console.log(req.body)
