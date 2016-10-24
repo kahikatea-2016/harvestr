@@ -28,7 +28,7 @@ var session = expressSession({
   saveUnitialized: false
 })
 
-app.get('/auth/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }))
+app.get('/auth/google', passport.authenticate('google', { scope: ['email'] }))
 app.get('/auth/google/callback', session, auth.issueJwt)
 app.get('/auth/logout', (req, res) => {
   res.clearCookie('token', { path: '/' })
