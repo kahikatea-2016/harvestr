@@ -72,11 +72,11 @@
 	
 	var _List2 = _interopRequireDefault(_List);
 	
-	var _DonorTicket = __webpack_require__(249);
+	var _DonorTicket = __webpack_require__(248);
 	
 	var _DonorTicket2 = _interopRequireDefault(_DonorTicket);
 	
-	var _RecipientTicket = __webpack_require__(250);
+	var _RecipientTicket = __webpack_require__(249);
 	
 	var _RecipientTicket2 = _interopRequireDefault(_RecipientTicket);
 	
@@ -29285,11 +29285,11 @@
 	
 	var _ListItem2 = _interopRequireDefault(_ListItem);
 	
-	var _Acordian = __webpack_require__(248);
+	var _Acordian = __webpack_require__(251);
 	
 	var _Acordian2 = _interopRequireDefault(_Acordian);
 	
-	var _Collapsible = __webpack_require__(251);
+	var _Collapsible = __webpack_require__(250);
 	
 	var _Collapsible2 = _interopRequireDefault(_Collapsible);
 	
@@ -29391,23 +29391,76 @@
 	
 	var _reactRouter = __webpack_require__(172);
 	
-	var _DonorTicket = __webpack_require__(249);
+	var _DonorTicket = __webpack_require__(248);
 	
 	var _DonorTicket2 = _interopRequireDefault(_DonorTicket);
 	
-	var _RecipientTicket = __webpack_require__(250);
+	var _RecipientTicket = __webpack_require__(249);
 	
 	var _RecipientTicket2 = _interopRequireDefault(_RecipientTicket);
 	
-	var _Collapsible = __webpack_require__(251);
+	var _Collapsible = __webpack_require__(250);
 	
 	var _Collapsible2 = _interopRequireDefault(_Collapsible);
 	
+	var _api = __webpack_require__(239);
+	
+	var _api2 = _interopRequireDefault(_api);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var ticket = null;
+	var actualKg = null;
+	var comment = null;
 	
 	exports.default = _react2.default.createClass({
 	  displayName: 'ListItem',
+	  getInitialState: function getInitialState() {
+	    return {
+	      ticket: [],
+	      comments: [],
+	      actualKg: ''
+	    };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    var ticketId = this.props.params.ticket;
+	    _api2.default.getRecipientTicket(ticketId, this.renderTicketInfo);
+	    _api2.default.getTicketComments(ticketId, this.renderTicketComments);
+	  },
+	  renderTicketInfo: function renderTicketInfo(err, singleTicket) {
+	    this.setState({
+	      ticket: singleTicket[0],
+	      actualKg: singleTicket[0].actual
+	    });
+	  },
+	  renderTicketComments: function renderTicketComments(err, ticketComments) {
+	    this.setState({
+	      comments: ticketComments
+	    });
+	  },
+	  updateTicket: function updateTicket() {
+	    var addActualKg = {
+	      ticketId: ticket.id,
+	      actualKg: actualKg.value
+	    };
+	    _api2.default.updateTicket(addActualKg);
+	
+	    if (comment.value === '') {
+	      console.log('No comment added');
+	    } else {
+	      var addComment = {
+	        ticketId: ticket.id,
+	        comment: comment.value
+	      };
+	      _api2.default.updateComment(addComment);
+	    }
+	  },
+	  onChange: function onChange(e) {
+	    this.setState({ actualKg: parseInt(e.target.value, 10) });
+	  },
 	  render: function render() {
+	    var _this = this;
+	
 	    var name = null;
 	    var param = null;
 	    var job = null;
@@ -29470,135 +29523,155 @@
 	      )
 	    );
 	
+	    ticket = this.state.ticket;
+	
 	    return _react2.default.createElement(
 	      _Collapsible2.default,
 	      { trigger: outerCon, className: 'link' },
-	      _react2.default.createElement(_reactRouter.Link, { className: 'link', to: '/ticket/' + param + '/' + this.props.ticketId })
-	    );
-	  }
-	});
-
-/***/ },
-/* 248 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(172);
-	
-	var _DonorTicket = __webpack_require__(249);
-	
-	var _DonorTicket2 = _interopRequireDefault(_DonorTicket);
-	
-	var _RecipientTicket = __webpack_require__(250);
-	
-	var _RecipientTicket2 = _interopRequireDefault(_RecipientTicket);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = _react2.default.createClass({
-	  displayName: 'Acordian',
-	  render: function render() {
-	    var name = null;
-	    var param = null;
-	    var job = null;
-	    if (this.props.donorName) {
-	      name = this.props.donorName;
-	      param = 'donor';
-	      job = 'pickup';
-	    } else {
-	      name = this.props.recipientName;
-	      param = 'recipient';
-	      job = 'drop off';
-	    }
-	
-	    var ticketStyle = null;
-	    var status = null;
-	    var weight = null;
-	    if (this.props.isComplete) {
-	      ticketStyle = 'complete';
-	      status = 'complete actual';
-	      weight = this.props.actualKg;
-	    } else if (this.props.donorId) {
-	      ticketStyle = 'pickUp';
-	      status = 'expected';
-	      weight = this.props.expectedKg;
-	    } else {
-	      ticketStyle = 'dropOff';
-	      status = 'expected';
-	      weight = this.props.expectedKg;
-	    }
-	
-	    return _react2.default.createElement(
-	      _reactRouter.Link,
-	      { className: 'link', to: '/ticket/' + param + '/' + this.props.ticketId },
+	      _react2.default.createElement(_reactRouter.Link, { className: 'link', to: '/ticket/' + param + '/' + this.props.ticketId }),
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'ticketWrapper ' + ticketStyle },
-	        job,
-	        _react2.default.createElement('br', null),
-	        status,
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'weight' },
-	          weight,
-	          'kg '
-	        ),
+	        { className: 'ticketWrapperSingle recipColor' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'orgInfo' },
 	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            ' ',
+	            ticket.name,
+	            ' '
+	          ),
+	          _react2.default.createElement(
 	            'h4',
 	            null,
 	            ' ',
-	            name,
+	            ticket.address,
+	            ' '
+	          )
+	        ),
+	        _react2.default.createElement('span', { className: 'fade_line_recip' }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'contact' },
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            ' ',
+	            ticket.contact,
 	            ' '
 	          ),
 	          _react2.default.createElement(
 	            'h2',
 	            null,
 	            ' ',
-	            this.props.address,
+	            ticket.phone,
 	            ' '
+	          )
+	        ),
+	        _react2.default.createElement('span', { className: 'fade_line_recip' }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'inventory' },
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            ' Expected: ',
+	            ticket.expected,
+	            'kg '
+	          ),
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            'Actual:'
+	          ),
+	          _react2.default.createElement('input', { type: 'number',
+	            placeholder: 'Actual kg',
+	            value: this.state.actualKg || 0,
+	            onChange: function onChange(e) {
+	              return _this.onChange(e);
+	            },
+	            ref: function ref(input) {
+	              actualKg = input;
+	            } }),
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            'kg'
+	          )
+	        ),
+	        _react2.default.createElement('span', { className: 'fade_line_recip' }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'notes' },
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            ' Notes '
+	          ),
+	          _react2.default.createElement(
+	            'ul',
+	            null,
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              ' ',
+	              ticket.notes,
+	              ' '
+	            )
+	          )
+	        ),
+	        _react2.default.createElement('span', { className: 'fade_line_recip' }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'comments' },
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            ' Comments '
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'ul',
+	            null,
+	            this.state.comments.map(function (comments, i) {
+	              return _react2.default.createElement(
+	                'li',
+	                { key: i },
+	                comments.comments
+	              );
+	            })
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('textarea', { rows: '4', cols: '40', className: 'textInput', placeholder: 'Write a Comment',
+	            ref: function ref(input) {
+	              comment = input;
+	            } }),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/list' },
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'button buttonRecip' },
+	              'back'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/list' },
+	            _react2.default.createElement('input', { className: 'button buttonRecip', type: 'submit', value: 'Complete', onClick: function onClick() {
+	                return _this.updateTicket();
+	              } })
 	          )
 	        )
 	      )
 	    );
 	  }
 	});
-	
-	// import React from 'react'
-	// import {Link} from 'react-router'
-	//
-	// import api from '../api'
-	//
-	// import Header from './Header'
-	// import Banner from './Banner'
-	// import ListItem from './ListItem'
-	//
-	//
-	// class Acordian extends React.Component {
-	//
-	//   render() {
-	//
-	//     return (
-	//       <p> hello world</p>
-	//     )
-	//   }
-	// }
-	//
-	// export default Acordian
 
 /***/ },
-/* 249 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29826,7 +29899,7 @@
 	});
 
 /***/ },
-/* 250 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30054,7 +30127,7 @@
 	});
 
 /***/ },
-/* 251 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30071,7 +30144,7 @@
 	
 	var _ListItem2 = _interopRequireDefault(_ListItem);
 	
-	var _RecipientTicket = __webpack_require__(250);
+	var _RecipientTicket = __webpack_require__(249);
 	
 	var _RecipientTicket2 = _interopRequireDefault(_RecipientTicket);
 	
@@ -30285,6 +30358,125 @@
 	});
 	
 	exports.default = Collapsible;
+
+/***/ },
+/* 251 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	var _DonorTicket = __webpack_require__(248);
+	
+	var _DonorTicket2 = _interopRequireDefault(_DonorTicket);
+	
+	var _RecipientTicket = __webpack_require__(249);
+	
+	var _RecipientTicket2 = _interopRequireDefault(_RecipientTicket);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'Acordian',
+	  render: function render() {
+	    var name = null;
+	    var param = null;
+	    var job = null;
+	    if (this.props.donorName) {
+	      name = this.props.donorName;
+	      param = 'donor';
+	      job = 'pickup';
+	    } else {
+	      name = this.props.recipientName;
+	      param = 'recipient';
+	      job = 'drop off';
+	    }
+	
+	    var ticketStyle = null;
+	    var status = null;
+	    var weight = null;
+	    if (this.props.isComplete) {
+	      ticketStyle = 'complete';
+	      status = 'complete actual';
+	      weight = this.props.actualKg;
+	    } else if (this.props.donorId) {
+	      ticketStyle = 'pickUp';
+	      status = 'expected';
+	      weight = this.props.expectedKg;
+	    } else {
+	      ticketStyle = 'dropOff';
+	      status = 'expected';
+	      weight = this.props.expectedKg;
+	    }
+	
+	    return _react2.default.createElement(
+	      _reactRouter.Link,
+	      { className: 'link', to: '/ticket/' + param + '/' + this.props.ticketId },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'ticketWrapper ' + ticketStyle },
+	        job,
+	        _react2.default.createElement('br', null),
+	        status,
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'weight' },
+	          weight,
+	          'kg '
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'orgInfo' },
+	          _react2.default.createElement(
+	            'h4',
+	            null,
+	            ' ',
+	            name,
+	            ' '
+	          ),
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            ' ',
+	            this.props.address,
+	            ' '
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+	
+	// import React from 'react'
+	// import {Link} from 'react-router'
+	//
+	// import api from '../api'
+	//
+	// import Header from './Header'
+	// import Banner from './Banner'
+	// import ListItem from './ListItem'
+	//
+	//
+	// class Acordian extends React.Component {
+	//
+	//   render() {
+	//
+	//     return (
+	//       <p> hello world</p>
+	//     )
+	//   }
+	// }
+	//
+	// export default Acordian
 
 /***/ }
 /******/ ]);
