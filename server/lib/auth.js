@@ -12,7 +12,7 @@ const googleConfig = {
 function createToken (user, secret) {
   return jwt.sign({
     id: user.id,
-    username: user.username
+    email: user.email
   }, secret, {
     expiresIn: 60 * 60 * 24
   })
@@ -59,7 +59,6 @@ function issueJwt (req, res, next) {
 }
 
 function verify (token, refreshToken, profile, done) {
-  const userEmail = profile.emails[0].value
   users.getByGoogle(profile.id)
     .then(userList => {
       if (userList.length === 0) {
@@ -89,5 +88,5 @@ module.exports = {
   handleError: handleError,
   issueJwt: issueJwt,
   googleConfig: googleConfig,
-  verify: verify
+  verify: verify,
 }
