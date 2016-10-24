@@ -13,7 +13,8 @@ export default {
   getTickets: getTickets,
   getDonorTicket: getDonorTicket,
   getRecipientTicket: getRecipientTicket,
-  getTicketComments: getTicketComments
+  getTicketComments: getTicketComments,
+  createDonor: createDonor
 }
 
   function getDonors(cb) {
@@ -159,4 +160,12 @@ export default {
           cb(null, res.body)
         }
       })
+  }
+
+  function createDonor (donor) {
+    console.log(donor)
+    const addUrl = `${url}/createDonor`
+    request.post(addUrl)
+      .send(donor)
+      .end()
   }

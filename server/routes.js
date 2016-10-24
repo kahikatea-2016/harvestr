@@ -11,8 +11,8 @@ module.exports = {
   addTicket: addTicket,
   getDonorTicket: getDonorTicket,
   getRecipientTicket: getRecipientTicket,
-  getTicketComments: getTicketComments
-  // createDonor: createDonor,
+  getTicketComments: getTicketComments,
+  createDonor: createDonor,
   // createRecipient: createRecipient
 }
 
@@ -86,7 +86,6 @@ function updateComment(req, res) {
     })
 }
 
-// "has to match table column name, use _": req.body.useCamelCase
   function addTicket(req, res) {
     console.log(req.body.recipientId)
     if (!req.body.recipientId) {
@@ -161,6 +160,17 @@ function getTicketComments(req, res) {
         }
       }
       res.json(singleTicketComments)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
+
+function createDonor(req, res) {
+  console.log(req.body)
+  db.createDonorProfile(req.body)
+    .then(function () {
+      res.json(donor)
     })
     .catch(function (err) {
       res.send(err.message).status(500)
