@@ -27199,17 +27199,17 @@
 	        { className: 'auth' },
 	        _react2.default.createElement(
 	          _reactRouter.Link,
-	          { to: '/list' },
+	          { className: 'navButton', to: '/list' },
 	          ' Login '
 	        ),
 	        _react2.default.createElement(
 	          _reactRouter.Link,
-	          { to: '/' },
+	          { className: 'navButton', to: '/' },
 	          ' Home '
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'dropdownAdd' },
+	          { className: 'dropdownAdd navButton' },
 	          'Add a Ticket',
 	          _react2.default.createElement(
 	            'div',
@@ -27217,12 +27217,47 @@
 	            _react2.default.createElement(
 	              _reactRouter.Link,
 	              { to: '/addDonorTicket' },
-	              ' Add a Donor Ticket '
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                ' Add a Donor Ticket '
+	              )
 	            ),
 	            _react2.default.createElement(
 	              _reactRouter.Link,
 	              { to: '/addRecipientTicket' },
-	              ' Add a Recipient Ticket '
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                ' Add a Recipient Ticket '
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'dropdownAdd navButton' },
+	          'Add a Profile',
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'dropdownAddContent' },
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/addDonor' },
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                ' Add a New Donor '
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/addRecipient' },
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                ' Add a New Recipient '
+	              )
 	            )
 	          )
 	        )

@@ -12,7 +12,9 @@ module.exports = {
   addTicket: addTicket,
   getDonorTicket: getDonorTicket,
   getRecipientTicket: getRecipientTicket,
-  getTicketComments: getTicketComments
+  getTicketComments: getTicketComments,
+  createDonor: createDonor,
+  createRecipient: createRecipient
 }
 
 // gets list of all donors
@@ -97,4 +99,22 @@ function getTicketComments (ticketId) {
   return knex ('comments')
   .where ('ticket_id', ticketId)
   .select()
+}
+
+function createDonor (donor) {
+  return knex ('donors')
+  .insert({
+    id: donor.id,
+    name: donor.name,
+    detail_id: donor.detailId
+  })
+}
+
+function createRecipient (recipient) {
+  return knex ('recipients')
+  .insert({
+    id: recipient.id,
+    name: recipient.name,
+    detail_id: recipient.detailId
+  })
 }

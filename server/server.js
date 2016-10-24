@@ -19,8 +19,14 @@ app.get('/v1/tickets/donors/:id', routes.getDonorTicket)
 app.get('/v1/tickets/recipients/:id', routes.getRecipientTicket)
 app.get('/v1/tickets/comments/:id', routes.getTicketComments)
 
+// app.get('/v1/addDonor', routes.addDonor)
+// app.get('/v1/addRecipient', routes.addRecipient)
+
 app.put('/v1/tickets', routes.updateTicket)
 app.put('/v1/comments', routes.updateComment)
+
+// app.post('/v1/createDonor', routes.createDonor)
+// app.post('/v1/createRecipient', routes.createRecipient)
 app.post('/v1/tickets', routes.addTicket)
 
 

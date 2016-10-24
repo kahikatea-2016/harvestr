@@ -12,6 +12,10 @@ module.exports = {
   getDonorTicket: getDonorTicket,
   getRecipientTicket: getRecipientTicket,
   getTicketComments: getTicketComments
+  // addDonor: addDonor,
+  // addRecipient: addRecipient,
+  // createDonor: createDonor,
+  // createRecipient: createRecipient
 }
 
 function getDonors(req, res) {

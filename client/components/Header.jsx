@@ -7,13 +7,20 @@ export default React.createClass({
         <div className="header">
           <span className="logo"> Harvestr </span>
           <div className="auth">
-            <Link to='/list'> Login </Link>
-            <Link to='/'> Home </Link>
-            <div className="dropdownAdd">
+            <Link className="navButton" to='/list'> Login </Link>
+            <Link className="navButton" to='/'> Home </Link>
+            <div className="dropdownAdd navButton">
               Add a Ticket
               <div className="dropdownAddContent">
-                <Link to='/addDonorTicket'> Add a Donor Ticket </Link>
-                <Link to='/addRecipientTicket'> Add a Recipient Ticket </Link>
+                <Link to='/addDonorTicket'><p> Add a Donor Ticket </p></Link>
+                <Link to='/addRecipientTicket'><p> Add a Recipient Ticket </p></Link>
+              </div>
+            </div>
+            <div className="dropdownAdd navButton">
+              Add a Profile
+              <div className="dropdownAddContent">
+                <Link to='/addDonor'><p> Add a New Donor </p></Link>
+                <Link to='/addRecipient'><p> Add a New Recipient </p></Link>
               </div>
             </div>
           </div>
