@@ -19,8 +19,8 @@ export default React.createClass({
             <div className="dropdownAdd navButton">
               Add a Profile
               <div className="dropdownAddContent">
-                <Link to='/AddDonor'><p> Add a New Donor </p></Link>
-                {/* <Link to='/AddRecipient'><p> Add a New Recipient </p></Link> */}
+                <Link to='/addDonor'><p> Add a New Donor </p></Link>
+                <Link to='/addRecipient'><p> Add a New Recipient </p></Link>
               </div>
             </div>
           </div>

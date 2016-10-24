@@ -7,8 +7,8 @@ export default React.createClass({
     return (
       <div>
         <Header />
-        <div className="donorForm">
-          <h2> Create a Donor Profile </h2><br/><br/>
+        <div className="RecipientForm">
+          <h2> Create a Recipient Profile </h2><br/><br/>
 
             <input type="text"
               placeholder="Name of Organisation"
@@ -30,8 +30,8 @@ export default React.createClass({
               placeholder="Additional Notes"
               onChange={this.handleChange} /><br/><br/><br/>
 
-<Link to='createDonor'>
-  <input className="button" type="submit" value="Submit" onCick={() => this.createDonor()}/>
+            <Link to='createRecipient'>
+  <input className="button" type="submit" value="Submit" onCick={() => this.createRecipient()}/>
 </Link>
 
       </div>

@@ -84,6 +84,10 @@
 	
 	var _AddDonor2 = _interopRequireDefault(_AddDonor);
 	
+	var _AddRecipient = __webpack_require__(251);
+	
+	var _AddRecipient2 = _interopRequireDefault(_AddRecipient);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	document.addEventListener('DOMContentLoaded', function () {
@@ -96,7 +100,8 @@
 	    _react2.default.createElement(_reactRouter.Route, { path: '/list', component: _List2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/ticket/donor/:ticket', component: _DonorTicket2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/ticket/recipient/:ticket', component: _RecipientTicket2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/addDonor', component: _AddDonor2.default })
+	    _react2.default.createElement(_reactRouter.Route, { path: '/addDonor', component: _AddDonor2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/addRecipient', component: _AddRecipient2.default })
 	  ), document.getElementById('app'));
 	});
 
@@ -27248,11 +27253,20 @@
 	            { className: 'dropdownAddContent' },
 	            _react2.default.createElement(
 	              _reactRouter.Link,
-	              { to: '/AddDonor' },
+	              { to: '/addDonor' },
 	              _react2.default.createElement(
 	                'p',
 	                null,
 	                ' Add a New Donor '
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/addRecipient' },
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                ' Add a New Recipient '
 	              )
 	            )
 	          )
@@ -27380,6 +27394,8 @@
 	          null,
 	          ' Create a Recipient Ticket '
 	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'select',
 	          { value: this.state.value, id: this.state.id, onChange: this.handleChange, ref: function ref(input) {
@@ -27399,6 +27415,7 @@
 	          })
 	        ),
 	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'label',
 	          { htmlFor: 'weight' },
@@ -27408,6 +27425,7 @@
 	        _react2.default.createElement('input', { name: 'weight', type: 'number', min: '1', max: '999', placeholder: 'Kilograms', ref: function ref(input) {
 	            expectedKg = input;
 	          } }),
+	        _react2.default.createElement('br', null),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          _reactRouter.Link,
@@ -29243,6 +29261,8 @@
 	          null,
 	          ' Create a Donor Ticket '
 	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'select',
 	          { value: this.state.value, id: this.state.id, onChange: this.handleChange, ref: function ref(input) {
@@ -29262,6 +29282,7 @@
 	          })
 	        ),
 	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'label',
 	          { htmlFor: 'weight' },
@@ -29271,6 +29292,7 @@
 	        _react2.default.createElement('input', { name: 'weight', type: 'number', min: '1', max: '999', placeholder: 'Kilograms', ref: function ref(input) {
 	            expectedKg = input;
 	          } }),
+	        _react2.default.createElement('br', null),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          _reactRouter.Link,
@@ -30055,7 +30077,85 @@
 	    );
 	  }
 	});
-	//
+
+/***/ },
+/* 251 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	var _Header = __webpack_require__(236);
+	
+	var _Header2 = _interopRequireDefault(_Header);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'AddRecipient',
+	  render: function render() {
+	    var _this = this;
+	
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(_Header2.default, null),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'RecipientForm' },
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          ' Create a Recipient Profile '
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { type: 'text',
+	          placeholder: 'Name of Organisation',
+	          onChange: this.handleChange }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { type: 'text',
+	          placeholder: 'Address',
+	          onChange: this.handleChange }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { type: 'text',
+	          placeholder: 'Contact Person',
+	          onChange: this.handleChange }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { type: 'text',
+	          placeholder: 'Phone',
+	          onChange: this.handleChange }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { type: 'text',
+	          placeholder: 'Additional Notes',
+	          onChange: this.handleChange }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: 'createRecipient' },
+	          _react2.default.createElement('input', { className: 'button', type: 'submit', value: 'Submit', onCick: function onCick() {
+	              return _this.createRecipient();
+	            } })
+	        )
+	      )
+	    );
+	  }
+	});
 
 /***/ }
 /******/ ]);
