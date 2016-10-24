@@ -1,9 +1,14 @@
 import React from 'react'
 import {Link} from 'react-router'
+import AddTicketButton from './AddTicketButton'
+import AuthButton from './AuthButton'
+import ViewListButton from './ViewListButton'
+import SignOutButton from './SignOutButton'
 
 export default React.createClass({
   render() {
     return (
+<<<<<<< HEAD
         <div className="header">
           <span className="logo"> Harvestr </span>
           <div className="auth">
@@ -29,6 +34,17 @@ export default React.createClass({
             </div>
           </div>
         </div>
+=======
+      <div className="header">
+        <Link to="/"> <span className="logo"> Harvestr </span> </Link>
+        <div className="auth">
+          <SignOutButton />
+          <AddTicketButton />
+          <ViewListButton />
+          <AuthButton />
+      </div>
+    </div>
+>>>>>>> 4f552b328e7a6d1a5866395deea986936d8536c0
     )
   }
 })
