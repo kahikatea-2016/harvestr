@@ -1,9 +1,9 @@
 var path = require('path')
 var express = require('express')
 var bodyParser = require('body-parser')
+var cookieParser = require('cookie-parser')
 var passport = require('passport')
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
-var expressSession = require('express-session')
 var verifyJwt = require('express-jwt')
 
 var auth = require('./lib/auth')
@@ -20,16 +20,11 @@ passport.serializeUser(users.serialize)
 passport.deserializeUser(users.deserialize)
 
 app.use(bodyParser.json())
+app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '../public')))
 
-var session = expressSession({
-  resave: false,
-  secret: 'THIS IS NOT VERY SECRET! CHANGE THIS BEFORE DEPLOY!',
-  saveUnitialized: false
-})
-
 app.get('/auth/google', passport.authenticate('google', { scope: ['email'] }))
-app.get('/auth/google/callback', session, auth.issueJwt)
+app.get('/auth/google/callback', auth.issueJwt)
 app.get('/auth/logout', (req, res) => {
   res.clearCookie('token', { path: '/' })
   res.json({ message: 'User logged out.' })
