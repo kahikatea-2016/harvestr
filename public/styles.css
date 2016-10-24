@@ -136,6 +136,10 @@ span.buttonText {
   margin-top: 15px;
 }
 
+.authLink {
+  padding: none;
+}
+
 /* Main Content */
 
 
