@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
 
+const users = require('./users')
+
 const googleConfig = {
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -57,6 +59,7 @@ function issueJwt (req, res, next) {
 }
 
 function verify (token, refreshToken, profile, done) {
+  console.log(profile)
   users.getByGoogle(profile.id)
     .then(userList => {
       if (userList.length === 0) {
