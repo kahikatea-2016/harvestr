@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
+const dotenv = require('dotenv')
+dotenv.load()
 
 const users = require('./users')
 
