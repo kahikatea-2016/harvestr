@@ -2,9 +2,9 @@ const jwt = require('jsonwebtoken')
 const passport = require('passport')
 
 const googleConfig = {
-  consumerKey: process.env.TWITTER_KEY,
-  consumerSecret: process.env.TWITTER_SECRET,
-  callbackURL: 'http://localhost:3000/api/auth/twitter/callback'
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: 'http://localhost:3000/auth/google/callback'
 }
 
 function createToken (user, secret) {
@@ -34,7 +34,7 @@ function handleError (err, req, res, next) {
 }
 
 function issueJwt (req, res, next) {
-  passport.authenticate('twitter', (err, user, info) => {
+  passport.authenticate('google', (err, user, info) => {
     if (err) {
       return res.status(500).json({
         message: 'Authentication failed due to a server error.',
@@ -56,15 +56,15 @@ function issueJwt (req, res, next) {
   })(req, res, next)
 }
 
-function verify (token, tokenSecret, profile, done) {
-  users.getByTwitter(profile.id)
+function verify (token, refreshToken, profile, done) {
+  users.getByGoogle(profile.id)
     .then(userList => {
       if (userList.length === 0) {
-        users.create(profile.username, profile.id)
+        users.create(profile.ID, profile.Email)
           .then(() => {
             return done(null, {
-              id: profile.id,
-              username: profile.username
+              id: profile.ID,
+              email: profile.Email
             })
           })
           .catch(err => done(err, false, { message: "Couldn't add user due to a server error." }))
@@ -73,7 +73,7 @@ function verify (token, tokenSecret, profile, done) {
       const user = userList[0]
       done(null, {
         id: user.id,
-        username: user.username
+        email: user.Email
       })
     })
     .catch(err => {
@@ -85,6 +85,6 @@ module.exports = {
   getTokenFromCookie: getTokenFromCookie,
   handleError: handleError,
   issueJwt: issueJwt,
-  twitterConfig: twitterConfig,
+  googleConfig: googleConfig,
   verify: verify
 }
