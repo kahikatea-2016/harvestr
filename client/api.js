@@ -13,7 +13,8 @@ export default {
   getTickets: getTickets,
   getDonorTicket: getDonorTicket,
   getRecipientTicket: getRecipientTicket,
-  getTicketComments: getTicketComments
+  getTicketComments: getTicketComments,
+  createDonor: createDonor
 }
 
   function getDonors(cb) {
@@ -99,14 +100,14 @@ export default {
       .end()
   }
 
-  function updateComment(comments) {
+  function updateComment (comments) {
     const updateUrl = `${url}/comments`
     request.put(updateUrl)
       .send(comments)
       .end()
   }
 
-  function addTicket( ticket) {
+  function addTicket (ticket) {
     const addUrl = `${url}/tickets`
     request.post(addUrl)
       .send(ticket)
@@ -159,4 +160,12 @@ export default {
           cb(null, res.body)
         }
       })
+  }
+
+  function createDonor (donor) {
+    console.log(donor)
+    const addUrl = `${url}/createDonor`
+    request.post(addUrl)
+      .send(donor)
+      .end()
   }

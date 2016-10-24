@@ -12,7 +12,9 @@ module.exports = {
   addTicket: addTicket,
   getDonorTicket: getDonorTicket,
   getRecipientTicket: getRecipientTicket,
-  getTicketComments: getTicketComments
+  getTicketComments: getTicketComments,
+  createDonorProfile: createDonorProfile
+  // createRecipient: createRecipient
 }
 
 // gets list of all donors
@@ -97,4 +99,30 @@ function getTicketComments (ticketId) {
   return knex ('comments')
   .where ('ticket_id', ticketId)
   .select()
+}
+
+function createDonorProfile (donor) {
+  return new Promise((resolve, reject) => {
+  knex('details')
+    .insert({
+      address: donor.address,
+      contact_person: donor.contactPerson,
+      phone: donor.phone,
+      notes: donor.notes
+    })
+    .then(detailId => createDonor(detailId, donor))
+    .then(resolve)
+    .catch(reject)
+  })
+}
+
+function createDonor (detailId, donor) {
+  return knex('donors')
+  .insert({
+    name: donor.name,
+    detail_id: detailId[0]
+  })
+  .then (() => {
+    return donorId
+  })
 }

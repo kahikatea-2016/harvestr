@@ -80,7 +80,13 @@
 	
 	var _RecipientTicket2 = _interopRequireDefault(_RecipientTicket);
 	
+	var _CreateDonor = __webpack_require__(250);
+	
+	var _CreateDonor2 = _interopRequireDefault(_CreateDonor);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	// import AddRecipient from './components/AddRecipient'
 	
 	document.addEventListener('DOMContentLoaded', function () {
 	  _reactDom2.default.render(_react2.default.createElement(
@@ -91,7 +97,8 @@
 	    _react2.default.createElement(_reactRouter.Route, { path: '/addRecipientTicket', component: _AddRecipientTicket2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/list', component: _List2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/ticket/donor/:ticket', component: _DonorTicket2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/ticket/recipient/:ticket', component: _RecipientTicket2.default })
+	    _react2.default.createElement(_reactRouter.Route, { path: '/ticket/recipient/:ticket', component: _RecipientTicket2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/createDonor', component: _CreateDonor2.default })
 	  ), document.getElementById('app'));
 	});
 
@@ -27199,17 +27206,17 @@
 	        { className: 'auth' },
 	        _react2.default.createElement(
 	          _reactRouter.Link,
-	          { to: '/list' },
+	          { className: 'navButton', to: '/list' },
 	          ' Login '
 	        ),
 	        _react2.default.createElement(
 	          _reactRouter.Link,
-	          { to: '/' },
+	          { className: 'navButton', to: '/' },
 	          ' Home '
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'dropdownAdd' },
+	          { className: 'dropdownAdd navButton' },
 	          'Add a Ticket',
 	          _react2.default.createElement(
 	            'div',
@@ -27217,12 +27224,38 @@
 	            _react2.default.createElement(
 	              _reactRouter.Link,
 	              { to: '/addDonorTicket' },
-	              ' Add a Donor Ticket '
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                ' Add a Donor Ticket '
+	              )
 	            ),
 	            _react2.default.createElement(
 	              _reactRouter.Link,
 	              { to: '/addRecipientTicket' },
-	              ' Add a Recipient Ticket '
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                ' Add a Recipient Ticket '
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'dropdownAdd navButton' },
+	          'Add a Profile',
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'dropdownAddContent' },
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/createDonor' },
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                ' Add a New Donor '
+	              )
 	            )
 	          )
 	        )
@@ -27349,6 +27382,8 @@
 	          null,
 	          ' Create a Recipient Ticket '
 	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'select',
 	          { value: this.state.value, id: this.state.id, onChange: this.handleChange, ref: function ref(input) {
@@ -27368,6 +27403,7 @@
 	          })
 	        ),
 	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'label',
 	          { htmlFor: 'weight' },
@@ -27377,6 +27413,7 @@
 	        _react2.default.createElement('input', { name: 'weight', type: 'number', min: '1', max: '999', placeholder: 'Kilograms', ref: function ref(input) {
 	            expectedKg = input;
 	          } }),
+	        _react2.default.createElement('br', null),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          _reactRouter.Link,
@@ -27419,7 +27456,8 @@
 	  getTickets: getTickets,
 	  getDonorTicket: getDonorTicket,
 	  getRecipientTicket: getRecipientTicket,
-	  getTicketComments: getTicketComments
+	  getTicketComments: getTicketComments,
+	  createDonor: createDonor
 	};
 	
 	
@@ -27552,6 +27590,12 @@
 	      cb(null, res.body);
 	    }
 	  });
+	}
+	
+	function createDonor(donor) {
+	  console.log(donor);
+	  var addUrl = url + '/createDonor';
+	  _superagent2.default.post(addUrl).send(donor).end();
 	}
 
 /***/ },
@@ -29212,6 +29256,8 @@
 	          null,
 	          ' Create a Donor Ticket '
 	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'select',
 	          { value: this.state.value, id: this.state.id, onChange: this.handleChange, ref: function ref(input) {
@@ -29231,6 +29277,7 @@
 	          })
 	        ),
 	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'label',
 	          { htmlFor: 'weight' },
@@ -29240,6 +29287,7 @@
 	        _react2.default.createElement('input', { name: 'weight', type: 'number', min: '1', max: '999', placeholder: 'Kilograms', ref: function ref(input) {
 	            expectedKg = input;
 	          } }),
+	        _react2.default.createElement('br', null),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          _reactRouter.Link,
@@ -29941,6 +29989,114 @@
 	          width: '600',
 	          height: '450',
 	          src: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&q=' + ticket.address })
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 250 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	var _Header = __webpack_require__(236);
+	
+	var _Header2 = _interopRequireDefault(_Header);
+	
+	var _api = __webpack_require__(239);
+	
+	var _api2 = _interopRequireDefault(_api);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var name = null;
+	var address = null;
+	var contactPerson = null;
+	var phone = null;
+	var notes = null;
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'CreateDonor',
+	  createDonor: function createDonor() {
+	    var newDonor = {
+	      name: name.value,
+	      address: address.value,
+	      contactPerson: contactPerson.value,
+	      phone: phone.value,
+	      notes: notes.value
+	    };
+	    _api2.default.createDonor(newDonor);
+	  },
+	  render: function render() {
+	    var _this = this;
+	
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(_Header2.default, null),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'donorForm' },
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          ' Create a Donor Profile '
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { name: 'name', type: 'text',
+	          placeholder: 'Name of Organisation',
+	          ref: function ref(input) {
+	            name = input;
+	          } }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { name: 'address', type: 'text',
+	          placeholder: 'Address',
+	          ref: function ref(input) {
+	            address = input;
+	          } }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { name: 'person', type: 'text',
+	          placeholder: 'Contact Person',
+	          ref: function ref(input) {
+	            contactPerson = input;
+	          } }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { name: 'phone', type: 'text',
+	          placeholder: 'Phone',
+	          ref: function ref(input) {
+	            phone = input;
+	          } }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('input', { name: 'notes', type: 'text',
+	          placeholder: 'Additional Notes',
+	          ref: function ref(input) {
+	            notes = input;
+	          } }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/list' },
+	          _react2.default.createElement('input', { className: 'button', type: 'submit', value: 'Submit', onClick: function onClick() {
+	              return _this.createDonor();
+	            } })
+	        )
 	      )
 	    );
 	  }
