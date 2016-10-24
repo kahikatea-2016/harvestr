@@ -7,6 +7,10 @@ import Header from './Header'
 import Banner from './Banner'
 import ListItem from './ListItem'
 
+import Acordian from './Acordian'
+
+import Collapsible from './Collapsible'
+
 let pickUpWeight = 0
 let dropOffWeight = 0
 
@@ -48,10 +52,12 @@ export default React.createClass({
     return (
       <div>
         <Header />
+
         <div className="listWrapper">
           <h2>Today's Tickets</h2>
           <h3>Total picked up: {pickUpWeight}kg</h3>
           <h3>Total dropped off: {dropOffWeight}kg</h3>
+
           {this.state.tickets.map((tickets) => {
             return <ListItem
             key={tickets.ticketId}

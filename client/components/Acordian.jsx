@@ -4,8 +4,6 @@ import {Link} from 'react-router'
 import DonorTicket from './DonorTicket'
 import RecipientTicket from './RecipientTicket'
 
-import Collapsible from './Collapsible';
-
 export default React.createClass({
   render() {
     let name = null
@@ -38,22 +36,42 @@ export default React.createClass({
       weight = this.props.expectedKg
     }
 
-    let outerCon =
-      <div className={`ticketWrapper ${ticketStyle}`}>
-        {job}<br/>{status}
-        <div className="weight">{weight}kg </div>
-        <div className="orgInfo">
-          <h4> {name} </h4>
-          <h2> {this.props.address} </h2>
-        </div>
-      </div>
-
     return (
-      <Collapsible trigger={outerCon} className="link">
-        <Link className="link" to={`/ticket/${param}/${this.props.ticketId}`}>
-        </Link>
-      </Collapsible>
+      <Link className="link" to={`/ticket/${param}/${this.props.ticketId}`}>
+        <div className={`ticketWrapper ${ticketStyle}`}>
+          {job}<br/>{status}
+          <div className="weight">{weight}kg </div>
+          <div className="orgInfo">
+            <h4> {name} </h4>
+            <h2> {this.props.address} </h2>
+          </div>
+        </div>
+      </Link>
     )
   }
-
 })
+
+
+
+
+// import React from 'react'
+// import {Link} from 'react-router'
+//
+// import api from '../api'
+//
+// import Header from './Header'
+// import Banner from './Banner'
+// import ListItem from './ListItem'
+//
+//
+// class Acordian extends React.Component {
+//
+//   render() {
+//
+//     return (
+//       <p> hello world</p>
+//     )
+//   }
+// }
+//
+// export default Acordian
