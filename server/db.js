@@ -108,6 +108,10 @@ function createDonor (donor) {
     name: donor.name,
     detail_id: donor.detailId
   })
+  return knex ('')
+  .insert({
+
+  })
 }
 
 function createRecipient (recipient) {

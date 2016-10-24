@@ -99,14 +99,14 @@ export default {
       .end()
   }
 
-  function updateComment(comments) {
+  function updateComment (comments) {
     const updateUrl = `${url}/comments`
     request.put(updateUrl)
       .send(comments)
       .end()
   }
 
-  function addTicket( ticket) {
+  function addTicket (ticket) {
     const addUrl = `${url}/tickets`
     request.post(addUrl)
       .send(ticket)
