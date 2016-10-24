@@ -11,6 +11,7 @@ module.exports = {
 }
 
 function create (googleId, email) {
+  console.log(email)
   return knex('users')
     .insert({
       google_id: googleId,

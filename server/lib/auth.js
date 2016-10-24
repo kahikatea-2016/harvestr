@@ -63,11 +63,11 @@ function verify (token, refreshToken, profile, done) {
   users.getByGoogle(profile.id)
     .then(userList => {
       if (userList.length === 0) {
-        users.create(profile.id, userEmail)
+        users.create(profile.id, profile.emails[0].value)
           .then(() => {
             return done(null, {
               id: profile.id,
-              email: userEmail
+              email: profile.emails[0].value
             })
           })
           .catch(err => done(err, false, { message: "Couldn't add user due to a server error." }))
