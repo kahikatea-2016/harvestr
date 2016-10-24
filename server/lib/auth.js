@@ -59,24 +59,32 @@ function issueJwt (req, res, next) {
 }
 
 function verify (token, refreshToken, profile, done) {
+  // Check for existing user by Google ID
   users.getByGoogle(profile.id)
     .then(userList => {
+      // If user does not exist...
       if (userList.length === 0) {
-        users.create(profile.id, profile.emails[0].value)
+        // Create the user
+        // TODO: code here to check if user email is on the approved list?
+        return users.create(profile.id, profile.emails[0].value)
           .then(() => {
-            return done(null, {
-              id: profile.id,
-              email: profile.emails[0].value
-            })
+            // SQLlite doesn't support returning created id, so we need to go get it
+            return users.getByGoogle(profile.id)
+              .then(createdUser => {
+                return done(null, {
+                  id: createdUser[0].id,
+                  email: createdUser[0].email
+                })
+              })
           })
           .catch(err => done(err, false, { message: "Couldn't add user due to a server error." }))
+      } else {
+        const user = userList[0]
+        done(null, {
+          id: user.id,
+          email: user.email
+        })
       }
-
-      const user = userList[0]
-      done(null, {
-        id: user.id,
-        email: user.email
-      })
     })
     .catch(err => {
       done(err, false, { message: "Couldn't check your credentials with the database." })
