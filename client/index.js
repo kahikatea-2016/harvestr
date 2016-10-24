@@ -10,6 +10,7 @@ import DonorTicket from './components/DonorTicket'
 import RecipientTicket from './components/RecipientTicket'
 import CreateDonor from './components/CreateDonor'
 // import AddRecipient from './components/AddRecipient'
+import DonorsList from './components/DonorsList'
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
@@ -23,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <Route path='/ticket/recipient/:ticket' component={RecipientTicket} />
         <Route path='/createDonor' component={CreateDonor} />
         {/* <Route path='/addRecipient' component={AddRecipient} /> */}
+        <Route path='/donorsList' component={DonorsList} />
       </Router>
     ),
     document.getElementById('app')
