@@ -3,6 +3,8 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var passport = require('passport')
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
+var expressSession = require('express-session')
+var verifyJwt = require('express-jwt')
 
 var auth = require('./lib/auth')
 var users = require('./lib/users')
@@ -20,6 +22,33 @@ passport.deserializeUser(users.deserialize)
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../public')))
 
+var session = expressSession({
+  resave: false,
+  secret: 'THIS IS NOT VERY SECRET! CHANGE THIS BEFORE DEPLOY!',
+  saveUnitialized: false
+})
+
+app.get('/auth/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }))
+app.get('/auth/google/callback', session, auth.issueJwt)
+app.get('/auth/logout', (req, res) => {
+  res.clearCookie('token', { path: '/' })
+  res.json({ message: 'User logged out.' })
+})
+
+// express-jwt middleware lets us use a function as the secret,
+// so we can grab it out of app settings
+function getSecret (req, payload, done) {
+  done(null, req.app.get('JWT_SECRET'))
+}
+
+// Protect all routes beneath this point
+app.use(
+  verifyJwt({
+    getToken: auth.getTokenFromCookie,
+    secret: getSecret
+  }),
+  auth.handleError
+)
 app.get('/v1/donors', routes.getDonors)
 app.get('/v1/recipients', routes.getRecipients)
 app.get('/v1/donors/:id', routes.getDonor)
