@@ -29285,14 +29285,6 @@
 	
 	var _ListItem2 = _interopRequireDefault(_ListItem);
 	
-	var _Acordian = __webpack_require__(251);
-	
-	var _Acordian2 = _interopRequireDefault(_Acordian);
-	
-	var _Collapsible = __webpack_require__(250);
-	
-	var _Collapsible2 = _interopRequireDefault(_Collapsible);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var pickUpWeight = 0;
@@ -29399,71 +29391,15 @@
 	
 	var _RecipientTicket2 = _interopRequireDefault(_RecipientTicket);
 	
-	var _Collapsible = __webpack_require__(250);
-	
-	var _Collapsible2 = _interopRequireDefault(_Collapsible);
-	
-	var _api = __webpack_require__(239);
-	
-	var _api2 = _interopRequireDefault(_api);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var ticket = null;
-	var actualKg = null;
-	var comment = null;
 	
 	exports.default = _react2.default.createClass({
 	  displayName: 'ListItem',
-	  getInitialState: function getInitialState() {
-	    return {
-	      ticket: [],
-	      comments: [],
-	      actualKg: ''
-	    };
-	  },
-	  componentDidMount: function componentDidMount() {
-	    var ticketId = this.props.params.ticket;
-	    _api2.default.getRecipientTicket(ticketId, this.renderTicketInfo);
-	    _api2.default.getTicketComments(ticketId, this.renderTicketComments);
-	  },
-	  renderTicketInfo: function renderTicketInfo(err, singleTicket) {
-	    this.setState({
-	      ticket: singleTicket[0],
-	      actualKg: singleTicket[0].actual
-	    });
-	  },
-	  renderTicketComments: function renderTicketComments(err, ticketComments) {
-	    this.setState({
-	      comments: ticketComments
-	    });
-	  },
-	  updateTicket: function updateTicket() {
-	    var addActualKg = {
-	      ticketId: ticket.id,
-	      actualKg: actualKg.value
-	    };
-	    _api2.default.updateTicket(addActualKg);
-	
-	    if (comment.value === '') {
-	      console.log('No comment added');
-	    } else {
-	      var addComment = {
-	        ticketId: ticket.id,
-	        comment: comment.value
-	      };
-	      _api2.default.updateComment(addComment);
-	    }
-	  },
-	  onChange: function onChange(e) {
-	    this.setState({ actualKg: parseInt(e.target.value, 10) });
-	  },
 	  render: function render() {
-	    var _this = this;
-	
 	    var name = null;
 	    var param = null;
 	    var job = null;
+	
 	    if (this.props.donorName) {
 	      name = this.props.donorName;
 	      param = 'donor';
@@ -29491,180 +29427,40 @@
 	      weight = this.props.expectedKg;
 	    }
 	
-	    var outerCon = _react2.default.createElement(
-	      'div',
-	      { className: 'ticketWrapper ' + ticketStyle },
-	      job,
-	      _react2.default.createElement('br', null),
-	      status,
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'weight' },
-	        weight,
-	        'kg '
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'orgInfo' },
-	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          ' ',
-	          name,
-	          ' '
-	        ),
-	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          ' ',
-	          this.props.address,
-	          ' '
-	        )
-	      )
-	    );
-	
-	    ticket = this.state.ticket;
-	
 	    return _react2.default.createElement(
-	      _Collapsible2.default,
-	      { trigger: outerCon, className: 'link' },
-	      _react2.default.createElement(_reactRouter.Link, { className: 'link', to: '/ticket/' + param + '/' + this.props.ticketId }),
+	      _reactRouter.Link,
+	      { className: 'link', to: '/ticket/' + param + '/' + this.props.ticketId },
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'ticketWrapperSingle recipColor' },
+	        { className: 'ticketWrapper ' + ticketStyle },
+	        job,
+	        _react2.default.createElement('br', null),
+	        status,
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'weight' },
+	          weight,
+	          'kg '
+	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'orgInfo' },
 	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            ' ',
-	            ticket.name,
-	            ' '
-	          ),
-	          _react2.default.createElement(
 	            'h4',
 	            null,
 	            ' ',
-	            ticket.address,
-	            ' '
-	          )
-	        ),
-	        _react2.default.createElement('span', { className: 'fade_line_recip' }),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'contact' },
-	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            ' ',
-	            ticket.contact,
+	            name,
 	            ' '
 	          ),
 	          _react2.default.createElement(
 	            'h2',
 	            null,
 	            ' ',
-	            ticket.phone,
+	            this.props.address,
 	            ' '
 	          )
 	        ),
-	        _react2.default.createElement('span', { className: 'fade_line_recip' }),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'inventory' },
-	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            ' Expected: ',
-	            ticket.expected,
-	            'kg '
-	          ),
-	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            'Actual:'
-	          ),
-	          _react2.default.createElement('input', { type: 'number',
-	            placeholder: 'Actual kg',
-	            value: this.state.actualKg || 0,
-	            onChange: function onChange(e) {
-	              return _this.onChange(e);
-	            },
-	            ref: function ref(input) {
-	              actualKg = input;
-	            } }),
-	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            'kg'
-	          )
-	        ),
-	        _react2.default.createElement('span', { className: 'fade_line_recip' }),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'notes' },
-	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            ' Notes '
-	          ),
-	          _react2.default.createElement(
-	            'ul',
-	            null,
-	            _react2.default.createElement(
-	              'li',
-	              null,
-	              ' ',
-	              ticket.notes,
-	              ' '
-	            )
-	          )
-	        ),
-	        _react2.default.createElement('span', { className: 'fade_line_recip' }),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'comments' },
-	          _react2.default.createElement(
-	            'label',
-	            null,
-	            ' Comments '
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'ul',
-	            null,
-	            this.state.comments.map(function (comments, i) {
-	              return _react2.default.createElement(
-	                'li',
-	                { key: i },
-	                comments.comments
-	              );
-	            })
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('textarea', { rows: '4', cols: '40', className: 'textInput', placeholder: 'Write a Comment',
-	            ref: function ref(input) {
-	              comment = input;
-	            } }),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/list' },
-	            _react2.default.createElement(
-	              'button',
-	              { className: 'button buttonRecip' },
-	              'back'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/list' },
-	            _react2.default.createElement('input', { className: 'button buttonRecip', type: 'submit', value: 'Complete', onClick: function onClick() {
-	                return _this.updateTicket();
-	              } })
-	          )
-	        )
+	        _react2.default.createElement('img', { className: 'nav-icon', src: '' })
 	      )
 	    );
 	  }
@@ -29761,6 +29557,13 @@
 	        'div',
 	        { className: 'ticketWrapperSingle' },
 	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/list' },
+	          ' ',
+	          _react2.default.createElement('img', { alt: 'Back Arrow', className: 'nav-icon', src: '/navBackArrow.png' }),
+	          ' '
+	        ),
+	        _react2.default.createElement(
 	          'div',
 	          { className: 'orgInfo' },
 	          _react2.default.createElement(
@@ -29876,15 +29679,6 @@
 	              comment = input;
 	            } }),
 	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/list' },
-	            _react2.default.createElement(
-	              'button',
-	              { className: 'button' },
-	              'back'
-	            )
-	          ),
 	          _react2.default.createElement(
 	            _reactRouter.Link,
 	            { to: '/list' },
@@ -30107,376 +29901,28 @@
 	          _react2.default.createElement(
 	            _reactRouter.Link,
 	            { to: '/list' },
-	            _react2.default.createElement(
-	              'button',
-	              { className: 'button buttonRecip' },
-	              'back'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/list' },
 	            _react2.default.createElement('input', { className: 'button buttonRecip', type: 'submit', value: 'Complete', onClick: function onClick() {
 	                return _this.updateTicket();
 	              } })
 	          )
 	        )
-	      )
-	    );
-	  }
-	});
-
-/***/ },
-/* 250 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _ListItem = __webpack_require__(247);
-	
-	var _ListItem2 = _interopRequireDefault(_ListItem);
-	
-	var _RecipientTicket = __webpack_require__(249);
-	
-	var _RecipientTicket2 = _interopRequireDefault(_RecipientTicket);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Collapsible = _react2.default.createClass({
-	  displayName: 'Collapsible',
-	
-	
-	  //Set validation for prop types
-	  propTypes: {
-	    transitionTime: _react2.default.PropTypes.number,
-	    easing: _react2.default.PropTypes.string,
-	    open: _react2.default.PropTypes.bool,
-	    classParentString: _react2.default.PropTypes.string,
-	    accordionPosition: _react2.default.PropTypes.number,
-	    handleTriggerClick: _react2.default.PropTypes.func,
-	    trigger: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.element]),
-	    triggerWhenOpen: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.string, _react2.default.PropTypes.element]),
-	    lazyRender: _react2.default.PropTypes.bool,
-	    overflowWhenOpen: _react2.default.PropTypes.oneOf(['hidden', 'visible', 'auto', 'scroll', 'inherit', 'initial', 'unset'])
-	  },
-	
-	  //If no transition time or easing is passed then default to this
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      transitionTime: 400,
-	      easing: 'linear',
-	      open: false,
-	      classParentString: 'Collapsible',
-	      lazyRender: false,
-	      overflowWhenOpen: 'hidden'
-	    };
-	  },
-	
-	  //Defaults the dropdown to be closed
-	  getInitialState: function getInitialState() {
-	
-	    if (this.props.open) {
-	      return {
-	        isClosed: false,
-	        shouldSwitchAutoOnNextCycle: false,
-	        height: 'auto',
-	        transition: 'none',
-	        hasBeenOpened: true,
-	        overflow: this.props.overflowWhenOpen
-	      };
-	    } else {
-	      return {
-	        isClosed: true,
-	        shouldSwitchAutoOnNextCycle: false,
-	        height: 0,
-	        transition: 'height ' + this.props.transitionTime + 'ms ' + this.props.easing,
-	        hasBeenOpened: false,
-	        overflow: 'hidden'
-	      };
-	    }
-	  },
-	
-	  // Taken from https://github.com/EvandroLG/transitionEnd/
-	  // Determines which prefixed event to listen for
-	  whichTransitionEnd: function whichTransitionEnd(element) {
-	    var transitions = {
-	      'WebkitTransition': 'webkitTransitionEnd',
-	      'MozTransition': 'transitionend',
-	      'OTransition': 'oTransitionEnd otransitionend',
-	      'transition': 'transitionend'
-	    };
-	
-	    for (var t in transitions) {
-	      if (element.style[t] !== undefined) {
-	        return transitions[t];
-	      }
-	    }
-	  },
-	
-	  componentDidMount: function componentDidMount() {
-	    var _this = this;
-	
-	    //Set up event listener to listen to transitionend so we can switch the height from fixed pixel to auto for much responsiveness;
-	    //TODO:  Once Synthetic transitionend events have been exposed in the next release of React move this funciton to a function handed to the onTransitionEnd prop
-	
-	    this.refs.outer.addEventListener(this.whichTransitionEnd(this.refs.outer), function (event) {
-	      if (_this.state.isClosed === false) {
-	        _this.setState({
-	          shouldSwitchAutoOnNextCycle: true
-	        });
-	      }
-	    });
-	  },
-	
-	  componentDidUpdate: function componentDidUpdate(prevProps) {
-	
-	    if (this.state.shouldSwitchAutoOnNextCycle === true && this.state.isClosed === false) {
-	      //Set the height to auto to make compoenent re-render with the height set to auto.
-	      //This way the dropdown will be responsive and also change height if there is another dropdown within it.
-	      this.makeResponsive();
-	    }
-	
-	    if (this.state.shouldSwitchAutoOnNextCycle === true && this.state.isClosed === true) {
-	      this.prepareToOpen();
-	    }
-	
-	    //If there has been a change in the open prop (controlled by accordion)
-	    if (prevProps.open != this.props.open) {
-	      console.log('Open state changed!', this.props.accordionPosition);
-	
-	      if (this.props.open === true) {
-	        this.openCollasible();
-	      } else {
-	        this.closeCollapsible();
-	      }
-	    }
-	  },
-	
-	  handleTriggerClick: function handleTriggerClick(event) {
-	
-	    event.preventDefault();
-	
-	    if (this.props.handleTriggerClick) {
-	      this.props.handleTriggerClick(this.props.accordionPosition);
-	    } else {
-	
-	      if (this.state.isClosed === true) {
-	        this.openCollasible();
-	      } else {
-	        this.closeCollapsible();
-	      }
-	    }
-	  },
-	
-	  closeCollapsible: function closeCollapsible() {
-	    this.setState({
-	      isClosed: true,
-	      shouldSwitchAutoOnNextCycle: true,
-	      height: this.refs.inner.offsetHeight,
-	      overflow: 'hidden'
-	    });
-	  },
-	
-	  openCollasible: function openCollasible() {
-	    this.setState({
-	      height: this.refs.inner.offsetHeight,
-	      transition: 'height ' + this.props.transitionTime + 'ms ' + this.props.easing,
-	      isClosed: false,
-	      hasBeenOpened: true
-	    });
-	  },
-	
-	  makeResponsive: function makeResponsive() {
-	    this.setState({
-	      height: 'auto',
-	      transition: 'none',
-	      shouldSwitchAutoOnNextCycle: false,
-	      overflow: this.props.overflowWhenOpen
-	    });
-	  },
-	
-	  prepareToOpen: function prepareToOpen() {
-	    var _this2 = this;
-	
-	    //The height has been changes back to fixed pixel, we set a small timeout to force the CSS transition back to 0 on the next tick.
-	    window.setTimeout(function () {
-	      _this2.setState({
-	        height: 0,
-	        shouldSwitchAutoOnNextCycle: false,
-	        transition: 'height ' + _this2.props.transitionTime + 'ms ' + _this2.props.easing
-	      });
-	    }, 50);
-	  },
-	
-	  render: function render() {
-	
-	    var dropdownStyle = {
-	      height: this.state.height,
-	      WebkitTransition: this.state.transition,
-	      msTransition: this.state.transition,
-	      transition: this.state.transition,
-	      overflow: this.state.overflow
-	    };
-	
-	    var openClass = this.state.isClosed ? 'is-closed' : 'is-open';
-	
-	    //If user wants different text when tray is open
-	    var trigger = this.state.isClosed === false && this.props.triggerWhenOpen !== undefined ? this.props.triggerWhenOpen : this.props.trigger;
-	
-	    // Don't render children until the first opening of the Collapsible if lazy rendering is enabled
-	    var children = this.props.children;
-	    if (this.props.lazyRender) if (!this.state.hasBeenOpened) children = null;
-	
-	    return _react2.default.createElement(
-	      'div',
-	      { className: this.props.classParentString },
-	      _react2.default.createElement(
-	        'span',
-	        { className: this.props.classParentString + "__trigger" + ' ' + openClass, onClick: this.handleTriggerClick },
-	        trigger
 	      ),
 	      _react2.default.createElement(
-	        'div',
-	        { className: this.props.classParentString + "__contentOuter", ref: 'outer', style: dropdownStyle },
+	        _reactRouter.Link,
+	        { className: 'link', to: '/list' },
 	        _react2.default.createElement(
 	          'div',
-	          { className: this.props.classParentString + "__contentInner", ref: 'inner' },
-	          children
-	        )
-	      )
-	    );
-	  }
-	
-	});
-	
-	exports.default = Collapsible;
-
-/***/ },
-/* 251 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(172);
-	
-	var _DonorTicket = __webpack_require__(248);
-	
-	var _DonorTicket2 = _interopRequireDefault(_DonorTicket);
-	
-	var _RecipientTicket = __webpack_require__(249);
-	
-	var _RecipientTicket2 = _interopRequireDefault(_RecipientTicket);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = _react2.default.createClass({
-	  displayName: 'Acordian',
-	  render: function render() {
-	    var name = null;
-	    var param = null;
-	    var job = null;
-	    if (this.props.donorName) {
-	      name = this.props.donorName;
-	      param = 'donor';
-	      job = 'pickup';
-	    } else {
-	      name = this.props.recipientName;
-	      param = 'recipient';
-	      job = 'drop off';
-	    }
-	
-	    var ticketStyle = null;
-	    var status = null;
-	    var weight = null;
-	    if (this.props.isComplete) {
-	      ticketStyle = 'complete';
-	      status = 'complete actual';
-	      weight = this.props.actualKg;
-	    } else if (this.props.donorId) {
-	      ticketStyle = 'pickUp';
-	      status = 'expected';
-	      weight = this.props.expectedKg;
-	    } else {
-	      ticketStyle = 'dropOff';
-	      status = 'expected';
-	      weight = this.props.expectedKg;
-	    }
-	
-	    return _react2.default.createElement(
-	      _reactRouter.Link,
-	      { className: 'link', to: '/ticket/' + param + '/' + this.props.ticketId },
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'ticketWrapper ' + ticketStyle },
-	        job,
-	        _react2.default.createElement('br', null),
-	        status,
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'weight' },
-	          weight,
-	          'kg '
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'orgInfo' },
-	          _react2.default.createElement(
-	            'h4',
-	            null,
-	            ' ',
-	            name,
-	            ' '
-	          ),
+	          { className: 'backBar' },
 	          _react2.default.createElement(
 	            'h2',
 	            null,
-	            ' ',
-	            this.props.address,
-	            ' '
+	            ' BACK '
 	          )
 	        )
 	      )
 	    );
 	  }
 	});
-	
-	// import React from 'react'
-	// import {Link} from 'react-router'
-	//
-	// import api from '../api'
-	//
-	// import Header from './Header'
-	// import Banner from './Banner'
-	// import ListItem from './ListItem'
-	//
-	//
-	// class Acordian extends React.Component {
-	//
-	//   render() {
-	//
-	//     return (
-	//       <p> hello world</p>
-	//     )
-	//   }
-	// }
-	//
-	// export default Acordian
 
 /***/ }
 /******/ ]);

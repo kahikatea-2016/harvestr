@@ -7,10 +7,6 @@ import Header from './Header'
 import Banner from './Banner'
 import ListItem from './ListItem'
 
-import Acordian from './Acordian'
-
-import Collapsible from './Collapsible'
-
 let pickUpWeight = 0
 let dropOffWeight = 0
 

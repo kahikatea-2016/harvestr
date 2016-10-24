@@ -66,7 +66,7 @@ export default React.createClass({
     return (
       <div>
         <Header />
-      <div className="ticketWrapperSingle recipColor">
+        <div className="ticketWrapperSingle recipColor">
           <div className="orgInfo">
             <h2> {ticket.name} </h2>
             <h4> {ticket.address} </h4>
@@ -113,13 +113,17 @@ export default React.createClass({
                 comment = input
               }}></textarea>
             <br/>
-            <Link to='/list'><button className="button buttonRecip">back</button></Link>
             <Link to='/list'>
             <input className="button buttonRecip" type="submit" value="Complete" onClick={() => this.updateTicket()}/>
             </Link>
           </div>
         </div>
-    </div>
+        <Link className="link" to="/list">
+          <div className="backBar">
+            <h2> BACK </h2>
+          </div>
+        </Link>
+      </div>
     )
   }
 })

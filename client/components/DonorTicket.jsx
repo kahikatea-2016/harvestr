@@ -67,6 +67,7 @@ export default React.createClass({
       <div>
         <Header />
       <div className="ticketWrapperSingle">
+      <Link to="/list"> <img alt="Back Arrow" className="nav-icon" src="/navBackArrow.png"/> </Link>
           <div className="orgInfo">
             <h2> {ticket.name} </h2>
             <h4> {ticket.address} </h4>
@@ -113,7 +114,6 @@ export default React.createClass({
                 comment = input
               }}></textarea>
             <br/>
-            <Link to='/list'><button className="button">back</button></Link>
             <Link to='/list'>
             <input className="button" type="submit" value="Complete" onClick={() => this.updateTicket()}/>
             </Link>
