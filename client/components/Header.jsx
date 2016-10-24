@@ -15,8 +15,8 @@ export default React.createClass({
           <AddTicketButton />
           <ViewListButton />
           <AuthButton />
-        </div>
       </div>
+    </div>
     )
   }
 })
