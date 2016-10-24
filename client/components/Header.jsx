@@ -20,8 +20,12 @@ export default React.createClass({
               Add a Profile
               <div className="dropdownAddContent">
                 <Link to='/createDonor'><p> Add a New Donor </p></Link>
+
                 {/* <Link to='/addRecipient'><p> Add a New Recipient </p></Link> */}
                 <Link to='/donorsList'><p>Donor's List</p></Link>
+
+                <Link to='/createRecipient'><p> Add a New Recipient </p></Link>
+
               </div>
             </div>
           </div>
