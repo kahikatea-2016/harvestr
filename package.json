@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --content-base public/ --hot --inline",
     "knex": "knex",
-    "local": "export NODE_ENV=development; nodemon server/server & webpack --watch",
+    "local": "export NODE_ENV=development; node-inspector & nodemon --debug server/server & webpack --watch",
     "start": "node server/server",
     "test": "tape -r babel-register babel-tape-runner 'test/**/*.test.js' | tap-spec",
     "heroku-postbuild": "npm run knex migrate:latest && npm run knex seed:run",
@@ -29,6 +29,7 @@
     "babel-tape-runner": "^2.0.1",
     "enzyme": "^2.3.0",
     "jsx-loader": "^0.13.2",
+    "node-inspector": "^0.12.8",
     "nodemon": "^1.10.2",
     "react": "^15.3.0",
     "react-addons-test-utils": "^15.3.2",
@@ -40,6 +41,7 @@
   },
   "dependencies": {
     "body-parser": "^1.15.1",
+    "cookie-parser": "^1.4.3",
     "express": "^4.13.4",
     "express-jwt": "^5.1.0",
     "express-session": "^1.14.1",
