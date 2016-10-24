@@ -59,15 +59,15 @@ function issueJwt (req, res, next) {
 }
 
 function verify (token, refreshToken, profile, done) {
-  console.log(profile)
+  const userEmail = profile.emails[0].value
   users.getByGoogle(profile.id)
     .then(userList => {
       if (userList.length === 0) {
-        users.create(profile.id, profile.email)
+        users.create(profile.id, userEmail)
           .then(() => {
             return done(null, {
               id: profile.id,
-              email: profile.email
+              email: userEmail
             })
           })
           .catch(err => done(err, false, { message: "Couldn't add user due to a server error." }))
