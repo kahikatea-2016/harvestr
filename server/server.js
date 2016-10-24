@@ -2,10 +2,10 @@ var path = require('path')
 var express = require('express')
 var bodyParser = require('body-parser')
 var passport = require('passport')
-var GoogleStrategy = require('passport-google-oauth').Strategy
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
 
 var auth = require('./lib/auth')
-var user = require('./lib/user')
+var users = require('./lib/users')
 var routes = require('./routes')
 
 var PORT = process.env.PORT || 3000
@@ -14,6 +14,8 @@ var app = express()
 app.set('JWT_SECRET', 'THIS IS NOT A VERY SECRET VALUE! CHANGE IT IN PRODUCTION PLEASE!')
 app.use(passport.initialize())
 passport.use(new GoogleStrategy(auth.googleConfig, auth.verify))
+passport.serializeUser(users.serialize)
+passport.deserializeUser(users.deserialize)
 
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../public')))
