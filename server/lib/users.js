@@ -1,4 +1,4 @@
-var config = require('../knexfile')[process.env.NODE_ENV]
+var config = require('../../knexfile')[process.env.NODE_ENV]
 var knex = require('knex')(config)
 
 module.exports = {
@@ -6,7 +6,7 @@ module.exports = {
   deserialize: deserialize,
   exists: exists,
   getById: getById,
-  getByTwitter: getByTwitter,
+  getByGoogle: getByGoogle,
   serialize: serialize
 }
 
