@@ -4,10 +4,10 @@ import {Link} from 'react-router'
 export default React.createClass({
   render() {
     return (
-      <Link to={`/donor/${this.props.donorId}`}>
-        <div className="ticketWrapper pickUp">
+      <Link to={`/recipient/${this.props.recipientId}`}>
+        <div className="ticketWrapper dropOff">
           <div className="orgInfo">
-            <h2> {this.props.donorName} </h2>
+            <h2> {this.props.recipientName} </h2>
           </div>
         </div>
       </Link>

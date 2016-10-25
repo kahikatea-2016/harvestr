@@ -4,7 +4,6 @@ import {Link} from 'react-router'
 import DonorTicket from './DonorTicket'
 import RecipientTicket from './RecipientTicket'
 
-
 export default React.createClass({
   render() {
     let name = null

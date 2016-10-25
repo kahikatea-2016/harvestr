@@ -3,7 +3,7 @@ import {Link} from 'react-router'
 
 import api from '../api'
 import Header from './Header'
-import DonorItem from './DonorItem'
+import DonorItem from './RecipientItem'
 
 export default React.createClass({
   getInitialState () {
@@ -11,32 +11,32 @@ export default React.createClass({
   },
 
   componentDidMount () {
-    let donor = this.props.params.id
-    api.getDonor(donor, this.renderResults)
+    let recipient = this.props.params.id
+    api.getRecipient(recipient, this.renderResults)
   },
 
-  renderResults (err, donor) {
-    this.setState(donor)
+  renderResults (err, recipient) {
+    this.setState(recipient)
   },
 
   render() {
     return (
       <div><Header />
-        <div className="ticketWrapperSingle donorForm">
+        <div className="ticketWrapperSingle recipientForm">
             <div className="orgInfo">
               <h2> {this.state.name} </h2>
               <a href={`comgooglemaps://?q=${this.state.address}`}>
                 <h4> {this.state.address} </h4>
               </a>
             </div>
-            <span className="fade_line"></span>
+            <span className="fade_line_recip"></span>
             <div className="contact">
               <h2> {this.state.contact} </h2>
               <a href={`tel:${this.state.phone}`}>
                 <h2> {this.state.phone} </h2>
               </a>
             </div>
-            <span className="fade_line"></span>
+            <span className="fade_line_recip"></span>
             <div className="notes">
               <h2> Notes </h2>
               <ul>
