@@ -5,6 +5,7 @@ import api from '../api'
 import Header from './Header'
 import Banner from './Banner'
 import ListItem from './ListItem'
+import Notif from './Notif'
 
 let pickUpWeight = 0
 let dropOffWeight = 0
@@ -68,7 +69,9 @@ export default React.createClass({
       <div>
         <Header />
         <div className="listWrapper">
+
           <h2>Today's Tickets</h2>
+
           <h3>Total picked up: {pickUpWeight}kg</h3>
           <h3>Total dropped off: {dropOffWeight}kg</h3>
           {this.state.tickets.map((tickets) => {
@@ -93,7 +96,9 @@ export default React.createClass({
           </iframe>
 
         </div>
+        <Notif content={{ lastComment: 'hey you forgot the hummus'}} />
       </div>
+
     )
   }
 })

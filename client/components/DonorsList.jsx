@@ -26,18 +26,18 @@ export default React.createClass({
     return (
       <div>
         <Header />
-        <div className="listWrapper">
-          <h2> Here is a list of all the donors </h2><br/><br/>
-          <Link to='/createDonor' className="button"> Add a New Donor </Link>
-            {this.state.donors.map((donors) => {
-              return <DonorItem
-                key={donors.id}
-                donorId={donors.id}
-                donorName={donors.donorName}
-              />
-          })}
+          <div className="listWrapper">
+            <h2> Here is a list of all the donors </h2><br/><br/>
+            <Link to='/createDonor' className="button"> Add a New Donor </Link>
+              {this.state.donors.map((donors) => {
+                return <DonorItem
+                  key={donors.id}
+                  donorId={donors.id}
+                  donorName={donors.donorName}
+                />
+            })}
+        </div>
       </div>
-    </div>
     )
   }
 })
