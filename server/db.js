@@ -14,7 +14,9 @@ module.exports = {
   getRecipientTicket: getRecipientTicket,
   getTicketComments: getTicketComments,
   createDonorProfile: createDonorProfile,
-  createRecipientProfile: createRecipientProfile
+  createDonor: createDonor,
+  createRecipientProfile: createRecipientProfile,
+  createRecipient: createRecipient
 }
 
 // gets list of all donors

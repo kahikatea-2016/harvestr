@@ -3,7 +3,7 @@ import {Link} from 'react-router'
 
 import api from '../api'
 import Header from './Header'
-import DonorItem from './DonorItem'
+import DonorItem from './RecipientItem'
 
 export default React.createClass({
   getInitialState () {
@@ -11,18 +11,18 @@ export default React.createClass({
   },
 
   componentDidMount () {
-    let donor = this.props.params.id
-    api.getDonor(donor, this.renderResults)
+    let recipient = this.props.params.id
+    api.getRecipient(recipient, this.renderResults)
   },
 
-  renderResults (err, donor) {
-    this.setState(donor)
+  renderResults (err, recipient) {
+    this.setState(recipient)
   },
 
   render() {
     return (
       <div><Header />
-        <div className="ticketWrapperSingle pickUp">
+        <div className="ticketWrapperSingle dropOff">
             <div className="orgInfo">
               <h2> {this.state.name} </h2>
               <a href={`comgooglemaps://?q=${this.state.address}`}>
@@ -46,14 +46,13 @@ export default React.createClass({
 
             </div>
 
-            <div>this should show a donor profile</div>
-
             <iframe
               className="map-embed"
               width="600"
               height="450"
               src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&q=${this.state.address}`}>
             </iframe>
+
           </div>
     )
   }

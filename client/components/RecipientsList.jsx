@@ -8,7 +8,7 @@ import RecipientItem from './RecipientItem'
 export default React.createClass({
   getInitialState () {
     return {
-      recipient: []
+      recipients: []
     }
   },
 

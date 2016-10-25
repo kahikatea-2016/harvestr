@@ -75,14 +75,7 @@ export default {
         if (err) {
           cb(err)
         } else {
-          const recipients = {
-            name: res.body.name,
-            address: res.body.address,
-            contact: res.body.contact,
-            phone: res.body.phone,
-            notes: res.body.notes
-          }
-          cb(null, recipient)
+          cb(null, res.body[0])
         }
       })
   }

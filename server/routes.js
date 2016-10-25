@@ -165,23 +165,22 @@ function getTicketComments(req, res) {
     })
 }
 
-function createRecipient(req, res) {
+function createDonor(req, res) {
   console.log(req.body)
-  db.createRecipientProfile(req.body)
+  db.createDonorProfile(req.body)
     .then(function () {
-      res.json(recipient)
+      res.json(donor)
     })
     .catch(function (err) {
       res.send(err.message).status(500)
     })
 }
 
-
-function createDonor(req, res) {
+function createRecipient(req, res) {
   console.log(req.body)
-  db.createDonorProfile(req.body)
+  db.createRecipientProfile(req.body)
     .then(function () {
-      res.json(donor)
+      res.json(recipient)
     })
     .catch(function (err) {
       res.send(err.message).status(500)
