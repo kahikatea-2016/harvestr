@@ -15,7 +15,7 @@ export default React.createClass({
             <a href="/auth/logout" className="navButton"> Logout </a>
             <Link className="navButton" to='/list'> List </Link>
             <div className="dropdownAdd navButton">
-              Add a Ticket
+              Tickets
               <div className="dropdownAddContent">
                 <Link to='/addDonorTicket'><p> Add a Donor Ticket </p></Link>
                 <Link to='/addRecipientTicket'><p> Add a Recipient Ticket </p></Link>
