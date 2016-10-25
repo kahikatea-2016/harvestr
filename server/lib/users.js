@@ -30,7 +30,8 @@ function exists (googleId) {
 
 function getById (id) {
   return knex('users')
-    .select()
+    .join('permissions', 'users.id', 'permissions.user_id')
+    .select('users.id as id', 'users.email as email', 'users.google_id as googleId', 'permissions.level as level')
     .where('id', id)
 }
 
