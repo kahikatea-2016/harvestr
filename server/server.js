@@ -57,6 +57,7 @@ app.get('/v1/tickets', routes.getTickets)
 app.get('/v1/tickets/donors/:id', routes.getDonorTicket)
 app.get('/v1/tickets/recipients/:id', routes.getRecipientTicket)
 app.get('/v1/tickets/comments/:id', routes.getTicketComments)
+app.get('/v1/donor/:id', routes.getDonor)
 
 app.put('/v1/tickets', routes.updateTicket)
 app.put('/v1/comments', routes.updateComment)

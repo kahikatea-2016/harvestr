@@ -53,7 +53,7 @@ export default React.createClass({
               ref={function (input) {
                 notes = input }} /><br/><br/>
 
-              <Link to='/list'>
+              <Link to='/recipientsList'>
                 <input className="button" type="submit" value="Submit" onClick={() => this.createRecipient()}/>
               </Link>
 
