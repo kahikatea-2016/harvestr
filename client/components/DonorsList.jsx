@@ -17,7 +17,6 @@ export default React.createClass({
   },
 
   renderResults (err, allDonors) {
-    console.log(allDonors)
     this.setState ({
       donors: allDonors
     })
@@ -44,10 +43,3 @@ export default React.createClass({
     )
   }
 })
-
-
-{/* <ul>
-  {this.state.donors.map(donor =>
-  <Link to='/donorProfile'><li key={donor.id}>{donor.donorName}</li>
-  </Link>)}
-</ul> */}

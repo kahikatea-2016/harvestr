@@ -12,6 +12,8 @@ import DonorsList from './components/DonorsList'
 import CreateDonor from './components/CreateDonor'
 import RecipientsList from './components/RecipientsList'
 import CreateRecipient from './components/CreateRecipient'
+import DonorItem from './components/DonorItem'
+import Donor from './components/Donor'
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
@@ -27,7 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <Route path='/createDonor' component={CreateDonor} />
         <Route path='/recipientsList' component={RecipientsList} />
         <Route path='/createRecipient' component={CreateRecipient} />
-
+        <Route path='/donorItem' component={DonorItem} />
+        <Route path='/donor/:id' component={Donor} />
       </Router>
     ),
     document.getElementById('app')
