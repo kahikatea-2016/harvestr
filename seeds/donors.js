@@ -4,7 +4,8 @@ exports.seed = function(knex, Promise) {
     knex('tickets').del(),
     knex('donors').del(),
     knex('recipients').del(),
-    knex('details').del()
+    knex('details').del(),
+    knex('ticker-notes').del()
   ])
   .then(function () {
     return knex ('details').insert([
@@ -48,5 +49,12 @@ exports.seed = function(knex, Promise) {
       {id: 4, ticket_id: 4, comments: 'We were late because of traffic'},
       {id: 5, ticket_id: 5, comments: 'They were happy with the potatos as well'}
     ])
+  })
+  .then(function () {
+    return knex ('ticker-notes').insert([
+      {id: 1, notes: 'Picked up more 10 kgs of potatos'},
+      {id: 2, notes: 'Ran a little late'},
+      {id: 3, notes: 'Traffic was congested today'},
+      ])
   })
 };
