@@ -80,35 +80,35 @@
 	
 	var _RecipientTicket2 = _interopRequireDefault(_RecipientTicket);
 	
-	var _DonorsList = __webpack_require__(255);
+	var _DonorsList = __webpack_require__(261);
 	
 	var _DonorsList2 = _interopRequireDefault(_DonorsList);
 	
-	var _RecipientsList = __webpack_require__(257);
+	var _RecipientsList = __webpack_require__(263);
 	
 	var _RecipientsList2 = _interopRequireDefault(_RecipientsList);
 	
-	var _CreateDonor = __webpack_require__(259);
+	var _CreateDonor = __webpack_require__(265);
 	
 	var _CreateDonor2 = _interopRequireDefault(_CreateDonor);
 	
-	var _CreateRecipient = __webpack_require__(260);
+	var _CreateRecipient = __webpack_require__(266);
 	
 	var _CreateRecipient2 = _interopRequireDefault(_CreateRecipient);
 	
-	var _DonorItem = __webpack_require__(256);
+	var _DonorItem = __webpack_require__(262);
 	
 	var _DonorItem2 = _interopRequireDefault(_DonorItem);
 	
-	var _RecipientItem = __webpack_require__(258);
+	var _RecipientItem = __webpack_require__(264);
 	
 	var _RecipientItem2 = _interopRequireDefault(_RecipientItem);
 	
-	var _Donor = __webpack_require__(261);
+	var _Donor = __webpack_require__(267);
 	
 	var _Donor2 = _interopRequireDefault(_Donor);
 	
-	var _Recipient = __webpack_require__(262);
+	var _Recipient = __webpack_require__(268);
 	
 	var _Recipient2 = _interopRequireDefault(_Recipient);
 	
@@ -29596,6 +29596,10 @@
 	
 	var _ListItem2 = _interopRequireDefault(_ListItem);
 	
+	var _Notif = __webpack_require__(255);
+	
+	var _Notif2 = _interopRequireDefault(_Notif);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var pickUpWeight = 0;
@@ -29698,7 +29702,8 @@
 	          width: '600',
 	          height: '450',
 	          src: 'https://www.google.com/maps/embed/v1/directions?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&origin=' + this.state.source })
-	      )
+	      ),
+	      _react2.default.createElement(_Notif2.default, { content: { lastComment: 'hey you forgot the hummus' } })
 	    );
 	  }
 	});
@@ -30296,6 +30301,501 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactNotification = __webpack_require__(256);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'Notif',
+	  getInitialState: function getInitialState() {
+	    var show = this.props.content.lastComment ? true : false;
+	    return {
+	      notificationActive: show,
+	      lastComment: this.props.content.lastComment
+	    };
+	  },
+	  respondToNotification: function respondToNotification() {
+	    this.setState({ notificationActive: false });
+	  },
+	  render: function render() {
+	    var _this = this;
+	
+	    return _react2.default.createElement(_reactNotification.Notification, {
+	      isActive: this.state.notificationActive,
+	      message: this.state.lastComment,
+	      action: "close",
+	      onClick: function onClick() {
+	        return _this.respondToNotification();
+	      }
+	    });
+	  }
+	});
+
+/***/ },
+/* 256 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _notification = __webpack_require__(257);
+	
+	Object.defineProperty(exports, 'Notification', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_notification).default;
+	  }
+	});
+	
+	var _notificationStack = __webpack_require__(259);
+	
+	Object.defineProperty(exports, 'NotificationStack', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_notificationStack).default;
+	  }
+	});
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ },
+/* 257 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _defaultPropTypes = __webpack_require__(258);
+	
+	var _defaultPropTypes2 = _interopRequireDefault(_defaultPropTypes);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Notification = function (_Component) {
+	  _inherits(Notification, _Component);
+	
+	  function Notification(props) {
+	    _classCallCheck(this, Notification);
+	
+	    var _this = _possibleConstructorReturn(this, (Notification.__proto__ || Object.getPrototypeOf(Notification)).call(this, props));
+	
+	    _this.getBarStyle = _this.getBarStyle.bind(_this);
+	    _this.getActionStyle = _this.getActionStyle.bind(_this);
+	    _this.getTitleStyle = _this.getTitleStyle.bind(_this);
+	    _this.handleClick = _this.handleClick.bind(_this);
+	
+	    if (props.onDismiss && props.isActive) {
+	      _this.dismissTimeout = setTimeout(props.onDismiss, props.dismissAfter);
+	    }
+	    return _this;
+	  }
+	
+	  _createClass(Notification, [{
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      if (this.props.dismissAfter === false) return;
+	      if (!nextProps.hasOwnProperty('isLast')) {
+	        clearTimeout(this.dismissTimeout);
+	      }
+	      if (nextProps.onDismiss && nextProps.isActive && !this.props.isActive) {
+	        this.dismissTimeout = setTimeout(nextProps.onDismiss, nextProps.dismissAfter);
+	      }
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      if (this.props.dismissAfter) clearTimeout(this.dismissTimeout);
+	    }
+	
+	    /*
+	    * @description Dynamically get the styles for the bar.
+	    * @returns {object} result The style.
+	    */
+	
+	  }, {
+	    key: 'getBarStyle',
+	    value: function getBarStyle() {
+	      if (this.props.style === false) return {};
+	
+	      var _props = this.props;
+	      var isActive = _props.isActive;
+	      var barStyle = _props.barStyle;
+	      var activeBarStyle = _props.activeBarStyle;
+	
+	
+	      var baseStyle = {
+	        position: 'fixed',
+	        bottom: '2rem',
+	        left: '-100%',
+	        width: 'auto',
+	        padding: '1rem',
+	        margin: 0,
+	        color: '#fafafa',
+	        font: '1rem normal Roboto, sans-serif',
+	        borderRadius: '5px',
+	        background: '#212121',
+	        borderSizing: 'border-box',
+	        boxShadow: '0 0 1px 1px rgba(10, 10, 11, .125)',
+	        cursor: 'default',
+	        WebKittransition: '.5s cubic-bezier(0.89, 0.01, 0.5, 1.1)',
+	        MozTransition: '.5s cubic-bezier(0.89, 0.01, 0.5, 1.1)',
+	        msTransition: '.5s cubic-bezier(0.89, 0.01, 0.5, 1.1)',
+	        OTransition: '.5s cubic-bezier(0.89, 0.01, 0.5, 1.1)',
+	        transition: '.5s cubic-bezier(0.89, 0.01, 0.5, 1.1)',
+	        WebkitTransform: 'translatez(0)',
+	        MozTransform: 'translatez(0)',
+	        msTransform: 'translatez(0)',
+	        OTransform: 'translatez(0)',
+	        transform: 'translatez(0)'
+	      };
+	
+	      return isActive ? _extends({}, baseStyle, { left: '1rem' }, barStyle, activeBarStyle) : _extends({}, baseStyle, barStyle);
+	    }
+	
+	    /*
+	    * @function getActionStyle
+	    * @description Dynamically get the styles for the action text.
+	    * @returns {object} result The style.
+	    */
+	
+	  }, {
+	    key: 'getActionStyle',
+	    value: function getActionStyle() {
+	      return this.props.style !== false ? _extends({}, {
+	        padding: '0.125rem',
+	        marginLeft: '1rem',
+	        color: '#f44336',
+	        font: '.75rem normal Roboto, sans-serif',
+	        lineHeight: '1rem',
+	        letterSpacing: '.125ex',
+	        textTransform: 'uppercase',
+	        borderRadius: '5px',
+	        cursor: 'pointer'
+	      }, this.props.actionStyle) : {};
+	    }
+	
+	    /*
+	    * @function getTitleStyle
+	    * @description Dynamically get the styles for the title.
+	    * @returns {object} result The style.
+	    */
+	
+	  }, {
+	    key: 'getTitleStyle',
+	    value: function getTitleStyle() {
+	      return this.props.style !== false ? _extends({}, {
+	        fontWeight: '700',
+	        marginRight: '.5rem'
+	      }, this.props.titleStyle) : {};
+	    }
+	
+	    /*
+	    * @function handleClick
+	    * @description Handle click events on the action button.
+	    */
+	
+	  }, {
+	    key: 'handleClick',
+	    value: function handleClick() {
+	      if (this.props.onClick && typeof this.props.onClick === 'function') {
+	        return this.props.onClick();
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var className = 'notification-bar';
+	
+	      if (this.props.isActive) className += ' ' + this.props.activeClassName;
+	      if (this.props.className) className += ' ' + this.props.className;
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { className: className, style: this.getBarStyle() },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'notification-bar-wrapper' },
+	          this.props.title ? _react2.default.createElement(
+	            'span',
+	            {
+	              ref: 'title',
+	              className: 'notification-bar-title',
+	              style: this.getTitleStyle()
+	            },
+	            this.props.title
+	          ) : null,
+	          _react2.default.createElement(
+	            'span',
+	            {
+	              ref: 'message',
+	              className: 'notification-bar-message'
+	            },
+	            this.props.message
+	          ),
+	          this.props.action ? _react2.default.createElement(
+	            'span',
+	            {
+	              ref: 'action',
+	              className: 'notification-bar-action',
+	              onClick: this.handleClick,
+	              style: this.getActionStyle()
+	            },
+	            this.props.action
+	          ) : null
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Notification;
+	}(_react.Component);
+	
+	Notification.propTypes = _defaultPropTypes2.default;
+	
+	Notification.defaultProps = {
+	  isActive: false,
+	  dismissAfter: 2000,
+	  activeClassName: 'notification-bar-active'
+	};
+	
+	exports.default = Notification;
+
+/***/ },
+/* 258 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	exports.default = {
+	  message: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.element]).isRequired,
+	  action: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.string, _react.PropTypes.node]),
+	  onClick: _react.PropTypes.func,
+	  style: _react.PropTypes.bool,
+	  actionStyle: _react.PropTypes.object,
+	  barStyle: _react.PropTypes.object,
+	  activeBarStyle: _react.PropTypes.object,
+	  dismissAfter: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.number]),
+	  onDismiss: _react.PropTypes.func,
+	  className: _react.PropTypes.string,
+	  activeClassName: _react.PropTypes.string,
+	  isActive: _react.PropTypes.bool,
+	  title: _react.PropTypes.string
+	};
+
+/***/ },
+/* 259 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /* eslint-disable react/jsx-no-bind */
+	
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _stackedNotification = __webpack_require__(260);
+	
+	var _stackedNotification2 = _interopRequireDefault(_stackedNotification);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function defaultStyleFactory(index, style) {
+	  return _extends({}, style, { bottom: 2 + index * 4 + 'rem' });
+	}
+	
+	/**
+	* The notification list does not have any state, so use a
+	* pure function here. It just needs to return the stacked array
+	* of notification components.
+	*/
+	var NotificationStack = function NotificationStack(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'notification-list' },
+	    props.notifications.map(function (notification, index) {
+	      var dismissAfter = notification.dismissAfter || props.dismissAfter;
+	      var isLast = index === 0 && props.notifications.length === 1;
+	      var barStyle = props.barStyleFactory(index, notification.barStyle);
+	      var activeBarStyle = props.activeBarStyleFactory(index, notification.activeBarStyle);
+	
+	      return _react2.default.createElement(_stackedNotification2.default, _extends({}, notification, {
+	        key: notification.key,
+	        isLast: isLast,
+	        action: notification.action || props.action,
+	        dismissAfter: isLast ? dismissAfter : dismissAfter + index * 1000,
+	        onDismiss: props.onDismiss.bind(undefined, notification),
+	        activeBarStyle: activeBarStyle,
+	        barStyle: barStyle
+	      }));
+	    })
+	  );
+	};
+	
+	NotificationStack.propTypes = {
+	  activeBarStyleFactory: _react.PropTypes.func,
+	  barStyleFactory: _react.PropTypes.func,
+	  notifications: _react.PropTypes.array.isRequired,
+	  onDismiss: _react.PropTypes.func.isRequired
+	};
+	
+	NotificationStack.defaultProps = {
+	  dismissAfter: 1000,
+	  activeBarStyleFactory: defaultStyleFactory,
+	  barStyleFactory: defaultStyleFactory
+	};
+	
+	exports.default = NotificationStack;
+
+/***/ },
+/* 260 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _defaultPropTypes = __webpack_require__(258);
+	
+	var _defaultPropTypes2 = _interopRequireDefault(_defaultPropTypes);
+	
+	var _notification = __webpack_require__(257);
+	
+	var _notification2 = _interopRequireDefault(_notification);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var StackedNotification = function (_Component) {
+	  _inherits(StackedNotification, _Component);
+	
+	  function StackedNotification(props) {
+	    _classCallCheck(this, StackedNotification);
+	
+	    var _this = _possibleConstructorReturn(this, (StackedNotification.__proto__ || Object.getPrototypeOf(StackedNotification)).call(this, props));
+	
+	    _this.state = {
+	      isActive: false
+	    };
+	
+	    _this.handleClick = _this.handleClick.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(StackedNotification, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.activeTimeout = setTimeout(this.setState.bind(this, {
+	        isActive: true
+	      }), 1);
+	
+	      if (this.props.dismissAfter) {
+	        this.dismissTimeout = setTimeout(this.setState.bind(this, {
+	          isActive: false
+	        }), this.props.dismissAfter);
+	      }
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      clearTimeout(this.activeTimeout);
+	      clearTimeout(this.dismissTimeout);
+	    }
+	
+	    /*
+	    * @function handleClick
+	    * @description Bind deactivate Notification function to Notification click handler
+	    */
+	
+	  }, {
+	    key: 'handleClick',
+	    value: function handleClick() {
+	      if (this.props.onClick && typeof this.props.onClick === 'function') {
+	        return this.props.onClick(this.setState.bind(this, { isActive: false }));
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+	
+	      return _react2.default.createElement(_notification2.default, _extends({}, this.props, {
+	        onClick: this.handleClick,
+	        onDismiss: function onDismiss() {
+	          return setTimeout(_this2.props.onDismiss, 300);
+	        },
+	        isActive: this.state.isActive
+	      }));
+	    }
+	  }]);
+	
+	  return StackedNotification;
+	}(_react.Component);
+	
+	StackedNotification.propTypes = _defaultPropTypes2.default;
+	
+	exports.default = StackedNotification;
+
+/***/ },
+/* 261 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
 	var _reactRouter = __webpack_require__(172);
 	
 	var _api = __webpack_require__(244);
@@ -30306,7 +30806,7 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _DonorItem = __webpack_require__(256);
+	var _DonorItem = __webpack_require__(262);
 	
 	var _DonorItem2 = _interopRequireDefault(_DonorItem);
 	
@@ -30360,7 +30860,7 @@
 	});
 
 /***/ },
-/* 256 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30403,7 +30903,7 @@
 	});
 
 /***/ },
-/* 257 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30426,7 +30926,7 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _RecipientItem = __webpack_require__(258);
+	var _RecipientItem = __webpack_require__(264);
 	
 	var _RecipientItem2 = _interopRequireDefault(_RecipientItem);
 	
@@ -30480,7 +30980,7 @@
 	});
 
 /***/ },
-/* 258 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30523,7 +31023,7 @@
 	});
 
 /***/ },
-/* 259 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30621,7 +31121,7 @@
 	});
 
 /***/ },
-/* 260 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30719,7 +31219,7 @@
 	});
 
 /***/ },
-/* 261 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30742,7 +31242,7 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _DonorItem = __webpack_require__(256);
+	var _DonorItem = __webpack_require__(262);
 	
 	var _DonorItem2 = _interopRequireDefault(_DonorItem);
 	
@@ -30849,7 +31349,7 @@
 	});
 
 /***/ },
-/* 262 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30872,7 +31372,7 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _RecipientItem = __webpack_require__(258);
+	var _RecipientItem = __webpack_require__(264);
 	
 	var _RecipientItem2 = _interopRequireDefault(_RecipientItem);
 	
