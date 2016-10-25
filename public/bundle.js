@@ -84,15 +84,15 @@
 	
 	var _DonorsList2 = _interopRequireDefault(_DonorsList);
 	
-	var _CreateDonor = __webpack_require__(255);
+	var _CreateDonor = __webpack_require__(256);
 	
 	var _CreateDonor2 = _interopRequireDefault(_CreateDonor);
 	
-	var _RecipientsList = __webpack_require__(256);
+	var _RecipientsList = __webpack_require__(257);
 	
 	var _RecipientsList2 = _interopRequireDefault(_RecipientsList);
 	
-	var _CreateRecipient = __webpack_require__(257);
+	var _CreateRecipient = __webpack_require__(258);
 	
 	var _CreateRecipient2 = _interopRequireDefault(_CreateRecipient);
 	
@@ -27273,7 +27273,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'dropdownAdd navButton' },
-	          'Profiles',
+	          'Orgs',
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'dropdownAddContent' },
@@ -30207,6 +30207,10 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
+	var _DonorItem = __webpack_require__(255);
+	
+	var _DonorItem2 = _interopRequireDefault(_DonorItem);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = _react2.default.createClass({
@@ -30219,9 +30223,10 @@
 	  componentDidMount: function componentDidMount() {
 	    _api2.default.getDonors(this.renderResults);
 	  },
-	  renderResults: function renderResults(err, donors) {
+	  renderResults: function renderResults(err, allDonors) {
+	    console.log(allDonors);
 	    this.setState({
-	      donors: donors
+	      donors: allDonors
 	    });
 	  },
 	  render: function render() {
@@ -30231,7 +30236,7 @@
 	      _react2.default.createElement(_Header2.default, null),
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'donorForm' },
+	        { className: 'listWrapper' },
 	        _react2.default.createElement(
 	          'h2',
 	          null,
@@ -30240,20 +30245,66 @@
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
-	          'ul',
-	          null,
-	          this.state.donors.map(function (donor) {
-	            return _react2.default.createElement(
-	              'li',
-	              { key: donor.id },
-	              donor.donorName
-	            );
-	          })
-	        ),
-	        _react2.default.createElement(
 	          _reactRouter.Link,
 	          { to: '/createDonor', className: 'button' },
 	          ' Add a New Donor '
+	        ),
+	        this.state.donors.map(function (donors) {
+	          return _react2.default.createElement(_DonorItem2.default, {
+	            key: donors.id,
+	            donorId: donors.id,
+	            donorName: donors.donorName
+	          });
+	        })
+	      )
+	    );
+	  }
+	});
+	
+	
+	{/* <ul>
+	   {this.state.donors.map(donor =>
+	   <Link to='/donorProfile'><li key={donor.id}>{donor.donorName}</li>
+	   </Link>)}
+	  </ul> */}
+
+/***/ },
+/* 255 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'DonorItem',
+	  render: function render() {
+	    return _react2.default.createElement(
+	      _reactRouter.Link,
+	      { className: 'link', to: '/donor/' + this.props.donorId },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'ticketWrapper pickUp' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'orgInfo' },
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            ' ',
+	            this.props.donorName,
+	            ' '
+	          )
 	        )
 	      )
 	    );
@@ -30261,7 +30312,7 @@
 	});
 
 /***/ },
-/* 255 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30359,7 +30410,7 @@
 	});
 
 /***/ },
-/* 256 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30412,7 +30463,7 @@
 	});
 
 /***/ },
-/* 257 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

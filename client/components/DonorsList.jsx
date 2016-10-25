@@ -3,6 +3,7 @@ import {Link} from 'react-router'
 
 import api from '../api'
 import Header from './Header'
+import DonorItem from './DonorItem'
 
 export default React.createClass({
   getInitialState () {
@@ -15,9 +16,10 @@ export default React.createClass({
     api.getDonors(this.renderResults)
   },
 
-  renderResults (err, donors) {
+  renderResults (err, allDonors) {
+    console.log(allDonors)
     this.setState ({
-      donors: donors
+      donors: allDonors
     })
   },
 
@@ -25,17 +27,27 @@ export default React.createClass({
     return (
       <div>
         <Header />
-        <div className="donorForm">
+        <div className="listWrapper">
           <h2> Here is a list of all the donors </h2><br/><br/>
-          <ul>
-            {this.state.donors.map(donor =>
-              <li key={donor.id}>{donor.donorName}</li>
-            )}
-          </ul>
           <Link to='/createDonor' className="button"> Add a New Donor </Link>
+            {this.state.donors.map((donors) => {
+              return <DonorItem
+                key={donors.id}
+                donorId={donors.id}
+                donorName={donors.donorName}
+              />
+          })}
       </div>
-        </div>
+    </div>
+
 
     )
   }
 })
+
+
+{/* <ul>
+  {this.state.donors.map(donor =>
+  <Link to='/donorProfile'><li key={donor.id}>{donor.donorName}</li>
+  </Link>)}
+</ul> */}

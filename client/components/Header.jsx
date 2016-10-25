@@ -22,7 +22,7 @@ export default React.createClass({
               </div>
             </div>
             <div className="dropdownAdd navButton">
-              Profiles
+              Orgs
               <div className="dropdownAddContent">
                 <Link to='/donorsList'><p>List of Donors</p></Link>
                 {/* <Link to='/recipientsList'><p>List of Recipients</p></Link> */}
