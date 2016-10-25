@@ -95,14 +95,15 @@ body {
 
 .auth {
  float:right;
- width: 500px;
+ width: auto;
+ max-width: 500px;
  height: auto;
 
  display: flex;
  justify-content: space-around;
 }
 
-.auth a {
+.navButton {
   text-decoration: none;
   border: 2px solid white;
   border-radius: 5px;
@@ -113,6 +114,31 @@ body {
   font-family: Raleway;
   color: white;
 
+  transition: .3s;
+  float:right;
+}
+
+.authButton {
+  color: #3BAF29;
+  background-color: white;
+  transition: .3s;
+
+  text-decoration: none;
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 5px 20px 5px 20px;
+  margin: 13px 5px 10px 5px;
+
+  font-size: 1.3em;
+  font-family: Raleway;
+
+  transition: .3s;
+  float:right;
+}
+
+.authButton:hover {
+  color: white;
+  background-color: #3BAF29;
   transition: .3s;
 }
 
@@ -189,6 +215,12 @@ body {
 
   padding: 0px 10px 30px 10px;
 }
+
+
+
+
+
+
 /* Google authentication button */
 
 #customBtn {
@@ -656,14 +688,14 @@ input[type="submit"]:hover {
   position: absolute;
   background-color: rgba(42, 124, 29, .9);
   height:auto;
-  width: auto;
+  width: 250px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 12px 16px;
 
   border: 2px solid white;
   border-radius: 5px;
   padding: 5px 20px 5px 20px;
-  margin: 0px 0px 0px -200px;
+  margin: 0px 0px 0px -100px;
   text-align: center;
 }
 
@@ -671,6 +703,7 @@ input[type="submit"]:hover {
   color: #3BAF29;
   background-color: white;
 
+  border-radius: 5px;
   transition: .3s;
 }
 
@@ -680,8 +713,11 @@ input[type="submit"]:hover {
   color: white;
   text-decoration: none;
 
+  padding: 5px;
   border: none;
-  margin: 20px;
+  margin: 10px;
+
+  transition: .3s;
 }
 
 .buttonRecip {
