@@ -76,8 +76,12 @@ body {
 
 .header {
   width: 100%;
-  height: 70px;
+  height: 77px;
   background-color: #3BAF29;
+  position: relative;
+  z-index: 1;
+
+  box-shadow: 0px 0px 10px grey;
 }
 
 .logo {
@@ -133,6 +137,58 @@ body {
   margin-top: 20px;
 }
 
+.homeWrapper {
+  background-image: url('../yeahitsnoice.jpg');
+  background-repeat: no-repeat;
+  background-position: 0px -250px;
+  background-size: cover;
+	height: 100%;
+	overflow: auto;
+}
+
+.fade_line_home {
+    margin: 15px 0px 15px 0px;
+    display:block;
+    border:none;
+    color:white;
+    height:1px;
+    background:black;
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 250, from(#fff), to(rgba(0,0,0,0)));
+}
+
+.homeText {
+  margin: 6% 15%;
+  width: 600px;
+  height: auto;
+
+  text-align: center;
+  color: white;
+  text-shadow: 0px 0px 10px grey;
+
+}
+
+.homeText h1 {
+  font-size: 4.5em;
+  letter-spacing: 2px;
+
+  padding: 5px;
+}
+
+.homeText h2 {
+  font-size: 1.5em;
+  letter-spacing: .7px;
+  line-height: 110%;
+  font-style: italic;
+
+  padding: 10px;
+}
+
+.homeText h4 {
+  font-size: 1.1em;
+  font-style: italic;
+
+  padding: 0px 10px 30px 10px;
+}
 /* Google authentication button */
 
 #customBtn {
@@ -634,7 +690,13 @@ input[type="submit"]:hover {
 
 /* Media Queries */
 
-@media (max-width: 600px) {
+@media (max-width: 1800px) {
+  .homeWrapper {
+    background-size: auto;
+  }
+}
+
+@media (max-width: 800px) {
   .ticketWrapper {
     padding: 0px;
   }
@@ -655,6 +717,14 @@ input[type="submit"]:hover {
   }
   .nav-icon {
     display: none;
+  }
+  .homeText {
+    max-width: 500px;
+    width:auto;
+    margin: 100px auto;
+  }
+  .fade_line_home {
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, from(#fff), to(rgba(0,0,0,0)));
   }
 }
 

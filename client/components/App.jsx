@@ -13,7 +13,6 @@ export default React.createClass({
       <div className="mainWrapper">
         <Header />
         <Banner />
-        <br/>
       </div>
     )
   }

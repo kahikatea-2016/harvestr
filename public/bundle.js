@@ -84,19 +84,17 @@
 	
 	var _CreateDonor2 = _interopRequireDefault(_CreateDonor);
 	
-<<<<<<< HEAD
 	var _DonorsList = __webpack_require__(251);
 	
 	var _DonorsList2 = _interopRequireDefault(_DonorsList);
 	
-=======
-	var _CreateRecipient = __webpack_require__(251);
+	var _CreateRecipient = __webpack_require__(252);
 	
 	var _CreateRecipient2 = _interopRequireDefault(_CreateRecipient);
 	
->>>>>>> 9f5aa1199ca5e3b664d8c5262dc7b9da555acd85
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	// import AddRecipient from './components/AddRecipient'
 	document.addEventListener('DOMContentLoaded', function () {
 	  _reactDom2.default.render(_react2.default.createElement(
 	    _reactRouter.Router,
@@ -108,14 +106,10 @@
 	    _react2.default.createElement(_reactRouter.Route, { path: '/ticket/donor/:ticket', component: _DonorTicket2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/ticket/recipient/:ticket', component: _RecipientTicket2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/createDonor', component: _CreateDonor2.default }),
-<<<<<<< HEAD
-	    _react2.default.createElement(_reactRouter.Route, { path: '/donorsList', component: _DonorsList2.default })
-=======
+	    _react2.default.createElement(_reactRouter.Route, { path: '/donorsList', component: _DonorsList2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/createRecipient', component: _CreateRecipient2.default })
->>>>>>> 9f5aa1199ca5e3b664d8c5262dc7b9da555acd85
 	  ), document.getElementById('app'));
 	});
-	// import AddRecipient from './components/AddRecipient'
 
 /***/ },
 /* 1 */
@@ -27181,8 +27175,7 @@
 	      'div',
 	      { className: 'mainWrapper' },
 	      _react2.default.createElement(_Header2.default, null),
-	      _react2.default.createElement(_Banner2.default, null),
-	      _react2.default.createElement('br', null)
+	      _react2.default.createElement(_Banner2.default, null)
 	    );
 	  }
 	});
@@ -27203,6 +27196,22 @@
 	
 	var _reactRouter = __webpack_require__(172);
 	
+	var _AddTicketButton = __webpack_require__(253);
+	
+	var _AddTicketButton2 = _interopRequireDefault(_AddTicketButton);
+	
+	var _AuthButton = __webpack_require__(254);
+	
+	var _AuthButton2 = _interopRequireDefault(_AuthButton);
+	
+	var _ViewListButton = __webpack_require__(255);
+	
+	var _ViewListButton2 = _interopRequireDefault(_ViewListButton);
+	
+	var _SignOutButton = __webpack_require__(256);
+	
+	var _SignOutButton2 = _interopRequireDefault(_SignOutButton);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = _react2.default.createClass({
@@ -27210,83 +27219,88 @@
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
-	      { className: 'header' },
-	      _react2.default.createElement(
-	        'span',
-	        { className: 'logo' },
-	        ' Harvestr '
-	      ),
+	      null,
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'auth' },
+	        { className: 'header' },
 	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { className: 'navButton', to: '/list' },
-	          ' Login '
-	        ),
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { className: 'navButton', to: '/' },
-	          ' Home '
+	          'span',
+	          { className: 'logo' },
+	          ' Harvestr '
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'dropdownAdd navButton' },
-	          'Add a Ticket',
+	          { className: 'auth' },
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { className: 'navButton', to: '/list' },
+	            ' Login '
+	          ),
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { className: 'navButton', to: '/' },
+	            ' Home '
+	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'dropdownAddContent' },
+	            { className: 'dropdownAdd navButton' },
+	            'Add a Ticket',
 	            _react2.default.createElement(
-	              _reactRouter.Link,
-	              { to: '/addDonorTicket' },
+	              'div',
+	              { className: 'dropdownAddContent' },
 	              _react2.default.createElement(
-	                'p',
-	                null,
-	                ' Add a Donor Ticket '
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactRouter.Link,
-	              { to: '/addRecipientTicket' },
+	                _reactRouter.Link,
+	                { to: '/addDonorTicket' },
+	                _react2.default.createElement(
+	                  'p',
+	                  null,
+	                  ' Add a Donor Ticket '
+	                )
+	              ),
 	              _react2.default.createElement(
-	                'p',
-	                null,
-	                ' Add a Recipient Ticket '
+	                _reactRouter.Link,
+	                { to: '/addRecipientTicket' },
+	                _react2.default.createElement(
+	                  'p',
+	                  null,
+	                  ' Add a Recipient Ticket '
+	                )
 	              )
 	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'dropdownAdd navButton' },
-	          'Add a Profile',
+	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'dropdownAddContent' },
+	            { className: 'dropdownAdd navButton' },
+	            'Add a Profile',
 	            _react2.default.createElement(
-	              _reactRouter.Link,
-	              { to: '/createDonor' },
+	              'div',
+	              { className: 'dropdownAddContent' },
 	              _react2.default.createElement(
-	                'p',
-	                null,
-	                ' Add a New Donor '
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactRouter.Link,
-<<<<<<< HEAD
-	              { to: '/donorsList' },
+	                _reactRouter.Link,
+	                { to: '/createDonor' },
+	                _react2.default.createElement(
+	                  'p',
+	                  null,
+	                  ' Add a New Donor '
+	                )
+	              ),
 	              _react2.default.createElement(
-	                'p',
-	                null,
-	                'Donor\'s List'
-=======
-	              { to: '/createRecipient' },
+	                _reactRouter.Link,
+	                { to: '/donorsList' },
+	                _react2.default.createElement(
+	                  'p',
+	                  null,
+	                  'Donor\'s List'
+	                )
+	              ),
 	              _react2.default.createElement(
-	                'p',
-	                null,
-	                ' Add a New Recipient '
->>>>>>> 9f5aa1199ca5e3b664d8c5262dc7b9da555acd85
+	                _reactRouter.Link,
+	                { to: '/createRecipient' },
+	                _react2.default.createElement(
+	                  'p',
+	                  null,
+	                  ' Add a New Recipient '
+	                )
 	              )
 	            )
 	          )
@@ -27320,21 +27334,30 @@
 	      { className: "contentWrapper" },
 	      _react2.default.createElement(
 	        "div",
-	        { className: "listWrapper" },
-	        _react2.default.createElement("img", { className: "photoWrapper", src: "./homepage-graphic-640.jpg" }),
+	        { className: "homeWrapper" },
 	        _react2.default.createElement(
 	          "div",
-	          { id: "homeText" },
+	          { className: "homeText" },
+	          _react2.default.createElement(
+	            "h1",
+	            null,
+	            " Harvestr "
+	          ),
+	          _react2.default.createElement(
+	            "h4",
+	            null,
+	            " Picking up surplus food as soon as possible. "
+	          ),
+	          _react2.default.createElement("span", { className: "fade_line_home" }),
 	          _react2.default.createElement(
 	            "h2",
 	            null,
-	            "Picking up unused food as soon as possible"
+	            "Coordinating between supermarkets and food banks, we make sure our drivers are able to get donations to those in need.",
+	            _react2.default.createElement("br", null),
+	            _react2.default.createElement("br", null),
+	            "I'm not sure what to put here but I wanted to fill this space for design purposes so yeah take a look at this kiddo. \uD83D\uDE0F"
 	          ),
-	          _react2.default.createElement(
-	            "p",
-	            null,
-	            "Coordinating between supermarkets and food banks, we make sure our drivers are able to get donations to those in need."
-	          )
+	          _react2.default.createElement("span", { className: "fade_line_home" })
 	        )
 	      )
 	    );
@@ -30147,6 +30170,62 @@
 	
 	var _reactRouter = __webpack_require__(172);
 	
+	var _api = __webpack_require__(239);
+	
+	var _api2 = _interopRequireDefault(_api);
+	
+	var _Header = __webpack_require__(236);
+	
+	var _Header2 = _interopRequireDefault(_Header);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//pulls in the donors list
+	//add button to create a new donors
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'DonorsList',
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(_Header2.default, null),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'donorForm' },
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          ' Here is a list of all the donors '
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null)
+	      ),
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/createDonor', className: 'button' },
+	        ' Add a New Donor'
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 252 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
 	var _Header = __webpack_require__(236);
 	
 	var _Header2 = _interopRequireDefault(_Header);
@@ -30240,7 +30319,7 @@
 	});
 
 /***/ },
-/* 251 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30255,41 +30334,126 @@
 	
 	var _reactRouter = __webpack_require__(172);
 	
-	var _api = __webpack_require__(239);
-	
-	var _api2 = _interopRequireDefault(_api);
-	
-	var _Header = __webpack_require__(236);
-	
-	var _Header2 = _interopRequireDefault(_Header);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	//pulls in the donors list
-	//add button to create a new donors
-	
 	exports.default = _react2.default.createClass({
-	  displayName: 'DonorsList',
+	  displayName: 'AddTicketButton',
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
-	      null,
-	      _react2.default.createElement(_Header2.default, null),
+	      { className: 'dropdownAdd' },
+	      'Add a Ticket',
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'donorForm' },
+	        { className: 'dropdownAddContent' },
 	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          ' Here is a list of all the donors '
+	          _reactRouter.Link,
+	          { to: '/addDonorTicket' },
+	          ' Add a Donor Ticket '
 	        ),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement('br', null)
-	      ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/addRecipientTicket' },
+	          ' Add a Recipient Ticket '
+	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 254 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'AuthButton',
+	  render: function render() {
+	    return (
+	      // <div className="g-signin2" data-onsuccess="onSignIn"></div>
+	      _react2.default.createElement(
+	        'a',
+	        { href: '/auth/google' },
+	        'Sign In'
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 255 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'ViewListButton',
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'listButton' },
 	      _react2.default.createElement(
 	        _reactRouter.Link,
-	        { to: '/createDonor', className: 'button' },
-	        ' Add a New Donor'
+	        { to: '/list' },
+	        'View list'
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 256 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'SignOutButton',
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'listButton' },
+	      _react2.default.createElement(
+	        'a',
+	        { href: '/auth/logout' },
+	        'Sign Out'
 	      )
 	    );
 	  }
