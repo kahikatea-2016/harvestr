@@ -87,7 +87,6 @@ function updateComment(req, res) {
 }
 
   function addTicket(req, res) {
-    console.log(req.body.recipientId)
     if (!req.body.recipientId) {
       var ticket = {
         expected_kg: req.body.expectedKg,
@@ -103,7 +102,6 @@ function updateComment(req, res) {
         is_complete: 0
       }
     }
-    console.log(ticket)
     db.addTicket(ticket)
       .then(function () {
         res.json(ticket)
@@ -166,23 +164,20 @@ function getTicketComments(req, res) {
     })
 }
 
-function createRecipient(req, res) {
-  console.log(req.body)
-  db.createRecipientProfile(req.body)
+function createDonor(req, res) {
+  db.createDonorProfile(req.body)
     .then(function () {
-      res.json(recipient)
+      res.json(donor)
     })
     .catch(function (err) {
       res.send(err.message).status(500)
     })
 }
 
-
-function createDonor(req, res) {
-  console.log(req.body)
-  db.createDonorProfile(req.body)
+function createRecipient(req, res) {
+  db.createRecipientProfile(req.body)
     .then(function () {
-      res.json(donor)
+      res.json(recipient)
     })
     .catch(function (err) {
       res.send(err.message).status(500)

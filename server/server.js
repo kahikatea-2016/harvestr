@@ -16,18 +16,16 @@ var app = express()
 app.set('JWT_SECRET', 'THIS IS NOT A VERY SECRET VALUE! CHANGE IT IN PRODUCTION PLEASE!')
 app.use(passport.initialize())
 passport.use(new GoogleStrategy(auth.googleConfig, auth.verify))
-passport.serializeUser(users.serialize)
-passport.deserializeUser(users.deserialize)
 
 app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '../public')))
 
-app.get('/auth/google', passport.authenticate('google', { scope: ['email'] }))
+app.get('/auth/google', passport.authenticate('google', { session: false, scope: ['email'] }))
 app.get('/auth/google/callback', auth.issueJwt)
 app.get('/auth/logout', (req, res) => {
   res.clearCookie('token', { path: '/' })
-  res.json({ message: 'User logged out.' })
+  res.redirect('/')
 })
 
 // express-jwt middleware lets us use a function as the secret,
@@ -36,7 +34,7 @@ function getSecret (req, payload, done) {
   done(null, req.app.get('JWT_SECRET'))
 }
 
-// Protect all routes beneath this point
+// Protect all routes beneath this point, do not move any app.use
 app.use(
   verifyJwt({
     getToken: auth.getTokenFromCookie,
@@ -44,6 +42,12 @@ app.use(
   }),
   auth.handleError
 )
+
+app.use(
+  users.requiresDriver,
+  auth.handleError
+)
+
 app.get('/v1/donors', routes.getDonors)
 app.get('/v1/recipients', routes.getRecipients)
 app.get('/v1/donors/:id', routes.getDonor)
@@ -52,14 +56,20 @@ app.get('/v1/tickets', routes.getTickets)
 app.get('/v1/tickets/donors/:id', routes.getDonorTicket)
 app.get('/v1/tickets/recipients/:id', routes.getRecipientTicket)
 app.get('/v1/tickets/comments/:id', routes.getTicketComments)
+app.get('/v1/donor/:id', routes.getDonor)
+app.get('/v1/recipient/:id', routes.getRecipient)
 
 app.put('/v1/tickets', routes.updateTicket)
 app.put('/v1/comments', routes.updateComment)
 
+app.use(
+  users.requiresAdmin,
+  auth.handleError
+)
+
 app.post('/v1/createDonor', routes.createDonor)
 app.post('/v1/createRecipient', routes.createRecipient)
 app.post('/v1/tickets', routes.addTicket)
-
 
 app.listen(PORT, function () {
   console.log('Listening on port', PORT)

@@ -3,15 +3,14 @@ var knex = require('knex')(config)
 
 module.exports = {
   create: create,
-  deserialize: deserialize,
   exists: exists,
   getById: getById,
   getByGoogle: getByGoogle,
-  serialize: serialize
+  requiresAdmin: requiresAdmin,
+  requiresDriver: requiresDriver
 }
 
 function create (googleId, email) {
-  console.log(email)
   return knex('users')
     .insert({
       google_id: googleId,
@@ -30,29 +29,30 @@ function exists (googleId) {
 
 function getById (id) {
   return knex('users')
-    .select()
+    .join('permissions', 'users.id', 'permissions.user_id')
+    .select('users.id as id', 'users.email as email', 'users.google_id as googleId', 'permissions.level as level')
     .where('id', id)
 }
 
 function getByGoogle (googleId) {
   return knex('users')
-    .select()
+    .join('permissions', 'users.id', '=', 'permissions.user_id')
+    .select('users.id as id', 'users.email as email', 'users.google_id as googleId', 'permissions.level as level')
     .where('google_id', googleId)
 }
 
-function deserialize (id, done) {
-  getById(id)
-    .then(users => {
-      if (users.length === 0) {
-        return done(null, false)
-      }
-      done(null, users[0])
-    })
-    .catch(err => {
-      done(err, false)
-    })
+function requiresAdmin (req, res, next) {
+  if (req.user.level === 'admin') {
+    next()
+  } else {
+    next(new Error("You don't have permission!"))
+  }
 }
 
-function serialize (user, done) {
-  done(null, user.id)
+function requiresDriver (req, res, next) {
+  if (['admin', 'driver'].includes(req.user.level)) {
+    next()
+  } else {
+    next(new Error("You don't have permission!"))
+  }
 }
