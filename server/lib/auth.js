@@ -14,7 +14,8 @@ const googleConfig = {
 function createToken (user, secret) {
   return jwt.sign({
     id: user.id,
-    email: user.email
+    email: user.email,
+    level: user.level
   }, secret, {
     expiresIn: 60 * 60 * 24
   })
@@ -75,7 +76,8 @@ function verify (token, refreshToken, profile, done) {
               .then(createdUser => {
                 return done(null, {
                   id: createdUser[0].id,
-                  email: createdUser[0].email
+                  email: createdUser[0].email,
+                  level: createdUser[0].level
                 })
               })
           })
@@ -84,7 +86,8 @@ function verify (token, refreshToken, profile, done) {
         const user = userList[0]
         done(null, {
           id: user.id,
-          email: user.email
+          email: user.email,
+          level: user.level
         })
       }
     })
