@@ -25,7 +25,7 @@ export default React.createClass({
               Orgs
               <div className="dropdownAddContent">
                 <Link to='/donorsList'><p>List of Donors</p></Link>
-                {/* <Link to='/recipientsList'><p>List of Recipients</p></Link> */}
+                <Link to='/recipientsList'><p>List of Recipients</p></Link>
 
               </div>
             </div>
