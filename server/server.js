@@ -44,6 +44,16 @@ app.use(
   }),
   auth.handleError
 )
+app.use(
+  (req, res, next) => {
+    if ('everything ok') {
+      next()
+    } else {
+      next(new Error("You don't have permission!"))
+    }
+  },
+  auth.handleError
+)
 app.get('/v1/donors', routes.getDonors)
 app.get('/v1/recipients', routes.getRecipients)
 app.get('/v1/donors/:id', routes.getDonor)
