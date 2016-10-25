@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router'
+
 import Header from './Header'
 import api from '../api'
 
@@ -35,7 +36,6 @@ export default React.createClass({
         recipientId: selectRecipient.value,
         expectedKg: expectedKg.value
       }
-      console.log(newTicket)
       api.addTicket(newTicket)
     },
 

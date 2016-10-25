@@ -14,7 +14,8 @@ const googleConfig = {
 function createToken (user, secret) {
   return jwt.sign({
     id: user.id,
-    email: user.email
+    email: user.email,
+    level: user.level
   }, secret, {
     expiresIn: 60 * 60 * 24
   })
@@ -40,23 +41,25 @@ function handleError (err, req, res, next) {
 function issueJwt (req, res, next) {
   passport.authenticate('google', (err, user, info) => {
     if (err) {
-      return res.status(500).json({
-        message: 'Authentication failed due to a server error.',
-        info: err.message
-      })
+      // return res.status(500).json({
+      //   message: 'Authentication failed due to a server error.',
+      //   info: err.message
+      // })
+      return res.redirect('/')
     }
 
     if (!user) {
-      return res.json({
-        message: 'Authentication failed.',
-        info: info.message
-      })
+      // return res.json({
+      //   message: 'Authentication failed.',
+      //   info: info.message
+      // })
+      return res.redirect('/')
     }
 
     const token = createToken(user, req.app.get('JWT_SECRET'))
     // Ideally use `secure: true` in production
     res.cookie('token', token, { httpOnly: true })
-    res.redirect('/')
+    res.redirect('/#/list')
   })(req, res, next)
 }
 
@@ -75,7 +78,8 @@ function verify (token, refreshToken, profile, done) {
               .then(createdUser => {
                 return done(null, {
                   id: createdUser[0].id,
-                  email: createdUser[0].email
+                  email: createdUser[0].email,
+                  level: createdUser[0].level
                 })
               })
           })
@@ -84,7 +88,8 @@ function verify (token, refreshToken, profile, done) {
         const user = userList[0]
         done(null, {
           id: user.id,
-          email: user.email
+          email: user.email,
+          level: user.level
         })
       }
     })

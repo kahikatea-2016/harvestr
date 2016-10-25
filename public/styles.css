@@ -10,6 +10,8 @@ lighter steel blue: #959EF9
 lighter tomatoish: #FF7F7F
  */
 
+/* Notification CSS */
+
 div.notification-bar.notification-bar-active {
   background-color: #3BAF29 !important;
 }
@@ -18,6 +20,9 @@ div.notification-bar.notification-bar-active {
   color: white !important;
   font-size: 15px !important;
 }
+
+/*//////////////*/
+
  html, body, div, span, applet, object, iframe,
  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
  a, abbr, acronym, address, big, cite, code,

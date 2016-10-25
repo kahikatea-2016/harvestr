@@ -4,8 +4,7 @@ exports.seed = function(knex, Promise) {
     knex('tickets').del(),
     knex('donors').del(),
     knex('recipients').del(),
-    knex('details').del(),
-    knex('ticker-notes').del()
+    knex('details').del()
   ])
   .then(function () {
     return knex ('details').insert([
@@ -51,10 +50,23 @@ exports.seed = function(knex, Promise) {
     ])
   })
   .then(function () {
-    return knex ('ticker-notes').insert([
-      {id: 1, notes: 'Picked up more 10 kgs of potatos'},
-      {id: 2, notes: 'Ran a little late'},
-      {id: 3, notes: 'Traffic was congested today'},
-      ])
+    return knex ('users').insert([
+      {id: 1, email: 'tinatrenkner@gmail.com', google_id: '112615148426911623293'},
+      {id: 2, email: 'andrew.james.hird@gmail.com', google_id: '114056495607785581130'},
+      {id: 3, email: 'jsmare@gmail.com', google_id: '106271496586390221277'},
+      {id: 4, email: 'samari.b.dj@gmail.com', google_id: '118018160081912906533'},
+      {id: 5, email: 'thcoomer@gmail.com', google_id: '112992150127876198177'},
+      {id: 6, email: 'tealiie@live.com', google_id: '106683677154329041656'},
+    ])
+  })
+  .then(function () {
+    return knex ('permissions').insert([
+      {id: 1, level: 'admin', user_id: 1},
+      {id: 2, level: 'admin', user_id: 2},
+      {id: 3, level: 'admin', user_id: 3},
+      {id: 4, level: 'admin', user_id: 4},
+      {id: 5, level: 'admin', user_id: 5},
+      {id: 6, level: 'admin', user_id: 6},
+    ])
   })
 };
