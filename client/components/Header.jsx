@@ -8,7 +8,7 @@ import SignOutButton from './SignOutButton'
 export default React.createClass({
   render() {
     return (
-<<<<<<< HEAD
+
         <div className="header">
           <span className="logo"> Harvestr </span>
           <div className="auth">
@@ -22,29 +22,26 @@ export default React.createClass({
               </div>
             </div>
             <div className="dropdownAdd navButton">
-              Add a Profile
+              Profiles
               <div className="dropdownAddContent">
-                <Link to='/createDonor'><p> Add a New Donor </p></Link>
-
-                <Link to='/donorsList'><p>Donor's List</p></Link>
-
-                <Link to='/createRecipient'><p> Add a New Recipient </p></Link>
+                <Link to='/donorsList'><p>List of Donors</p></Link>
+                {/* <Link to='/recipientsList'><p>List of Recipients</p></Link> */}
 
               </div>
             </div>
           </div>
         </div>
-=======
-      <div className="header">
-        <Link to="/"> <span className="logo"> Harvestr </span> </Link>
-        <div className="auth">
-          <SignOutButton />
-          <AddTicketButton />
-          <ViewListButton />
-          <AuthButton />
-      </div>
-    </div>
->>>>>>> 4f552b328e7a6d1a5866395deea986936d8536c0
+
+    //   <div className="header">
+    //     <Link to="/"> <span className="logo"> Harvestr </span> </Link>
+    //     <div className="auth">
+    //       <SignOutButton />
+    //       <AddTicketButton />
+    //       <ViewListButton />
+    //       <AuthButton />
+    //   </div>
+    // </div>
+
     )
   }
 })

@@ -60,41 +60,42 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
-	var _AddRecipientTicket = __webpack_require__(238);
+	var _AddRecipientTicket = __webpack_require__(242);
 	
 	var _AddRecipientTicket2 = _interopRequireDefault(_AddRecipientTicket);
 	
-	var _AddDonorTicket = __webpack_require__(245);
+	var _AddDonorTicket = __webpack_require__(249);
 	
 	var _AddDonorTicket2 = _interopRequireDefault(_AddDonorTicket);
 	
-	var _List = __webpack_require__(246);
+	var _List = __webpack_require__(250);
 	
 	var _List2 = _interopRequireDefault(_List);
 	
-	var _DonorTicket = __webpack_require__(248);
+	var _DonorTicket = __webpack_require__(252);
 	
 	var _DonorTicket2 = _interopRequireDefault(_DonorTicket);
 	
-	var _RecipientTicket = __webpack_require__(249);
+	var _RecipientTicket = __webpack_require__(253);
 	
 	var _RecipientTicket2 = _interopRequireDefault(_RecipientTicket);
 	
-	var _CreateDonor = __webpack_require__(250);
-	
-	var _CreateDonor2 = _interopRequireDefault(_CreateDonor);
-	
-<<<<<<< HEAD
-	var _DonorsList = __webpack_require__(251);
+	var _DonorsList = __webpack_require__(254);
 	
 	var _DonorsList2 = _interopRequireDefault(_DonorsList);
 	
-=======
-	var _CreateRecipient = __webpack_require__(251);
+	var _CreateDonor = __webpack_require__(255);
+	
+	var _CreateDonor2 = _interopRequireDefault(_CreateDonor);
+	
+	var _RecipientsList = __webpack_require__(256);
+	
+	var _RecipientsList2 = _interopRequireDefault(_RecipientsList);
+	
+	var _CreateRecipient = __webpack_require__(257);
 	
 	var _CreateRecipient2 = _interopRequireDefault(_CreateRecipient);
 	
->>>>>>> 9f5aa1199ca5e3b664d8c5262dc7b9da555acd85
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	document.addEventListener('DOMContentLoaded', function () {
@@ -107,15 +108,12 @@
 	    _react2.default.createElement(_reactRouter.Route, { path: '/list', component: _List2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/ticket/donor/:ticket', component: _DonorTicket2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/ticket/recipient/:ticket', component: _RecipientTicket2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/donorsList', component: _DonorsList2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/createDonor', component: _CreateDonor2.default }),
-<<<<<<< HEAD
-	    _react2.default.createElement(_reactRouter.Route, { path: '/donorsList', component: _DonorsList2.default })
-=======
+	    _react2.default.createElement(_reactRouter.Route, { path: '/recipientsList', component: _RecipientsList2.default }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/createRecipient', component: _CreateRecipient2.default })
->>>>>>> 9f5aa1199ca5e3b664d8c5262dc7b9da555acd85
 	  ), document.getElementById('app'));
 	});
-	// import AddRecipient from './components/AddRecipient'
 
 /***/ },
 /* 1 */
@@ -27156,19 +27154,19 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _Banner = __webpack_require__(237);
+	var _Banner = __webpack_require__(241);
 	
 	var _Banner2 = _interopRequireDefault(_Banner);
 	
-	var _AddRecipientTicket = __webpack_require__(238);
+	var _AddRecipientTicket = __webpack_require__(242);
 	
 	var _AddRecipientTicket2 = _interopRequireDefault(_AddRecipientTicket);
 	
-	var _AddDonorTicket = __webpack_require__(245);
+	var _AddDonorTicket = __webpack_require__(249);
 	
 	var _AddDonorTicket2 = _interopRequireDefault(_AddDonorTicket);
 	
-	var _List = __webpack_require__(246);
+	var _List = __webpack_require__(250);
 	
 	var _List2 = _interopRequireDefault(_List);
 	
@@ -27202,6 +27200,22 @@
 	var _react2 = _interopRequireDefault(_react);
 	
 	var _reactRouter = __webpack_require__(172);
+	
+	var _AddTicketButton = __webpack_require__(237);
+	
+	var _AddTicketButton2 = _interopRequireDefault(_AddTicketButton);
+	
+	var _AuthButton = __webpack_require__(238);
+	
+	var _AuthButton2 = _interopRequireDefault(_AuthButton);
+	
+	var _ViewListButton = __webpack_require__(239);
+	
+	var _ViewListButton2 = _interopRequireDefault(_ViewListButton);
+	
+	var _SignOutButton = __webpack_require__(240);
+	
+	var _SignOutButton2 = _interopRequireDefault(_SignOutButton);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -27259,37 +27273,75 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'dropdownAdd navButton' },
-	          'Add a Profile',
+	          'Profiles',
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'dropdownAddContent' },
 	            _react2.default.createElement(
 	              _reactRouter.Link,
-	              { to: '/createDonor' },
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                ' Add a New Donor '
-	              )
-	            ),
-	            _react2.default.createElement(
-	              _reactRouter.Link,
-<<<<<<< HEAD
 	              { to: '/donorsList' },
 	              _react2.default.createElement(
 	                'p',
 	                null,
-	                'Donor\'s List'
-=======
-	              { to: '/createRecipient' },
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                ' Add a New Recipient '
->>>>>>> 9f5aa1199ca5e3b664d8c5262dc7b9da555acd85
+	                'List of Donors'
 	              )
 	            )
 	          )
+	        )
+	      )
+	    )
+	
+	    //   <div className="header">
+	    //     <Link to="/"> <span className="logo"> Harvestr </span> </Link>
+	    //     <div className="auth">
+	    //       <SignOutButton />
+	    //       <AddTicketButton />
+	    //       <ViewListButton />
+	    //       <AuthButton />
+	    //   </div>
+	    // </div>
+	
+	    ;
+	  }
+	});
+
+/***/ },
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'AddTicketButton',
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'dropdownAdd' },
+	      'Add a Ticket',
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'dropdownAddContent' },
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/addDonorTicket' },
+	          ' Add a Donor Ticket '
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/addRecipientTicket' },
+	          ' Add a Recipient Ticket '
 	        )
 	      )
 	    );
@@ -27297,7 +27349,105 @@
 	});
 
 /***/ },
-/* 237 */
+/* 238 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'AuthButton',
+	  render: function render() {
+	    return (
+	      // <div className="g-signin2" data-onsuccess="onSignIn"></div>
+	      _react2.default.createElement(
+	        'a',
+	        { href: '/auth/google' },
+	        'Sign In'
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 239 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'ViewListButton',
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'listButton' },
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/list' },
+	        'View list'
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 240 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'SignOutButton',
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'listButton' },
+	      _react2.default.createElement(
+	        'a',
+	        { href: '/auth/logout' },
+	        'Sign Out'
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27342,7 +27492,7 @@
 	});
 
 /***/ },
-/* 238 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27361,7 +27511,7 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _api = __webpack_require__(239);
+	var _api = __webpack_require__(243);
 	
 	var _api2 = _interopRequireDefault(_api);
 	
@@ -27460,7 +27610,7 @@
 	});
 
 /***/ },
-/* 239 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27469,7 +27619,7 @@
 	  value: true
 	});
 	
-	var _superagent = __webpack_require__(240);
+	var _superagent = __webpack_require__(244);
 	
 	var _superagent2 = _interopRequireDefault(_superagent);
 	
@@ -27638,7 +27788,7 @@
 	}
 
 /***/ },
-/* 240 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -27655,9 +27805,9 @@
 	  root = this;
 	}
 	
-	var Emitter = __webpack_require__(241);
-	var requestBase = __webpack_require__(242);
-	var isObject = __webpack_require__(243);
+	var Emitter = __webpack_require__(245);
+	var requestBase = __webpack_require__(246);
+	var isObject = __webpack_require__(247);
 	
 	/**
 	 * Noop.
@@ -27669,7 +27819,7 @@
 	 * Expose `request`.
 	 */
 	
-	var request = module.exports = __webpack_require__(244).bind(null, Request);
+	var request = module.exports = __webpack_require__(248).bind(null, Request);
 	
 	/**
 	 * Determine XHR.
@@ -28620,7 +28770,7 @@
 
 
 /***/ },
-/* 241 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -28789,13 +28939,13 @@
 
 
 /***/ },
-/* 242 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module of mixed-in functions shared between node and client code
 	 */
-	var isObject = __webpack_require__(243);
+	var isObject = __webpack_require__(247);
 	
 	/**
 	 * Clear previous timeout.
@@ -29167,7 +29317,7 @@
 
 
 /***/ },
-/* 243 */
+/* 247 */
 /***/ function(module, exports) {
 
 	/**
@@ -29186,7 +29336,7 @@
 
 
 /***/ },
-/* 244 */
+/* 248 */
 /***/ function(module, exports) {
 
 	// The node and browser modules expose versions of this with the
@@ -29224,7 +29374,7 @@
 
 
 /***/ },
-/* 245 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29243,7 +29393,7 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _api = __webpack_require__(239);
+	var _api = __webpack_require__(243);
 	
 	var _api2 = _interopRequireDefault(_api);
 	
@@ -29341,7 +29491,7 @@
 	});
 
 /***/ },
-/* 246 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29356,7 +29506,7 @@
 	
 	var _reactRouter = __webpack_require__(172);
 	
-	var _api = __webpack_require__(239);
+	var _api = __webpack_require__(243);
 	
 	var _api2 = _interopRequireDefault(_api);
 	
@@ -29364,11 +29514,11 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _Banner = __webpack_require__(237);
+	var _Banner = __webpack_require__(241);
 	
 	var _Banner2 = _interopRequireDefault(_Banner);
 	
-	var _ListItem = __webpack_require__(247);
+	var _ListItem = __webpack_require__(251);
 	
 	var _ListItem2 = _interopRequireDefault(_ListItem);
 	
@@ -29455,7 +29605,7 @@
 	});
 
 /***/ },
-/* 247 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29470,11 +29620,11 @@
 	
 	var _reactRouter = __webpack_require__(172);
 	
-	var _DonorTicket = __webpack_require__(248);
+	var _DonorTicket = __webpack_require__(252);
 	
 	var _DonorTicket2 = _interopRequireDefault(_DonorTicket);
 	
-	var _RecipientTicket = __webpack_require__(249);
+	var _RecipientTicket = __webpack_require__(253);
 	
 	var _RecipientTicket2 = _interopRequireDefault(_RecipientTicket);
 	
@@ -29552,7 +29702,7 @@
 	});
 
 /***/ },
-/* 248 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29567,7 +29717,7 @@
 	
 	var _reactRouter = __webpack_require__(172);
 	
-	var _api = __webpack_require__(239);
+	var _api = __webpack_require__(243);
 	
 	var _api2 = _interopRequireDefault(_api);
 	
@@ -29575,7 +29725,7 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _Banner = __webpack_require__(237);
+	var _Banner = __webpack_require__(241);
 	
 	var _Banner2 = _interopRequireDefault(_Banner);
 	
@@ -29793,7 +29943,7 @@
 	});
 
 /***/ },
-/* 249 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29808,7 +29958,7 @@
 	
 	var _reactRouter = __webpack_require__(172);
 	
-	var _api = __webpack_require__(239);
+	var _api = __webpack_require__(243);
 	
 	var _api2 = _interopRequireDefault(_api);
 	
@@ -29816,7 +29966,7 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _Banner = __webpack_require__(237);
+	var _Banner = __webpack_require__(241);
 	
 	var _Banner2 = _interopRequireDefault(_Banner);
 	
@@ -30034,7 +30184,84 @@
 	});
 
 /***/ },
-/* 250 */
+/* 254 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	var _api = __webpack_require__(243);
+	
+	var _api2 = _interopRequireDefault(_api);
+	
+	var _Header = __webpack_require__(236);
+	
+	var _Header2 = _interopRequireDefault(_Header);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'DonorsList',
+	  getInitialState: function getInitialState() {
+	    return {
+	      donors: []
+	    };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    _api2.default.getDonors(this.renderResults);
+	  },
+	  renderResults: function renderResults(err, donors) {
+	    this.setState({
+	      donors: donors
+	    });
+	  },
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(_Header2.default, null),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'donorForm' },
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          ' Here is a list of all the donors '
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'ul',
+	          null,
+	          this.state.donors.map(function (donor) {
+	            return _react2.default.createElement(
+	              'li',
+	              { key: donor.id },
+	              donor.donorName
+	            );
+	          })
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/createDonor', className: 'button' },
+	          ' Add a New Donor '
+	        )
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30053,7 +30280,7 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _api = __webpack_require__(239);
+	var _api = __webpack_require__(243);
 	
 	var _api2 = _interopRequireDefault(_api);
 	
@@ -30121,7 +30348,7 @@
 	                _react2.default.createElement('br', null),
 	                _react2.default.createElement(
 	                    _reactRouter.Link,
-	                    { to: '/list' },
+	                    { to: '/donorsList' },
 	                    _react2.default.createElement('input', { className: 'button', type: 'submit', value: 'Submit', onClick: function onClick() {
 	                            return _this.createDonor();
 	                        } })
@@ -30132,7 +30359,60 @@
 	});
 
 /***/ },
-/* 251 */
+/* 256 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	var _api = __webpack_require__(243);
+	
+	var _api2 = _interopRequireDefault(_api);
+	
+	var _Header = __webpack_require__(236);
+	
+	var _Header2 = _interopRequireDefault(_Header);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'RecipientsList',
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(_Header2.default, null),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'RecipientForm' },
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          ' Here is a list of all the Recipients '
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null)
+	      ),
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { to: '/createRecipient', className: 'button' },
+	        ' Add a New Recipient '
+	      )
+	    );
+	  }
+	});
+
+/***/ },
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30151,7 +30431,7 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _api = __webpack_require__(239);
+	var _api = __webpack_require__(243);
 	
 	var _api2 = _interopRequireDefault(_api);
 	
@@ -30229,67 +30509,11 @@
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          _reactRouter.Link,
-	          { to: '/list' },
+	          { to: '/recipientsList' },
 	          _react2.default.createElement('input', { className: 'button', type: 'submit', value: 'Submit', onClick: function onClick() {
 	              return _this.createRecipient();
 	            } })
 	        )
-	      )
-	    );
-	  }
-	});
-
-/***/ },
-/* 251 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(172);
-	
-	var _api = __webpack_require__(239);
-	
-	var _api2 = _interopRequireDefault(_api);
-	
-	var _Header = __webpack_require__(236);
-	
-	var _Header2 = _interopRequireDefault(_Header);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	//pulls in the donors list
-	//add button to create a new donors
-	
-	exports.default = _react2.default.createClass({
-	  displayName: 'DonorsList',
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      null,
-	      _react2.default.createElement(_Header2.default, null),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'donorForm' },
-	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          ' Here is a list of all the donors '
-	        ),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement('br', null)
-	      ),
-	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/createDonor', className: 'button' },
-	        ' Add a New Donor'
 	      )
 	    );
 	  }
