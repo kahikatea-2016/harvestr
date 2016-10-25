@@ -41,23 +41,25 @@ function handleError (err, req, res, next) {
 function issueJwt (req, res, next) {
   passport.authenticate('google', (err, user, info) => {
     if (err) {
-      return res.status(500).json({
-        message: 'Authentication failed due to a server error.',
-        info: err.message
-      })
+      // return res.status(500).json({
+      //   message: 'Authentication failed due to a server error.',
+      //   info: err.message
+      // })
+      return res.redirect('/')
     }
 
     if (!user) {
-      return res.json({
-        message: 'Authentication failed.',
-        info: info.message
-      })
+      // return res.json({
+      //   message: 'Authentication failed.',
+      //   info: info.message
+      // })
+      return res.redirect('/')
     }
 
     const token = createToken(user, req.app.get('JWT_SECRET'))
     // Ideally use `secure: true` in production
     res.cookie('token', token, { httpOnly: true })
-    res.redirect('/')
+    res.redirect('/#/list')
   })(req, res, next)
 }
 

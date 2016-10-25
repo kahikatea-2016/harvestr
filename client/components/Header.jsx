@@ -12,10 +12,10 @@ export default React.createClass({
         <div className="header">
           <span className="logo"> Harvestr </span>
           <div className="auth">
-            <a href="/auth/google" className="navButton"> Login </a>
-            <Link className="navButton" to='/'> Home </Link>
+            <a href="/auth/logout" className="navButton"> Logout </a>
+            <Link className="navButton" to='/list'> List </Link>
             <div className="dropdownAdd navButton">
-              Add a Ticket
+              Tickets
               <div className="dropdownAddContent">
                 <Link to='/addDonorTicket'><p> Add a Donor Ticket </p></Link>
                 <Link to='/addRecipientTicket'><p> Add a Recipient Ticket </p></Link>
