@@ -13,9 +13,7 @@ export default React.createClass({
   getInitialState () {
     return {
       tickets: [],
-      driverOrigin: [],
-      driverDestination: [],
-      driverWaypoints: []
+      source: []
     }
   },
 
@@ -25,6 +23,7 @@ export default React.createClass({
 
   renderResults (err, allTickets) {
     let allRoutes = []
+    let mapSource = []
 
     for (var i = 0; i < allTickets.length; i++) {
       if(!allTickets[i].isComplete) {
@@ -33,7 +32,13 @@ export default React.createClass({
     }
     let origin = allRoutes.shift()
     let destination = allRoutes.pop()
-    let waypoints = allRoutes.join('|')
+    let waypoints = allRoutes.join('|').replace(/\s/g, '+')
+
+    if(!waypoints) {
+      mapSource = `${origin}&destination=${destination}`
+    } else {
+      mapSource = `${origin}&destination=${destination}&waypoints=${waypoints}`
+    }
 
     pickUpWeight = 0
     dropOffWeight = 0
@@ -54,9 +59,7 @@ export default React.createClass({
 
     this.setState({
       tickets: allTickets,
-      driverOrigin: origin,
-      driverDestination: destination,
-      driverWaypoints: waypoints
+      source: mapSource
     })
   },
 
@@ -86,7 +89,7 @@ export default React.createClass({
             className="map-embed"
             width="600"
             height="450"
-            src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&origin=${this.state.driverOrigin}&destination=${this.state.driverDestination}&waypoints=${this.state.driverWaypoints}`}>
+            src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&origin=${this.state.source}`}>
           </iframe>
 
         </div>
