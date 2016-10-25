@@ -3,45 +3,61 @@ import request from 'superagent'
 const url = '/v1'
 
 export default {
+  getDonors: getDonors,
+  getRecipients: getRecipients,
+  getDonor: getDonor,
+  getRecipient: getRecipient,
+  updateTicket: updateTicket,
+  updateComment: updateComment,
+  addTicket: addTicket,
+  getTickets: getTickets,
+  getDonorTicket: getDonorTicket,
+  getRecipientTicket: getRecipientTicket,
+  getTicketComments: getTicketComments,
+  createDonor: createDonor,
+  createRecipient: createRecipient
+}
 
-  getDonors(cb) {
+  function getDonors(cb) {
     const getUrl = `${url}/donors`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
           cb(err)
         } else {
-          const donors = res.body.map(donors => {
+          const donors = res.body.map(donor => {
             return {
-              id: donors.id,
-              donorName: donors.donorName
+              id: donor.id,
+              donorName: donor.name,
+              donorDetailsId: donor.detail_id
             }
           })
           cb(null, donors)
         }
       })
-  },
+  }
 
-  getRecipients(cb) {
+  function getRecipients(cb) {
     const getUrl = `${url}/recipients`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
           cb(err)
         } else {
-          const recipients = res.body.map(recipients => {
+          const recipients = res.body.map(recipient => {
             return {
-              id: recipients.id,
-              recipientName: recipients.recipientName
+              id: recipient.id,
+              recipientName: recipient.name,
+              recipientDetailsId: recipient.detail_id
             }
           })
           cb(null, recipients)
         }
       })
-  },
+  }
 
-  getDonor(id, cb) {
-    const getUrl = `${url}/donors:${id}`
+  function getDonor(id, cb) {
+    const getUrl = `${url}/donors/${id}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
@@ -57,10 +73,10 @@ export default {
           cb(null, donor)
         }
       })
-  },
+  }
 
-  getRecipient(id, cb) {
-    const getUrl = `${url}/recipients:${id}`
+  function getRecipient(id, cb) {
+    const getUrl = `${url}/recipients/${id}`
     request.get(getUrl)
       .end((err, res) => {
         if (err) {
@@ -76,58 +92,89 @@ export default {
           cb(null, recipient)
         }
       })
-  },
+  }
 
-  getDonorTicketList(id, cb) {
-    const getUrl = `${url}/donortickets:${id}`
-    request.get(getUrl)
-      .end((err, res) => {
-        if (err) {
-          cb(err)
-        } else {
-          const donorTicket = {
-            expectedKg: res.body.expected,
-            name: res.body.name,
-            address: res.body.address
-          }
-          cb(null, donorTicket)
-        }
-      })
-  },
-
-  getRecipientTicketList(id, cb) {
-    const getUrl = `${url}/recipientickets:${id}`
-    request.get(getUrl)
-      .end((err, res) => {
-        if (err) {
-          cb(err)
-        } else {
-          const recipientTicket = {
-            expectedKg: res.body.expected,
-            name: res.body.name,
-            address: res.body.address
-          }
-          cb(null, recipientTicket)
-        }
-      })
-  },
-
-  addTicket(ticket, cb) {
-    const addUrl = `${url}/ticket`
-    request.post(addUrl)
-      .send(ticket)
-      .end((err, res) => {
-        cb(err)
-      })
-  },
-
-  updateTicket(ticket, cb) {
-    const updateUrl = `${url}/ticket`
+  function updateTicket(ticket) {
+    const updateUrl = `${url}/tickets`
     request.put(updateUrl)
       .send(ticket)
+      .end()
+  }
+
+  function updateComment (comments) {
+    const updateUrl = `${url}/comments`
+    request.put(updateUrl)
+      .send(comments)
+      .end()
+  }
+
+  function addTicket (ticket) {
+    const addUrl = `${url}/tickets`
+    request.post(addUrl)
+      .send(ticket)
+      .end()
+  }
+
+  function getTickets (cb) {
+    const getUrl = `${url}/tickets`
+    request.get(getUrl)
       .end((err, res) => {
-        cb(err)
+        if (err) {
+          cb(err)
+        } else {
+          cb(null, res.body)
+        }
       })
   }
 
-}
+  function getDonorTicket (ticketId, cb) {
+    const getUrl = `${url}/tickets/donors/${ticketId}`
+    request.get(getUrl)
+      .end((err, res) => {
+        if (err) {
+          cb(err)
+        } else {
+          cb(null, res.body)
+        }
+      })
+  }
+
+  function getRecipientTicket (ticketId, cb) {
+    const getUrl = `${url}/tickets/recipients/${ticketId}`
+    request.get(getUrl)
+      .end((err, res) => {
+        if (err) {
+          cb(err)
+        } else {
+          cb(null, res.body)
+        }
+      })
+  }
+
+  function getTicketComments (ticketId, cb) {
+    const getUrl = `${url}/tickets/comments/${ticketId}`
+    request.get(getUrl)
+      .end((err, res) => {
+        if (err) {
+          cb(err)
+        } else {
+          cb(null, res.body)
+        }
+      })
+  }
+
+  function createDonor (donor) {
+    console.log(donor)
+    const addUrl = `${url}/createDonor`
+    request.post(addUrl)
+      .send(donor)
+      .end()
+  }
+
+  function createRecipient (recipient) {
+    console.log(recipient)
+    const addUrl = `${url}/createRecipient`
+    request.post(addUrl)
+      .send(recipient)
+      .end()
+  }

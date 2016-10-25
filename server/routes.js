@@ -5,10 +5,15 @@ module.exports = {
   getRecipients: getRecipients,
   getDonor: getDonor,
   getRecipient: getRecipient,
-  getDonorTicketList: getDonorTicketList,
-  getRecipientTicketList: getRecipientTicketList,
+  updateTicket: updateTicket,
+  updateComment: updateComment,
+  getTickets: getTickets,
   addTicket: addTicket,
-  updateTicket: updateTicket
+  getDonorTicket: getDonorTicket,
+  getRecipientTicket: getRecipientTicket,
+  getTicketComments: getTicketComments,
+  createDonor: createDonor,
+  createRecipient: createRecipient
 }
 
 function getDonors(req, res) {
@@ -43,7 +48,7 @@ function getDonor(req, res) {
 }
 
 function getRecipient(req, res) {
-  var recipientId = req.paramns.id
+  var recipientId = req.params.id
   db.getRecipient(recipientId)
     .then(function (recipient) {
       res.json(recipient)
@@ -53,35 +58,52 @@ function getRecipient(req, res) {
     })
 }
 
-function getDonorTicketList(req, res) {
-  var ticketId = req.params.id
-  db.getDonorTicketList(ticketId)
-    .then(function (donorTicket) {
-      res.json(donorTicket)
+function updateTicket(req, res) {
+  var ticket = {
+    id: req.body.ticketId,
+    actualKg: req.body.actualKg,
+  }
+  db.updateTicket(ticket)
+    .then(function () {
+      res.json(ticket)
     })
     .catch(function (err) {
       res.send(err.message).status(500)
     })
 }
 
-function getRecipientTicketList(req, res) {
-  var ticketId = req.params.id
-  db.getRecipientTicketList(ticketId)
-    .then(function (recipientTicket) {
-      res.json(recipientTicket)
+function updateComment(req, res) {
+  var comment = {
+    ticketId: req.body.ticketId,
+    comment: req.body.comment
+  }
+  db.updateComment(comment)
+    .then(function () {
+      res.json(comment)
     })
     .catch(function (err) {
       res.send(err.message).status(500)
     })
-  }
+}
 
   function addTicket(req, res) {
-    var ticket = {
-      recipId: req.body.recipId,
-      donorId: req.body.donorId,
-      expectedKg: req.body.expectedKg,
-      isComplete: false
+    console.log(req.body.recipientId)
+    if (!req.body.recipientId) {
+      var ticket = {
+        expected_kg: req.body.expectedKg,
+        donor_id: req.body.donorId.split('|')[0],
+        details_id: req.body.donorId.split('|')[1],
+        is_complete: 0
+      }
+    } else {
+      var ticket = {
+        expected_kg: req.body.expectedKg,
+        recipient_id: req.body.recipientId.split('|')[0],
+        details_id: req.body.recipientId.split('|')[1],
+        is_complete: 0
+      }
     }
+    console.log(ticket)
     db.addTicket(ticket)
       .then(function () {
         res.json(ticket)
@@ -91,19 +113,78 @@ function getRecipientTicketList(req, res) {
       })
   }
 
-  function updateTicket(req, res) {
-    var ticket = {
-      recipId: req.body.recipId,
-      donorId: req.body.donorId,
-      actualKg: req.body.actualKg,
-      comments: req.body.comments,
-      isComplete: req.body.isComplete
-    }
-    db.updateTicket(ticket)
-      .then(function () {
-        res.json(ticket)
-      })
-      .catch(function (err) {
-        res.send(err.message).status(500)
-      })
-  }
+function getTickets(req, res) {
+  db.getTickets()
+    .then(function (tickets) {
+      res.json(tickets)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
+
+function getDonorTicket(req, res) {
+  var ticketId = req.params.id
+  db.getDonorTicket(ticketId)
+    .then(function (donorTicket) {
+      res.json(donorTicket)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
+
+function getRecipientTicket(req, res) {
+  var ticketId = req.params.id
+  db.getRecipientTicket(ticketId)
+    .then(function (recipientTicket) {
+      res.json(recipientTicket)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
+
+function getTicketComments(req, res) {
+  var ticketId = req.params.id
+  db.getTicketComments(ticketId)
+    .then(function (ticketComments) {
+      var singleTicketComments = []
+      var foundComments = []
+      for (var i = 0; i < ticketComments.length; i++) {
+        if (!foundComments.includes(ticketComments[i].comments)) {
+          singleTicketComments.push({
+            comments: ticketComments[i].comments
+          })
+          foundComments.push(ticketComments[i].comments)
+        }
+      }
+      res.json(singleTicketComments)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
+
+function createRecipient(req, res) {
+  console.log(req.body)
+  db.createRecipientProfile(req.body)
+    .then(function () {
+      res.json(recipient)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
+
+
+function createDonor(req, res) {
+  console.log(req.body)
+  db.createDonorProfile(req.body)
+    .then(function () {
+      res.json(donor)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
