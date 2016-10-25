@@ -56,7 +56,7 @@ export default React.createClass({
                     }}/>
                     <br/><br/>
 
-                    <Link to='/list'>
+                    <Link to='/donorsList'>
                         <input className="button" type="submit" value="Submit" onClick={() => this.createDonor()}/>
                     </Link>
 
