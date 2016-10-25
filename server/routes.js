@@ -87,7 +87,6 @@ function updateComment(req, res) {
 }
 
   function addTicket(req, res) {
-    console.log(req.body.recipientId)
     if (!req.body.recipientId) {
       var ticket = {
         expected_kg: req.body.expectedKg,
