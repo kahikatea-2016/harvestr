@@ -22,37 +22,34 @@ export default React.createClass({
   render() {
     return (
       <div><Header />
-        <div className="ticketWrapperSingle dropOff">
+        <div className="ticketWrapperSingle recipientForm">
             <div className="orgInfo">
               <h2> {this.state.name} </h2>
               <a href={`comgooglemaps://?q=${this.state.address}`}>
                 <h4> {this.state.address} </h4>
               </a>
             </div>
-            <span className="fade_line"></span>
+            <span className="fade_line_recip"></span>
             <div className="contact">
               <h2> {this.state.contact} </h2>
               <a href={`tel:${this.state.phone}`}>
                 <h2> {this.state.phone} </h2>
               </a>
             </div>
-            <span className="fade_line"></span>
+            <span className="fade_line_recip"></span>
             <div className="notes">
               <h2> Notes </h2>
               <ul>
                 <li> {this.state.notes} </li>
-              </ul>
+              </ul><br/><br/>
             </div>
-
-            </div>
-
             <iframe
               className="map-embed"
               width="600"
               height="450"
               src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&q=${this.state.address}`}>
-            </iframe>
-
+            </iframe><br/><br/>
+            </div>
           </div>
     )
   }

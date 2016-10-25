@@ -42,10 +42,12 @@ app.use(
   }),
   auth.handleError
 )
-
-
 app.use(
   users.requiresDriver,
+  auth.handleError
+)
+app.use(
+  users.requiresAdmin,
   auth.handleError
 )
 
@@ -63,15 +65,9 @@ app.get('/v1/recipient/:id', routes.getRecipient)
 app.put('/v1/tickets', routes.updateTicket)
 app.put('/v1/comments', routes.updateComment)
 
-app.use(
-  users.requiresAdmin,
-  auth.handleError
-)
-
 app.post('/v1/createDonor', routes.createDonor)
 app.post('/v1/createRecipient', routes.createRecipient)
 app.post('/v1/tickets', routes.addTicket)
-
 
 app.listen(PORT, function () {
   console.log('Listening on port', PORT)

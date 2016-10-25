@@ -1,9 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router'
 
-
 import api from '../api'
-
 import Header from './Header'
 import Banner from './Banner'
 

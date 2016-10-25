@@ -22,7 +22,7 @@ export default React.createClass({
   render() {
     return (
       <div><Header />
-        <div className="ticketWrapperSingle pickUp">
+        <div className="ticketWrapperSingle donorForm">
             <div className="orgInfo">
               <h2> {this.state.name} </h2>
               <a href={`comgooglemaps://?q=${this.state.address}`}>
@@ -41,19 +41,15 @@ export default React.createClass({
               <h2> Notes </h2>
               <ul>
                 <li> {this.state.notes} </li>
-              </ul>
+              </ul><br/><br/>
             </div>
-
-            </div>
-
-            <div>this should show a donor profile</div>
-
             <iframe
               className="map-embed"
               width="600"
               height="450"
               src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&q=${this.state.address}`}>
-            </iframe>
+            </iframe><br/><br/>
+            </div>
           </div>
     )
   }
