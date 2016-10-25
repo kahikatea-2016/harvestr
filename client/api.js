@@ -98,7 +98,11 @@ export default {
     const addUrl = `${url}/tickets`
     request.post(addUrl)
       .send(ticket)
-      .end()
+      .end((err, res) => {
+        if(res.status === 403) {
+          alert("not allowed")
+        }
+      })
   }
 
   function getTickets (cb) {
@@ -154,7 +158,11 @@ export default {
     const addUrl = `${url}/createDonor`
     request.post(addUrl)
       .send(donor)
-      .end()
+      .end((err, res) => {
+        if(res.status === 403) {
+          alert("not allowed")
+        }
+      })
   }
 
   function createRecipient (recipient) {
@@ -162,5 +170,9 @@ export default {
     const addUrl = `${url}/createRecipient`
     request.post(addUrl)
       .send(recipient)
-      .end()
+      .end((err, res) => {
+        if(res.status === 403) {
+          alert("not allowed")
+        }
+      })
   }
