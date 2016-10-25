@@ -154,7 +154,6 @@ export default {
   }
 
   function createDonor (donor) {
-    console.log(donor)
     const addUrl = `${url}/createDonor`
     request.post(addUrl)
       .send(donor)
@@ -166,7 +165,6 @@ export default {
   }
 
   function createRecipient (recipient) {
-    console.log(recipient)
     const addUrl = `${url}/createRecipient`
     request.post(addUrl)
       .send(recipient)

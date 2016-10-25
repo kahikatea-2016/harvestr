@@ -30,17 +30,6 @@ export default React.createClass({
             </div>
           </div>
         </div>
-
-    //   <div className="header">
-    //     <Link to="/"> <span className="logo"> Harvestr </span> </Link>
-    //     <div className="auth">
-    //       <SignOutButton />
-    //       <AddTicketButton />
-    //       <ViewListButton />
-    //       <AuthButton />
-    //   </div>
-    // </div>
-
     )
   }
 })

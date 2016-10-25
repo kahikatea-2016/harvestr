@@ -36,7 +36,6 @@ export default React.createClass({
         recipientId: selectRecipient.value,
         expectedKg: expectedKg.value
       }
-      console.log(newTicket)
       api.addTicket(newTicket)
     },
 

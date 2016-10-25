@@ -102,7 +102,6 @@ function updateComment(req, res) {
         is_complete: 0
       }
     }
-    console.log(ticket)
     db.addTicket(ticket)
       .then(function () {
         res.json(ticket)
@@ -166,7 +165,6 @@ function getTicketComments(req, res) {
 }
 
 function createDonor(req, res) {
-  console.log(req.body)
   db.createDonorProfile(req.body)
     .then(function () {
       res.json(donor)
@@ -177,7 +175,6 @@ function createDonor(req, res) {
 }
 
 function createRecipient(req, res) {
-  console.log(req.body)
   db.createRecipientProfile(req.body)
     .then(function () {
       res.json(recipient)
