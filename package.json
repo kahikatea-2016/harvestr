@@ -51,6 +51,7 @@
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
     "pg": "6.1.0",
+    "react-notification": "^6.3.0",
     "react-router": "^2.8.1",
     "sqlite3": "^3.1.6",
     "superagent": "^2.3.0"
