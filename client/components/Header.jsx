@@ -29,6 +29,8 @@ export default React.createClass({
             </div>
             <a href="/auth/logout" className="authButton"> Logout </a>
           </div>
+          <br/>
+          <Link className="listBanner" to="/list"><p> See Full List </p></Link>
         </div>
     )
   }

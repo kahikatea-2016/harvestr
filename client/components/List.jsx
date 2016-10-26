@@ -69,11 +69,16 @@ export default React.createClass({
       <div>
         <Header />
         <div className="listWrapper">
-
-          <h2>Today's Tickets</h2>
-
-          <h3>Total picked up: {pickUpWeight}kg</h3>
-          <h3>Total dropped off: {dropOffWeight}kg</h3>
+          <div className="listWeights">
+            <h3> Picked up: {pickUpWeight}kg</h3>
+            <h3> Dropped off: {dropOffWeight}kg</h3>
+          </div>
+          <iframe
+            className="map-embed"
+            width="600"
+            height="450"
+            src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&origin=${this.state.source}`}>
+          </iframe>
           {this.state.tickets.map((tickets) => {
             return <ListItem
             key={tickets.ticketId}
@@ -88,12 +93,7 @@ export default React.createClass({
             isComplete={tickets.isComplete}/>
           })}
 
-          <iframe
-            className="map-embed"
-            width="600"
-            height="450"
-            src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&origin=${this.state.source}`}>
-          </iframe>
+
 
         </div>
         <Notif content={{ lastComment: 'hey you forgot the hummus'}} />
