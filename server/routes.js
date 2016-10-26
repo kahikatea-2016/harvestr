@@ -169,6 +169,7 @@ function createDonor(req, res) {
     .then(() => {
       return db.getDetailByAddress(req.body.address)
         .then((result) => {
+          console.log('------', req.body.name, result)
           return db.createDonor(req.body.name, result[0].id)
             .then(() => {
               return res.status(201).json(req.body)
