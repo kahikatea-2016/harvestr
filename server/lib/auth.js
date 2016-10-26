@@ -11,6 +11,14 @@ const googleConfig = {
   callbackURL: '/auth/google/callback'
 }
 
+module.exports = {
+  getTokenFromCookie: getTokenFromCookie,
+  handleError: handleError,
+  issueJwt: issueJwt,
+  googleConfig: googleConfig,
+  verify: verify,
+}
+
 function createToken (user, secret) {
   return jwt.sign({
     id: user.id,
@@ -41,18 +49,10 @@ function handleError (err, req, res, next) {
 function issueJwt (req, res, next) {
   passport.authenticate('google', (err, user, info) => {
     if (err) {
-      // return res.status(500).json({
-      //   message: 'Authentication failed due to a server error.',
-      //   info: err.message
-      // })
       return res.redirect('/')
     }
 
     if (!user) {
-      // return res.json({
-      //   message: 'Authentication failed.',
-      //   info: info.message
-      // })
       return res.redirect('/')
     }
 
@@ -63,45 +63,30 @@ function issueJwt (req, res, next) {
   })(req, res, next)
 }
 
-function verify (token, refreshToken, profile, done) {
-  // Check for existing user by Google ID
-  users.getByGoogle(profile.id)
-    .then(userList => {
-      // If user does not exist...
-      if (userList.length === 0) {
-        // Create the user
-        // TODO: code here to check if user email is on the approved list?
-        return users.create(profile.id, profile.emails[0].value)
-          .then(() => {
-            // SQLlite doesn't support returning created id, so we need to go get it
-            return users.getByGoogle(profile.id)
-              .then(createdUser => {
-                return done(null, {
-                  id: createdUser[0].id,
-                  email: createdUser[0].email,
-                  level: createdUser[0].level
-                })
-              })
-          })
-          .catch(err => done(err, false, { message: "Couldn't add user due to a server error." }))
-      } else {
-        const user = userList[0]
-        done(null, {
-          id: user.id,
-          email: user.email,
-          level: user.level
-        })
+function createUser (profile) {
+  return users.create(profile.id, profile.emails[0].value)
+    // Sadly, SQLite won't return the ID of the created record, so...
+    .then(() => users.getByGoogle(profile.id))
+    .then(createdUser => {
+      if (createdUser.length) {
+        return {
+          id: createdUser[0].id,
+          email: createdUser[0].email,
+          level: createdUser[0].level
+        }
       }
+      return Promise.reject(new Error(`Can't find new user in database.`))
     })
     .catch(err => {
-      done(err, false, { message: "Couldn't check your credentials with the database." })
+      return Promise.reject(new Error(`Couldn't add user due to a server error: ${err.message}`))
     })
 }
 
-module.exports = {
-  getTokenFromCookie: getTokenFromCookie,
-  handleError: handleError,
-  issueJwt: issueJwt,
-  googleConfig: googleConfig,
-  verify: verify,
+function verify (token, refreshToken, profile, done) {
+  users.getByGoogle(profile.id)
+    .then((userList) => userList[0] || createUser(profile))
+    .then(user => done(null, user))
+    .catch(err => {
+      done(err, false, { message: "Couldn't check your credentials with the database." })
+    })
 }

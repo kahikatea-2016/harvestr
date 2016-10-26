@@ -36,7 +36,7 @@ function getById (id) {
 
 function getByGoogle (googleId) {
   return knex('users')
-    .join('permissions', 'users.id', '=', 'permissions.user_id')
+    .leftJoin('permissions', 'users.id', '=', 'permissions.user_id')
     .select('users.id as id', 'users.email as email', 'users.google_id as googleId', 'permissions.level as level')
     .where('google_id', googleId)
 }
