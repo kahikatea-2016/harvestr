@@ -27241,24 +27241,7 @@
 	exports.default = _react2.default.createClass({
 	  displayName: 'HeaderIndex',
 	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      { className: 'header' },
-	      _react2.default.createElement(
-	        'span',
-	        { className: 'logo' },
-	        ' Harvestr '
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'auth' },
-	        _react2.default.createElement(
-	          'a',
-	          { href: '/auth/google', className: 'authButton' },
-	          ' Login '
-	        )
-	      )
-	    );
+	    return _react2.default.createElement('div', null);
 	  }
 	});
 
@@ -27441,12 +27424,14 @@
 	          _react2.default.createElement(
 	            "h2",
 	            null,
-	            "Coordinating between supermarkets and food banks, we make sure our drivers are able to get donations to those in need.",
-	            _react2.default.createElement("br", null),
-	            _react2.default.createElement("br", null),
-	            "I'm not sure what to put here but I wanted to fill this space for design purposes so yeah take a look at this kiddo. \uD83D\uDE0F"
+	            "Coordinating between supermarkets and food banks, we make sure our drivers are able to deliver donations to those in need."
 	          ),
-	          _react2.default.createElement("span", { className: "fade_line_home" })
+	          _react2.default.createElement("span", { className: "fade_line_home_lower" }),
+	          _react2.default.createElement(
+	            "a",
+	            { href: "/auth/google", className: "authButtonIndex" },
+	            " Login "
+	          )
 	        )
 	      )
 	    );
@@ -27611,18 +27596,19 @@
 	      'div',
 	      { className: 'header' },
 	      _react2.default.createElement(
-	        'span',
-	        { className: 'logo' },
-	        ' Harvestr '
+	        _reactRouter.Link,
+	        { to: '/list' },
+	        ' ',
+	        _react2.default.createElement(
+	          'span',
+	          { className: 'logo' },
+	          ' Harvestr '
+	        ),
+	        ' '
 	      ),
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'auth' },
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { className: 'navButton', to: '/list' },
-	          ' List '
-	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'dropdownAdd navButton' },
@@ -27681,6 +27667,16 @@
 	          'a',
 	          { href: '/auth/logout', className: 'authButton' },
 	          ' Logout '
+	        )
+	      ),
+	      _react2.default.createElement('br', null),
+	      _react2.default.createElement(
+	        _reactRouter.Link,
+	        { className: 'listBanner', to: '/list' },
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          ' See Full List '
 	        )
 	      )
 	    );
@@ -29666,24 +29662,28 @@
 	        'div',
 	        { className: 'listWrapper' },
 	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          'Today\'s Tickets'
+	          'div',
+	          { className: 'listWeights' },
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            ' Picked up: ',
+	            pickUpWeight,
+	            'kg'
+	          ),
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            ' Dropped off: ',
+	            dropOffWeight,
+	            'kg'
+	          )
 	        ),
-	        _react2.default.createElement(
-	          'h3',
-	          null,
-	          'Total picked up: ',
-	          pickUpWeight,
-	          'kg'
-	        ),
-	        _react2.default.createElement(
-	          'h3',
-	          null,
-	          'Total dropped off: ',
-	          dropOffWeight,
-	          'kg'
-	        ),
+	        _react2.default.createElement('iframe', {
+	          className: 'map-embed',
+	          width: '600',
+	          height: '450',
+	          src: 'https://www.google.com/maps/embed/v1/directions?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&origin=' + this.state.source }),
 	        this.state.tickets.map(function (tickets) {
 	          return _react2.default.createElement(_ListItem2.default, {
 	            key: tickets.ticketId,
@@ -29696,12 +29696,7 @@
 	            expectedKg: tickets.expectedKg,
 	            actualKg: tickets.actualKg,
 	            isComplete: tickets.isComplete });
-	        }),
-	        _react2.default.createElement('iframe', {
-	          className: 'map-embed',
-	          width: '600',
-	          height: '450',
-	          src: 'https://www.google.com/maps/embed/v1/directions?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&origin=' + this.state.source })
+	        })
 	      ),
 	      _react2.default.createElement(_Notif2.default, { content: { lastComment: 'hey you forgot the hummus' } })
 	    );
@@ -29799,7 +29794,8 @@
 	            this.props.address,
 	            ' '
 	          )
-	        )
+	        ),
+	        _react2.default.createElement('img', { className: 'navArrow', src: '../nav-arrow.png' })
 	      )
 	    );
 	  }
@@ -29945,30 +29941,38 @@
 	          'div',
 	          { className: 'inventory' },
 	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            ' Expected: ',
-	            ticket.expected,
-	            'kg '
+	            'div',
+	            { className: 'expected' },
+	            _react2.default.createElement(
+	              'h2',
+	              null,
+	              ' Expected: ',
+	              ticket.expected,
+	              'kg '
+	            )
 	          ),
 	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            'Actual:'
-	          ),
-	          _react2.default.createElement('input', { type: 'number',
-	            placeholder: 'Actual kg',
-	            value: this.state.actualKg || 0,
-	            onChange: function onChange(e) {
-	              return _this.onChange(e);
-	            },
-	            ref: function ref(input) {
-	              actualKg = input;
-	            } }),
-	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            'kg'
+	            'div',
+	            { className: 'actualWeight' },
+	            _react2.default.createElement(
+	              'h2',
+	              null,
+	              'Actual:'
+	            ),
+	            _react2.default.createElement('input', { type: 'number',
+	              placeholder: 'Actual kg',
+	              value: this.state.actualKg || 0,
+	              onChange: function onChange(e) {
+	                return _this.onChange(e);
+	              },
+	              ref: function ref(input) {
+	                actualKg = input;
+	              } }),
+	            _react2.default.createElement(
+	              'h2',
+	              null,
+	              'kg'
+	            )
 	          )
 	        ),
 	        _react2.default.createElement('span', { className: 'fade_line' }),
@@ -30018,29 +30022,22 @@
 	            ref: function ref(input) {
 	              comment = input;
 	            } }),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/list' },
-	            _react2.default.createElement(
-	              'button',
-	              { className: 'button' },
-	              'back'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/list' },
-	            _react2.default.createElement('input', { className: 'button', type: 'submit', value: 'Complete', onClick: function onClick() {
-	                return _this.updateTicket();
-	              } })
-	          )
+	          _react2.default.createElement('br', null)
 	        ),
 	        _react2.default.createElement('iframe', {
 	          className: 'map-embed',
 	          width: '600',
 	          height: '450',
-	          src: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&q=' + ticket.address })
+	          src: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&q=' + ticket.address }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/list' },
+	          _react2.default.createElement('input', { className: 'button', id: 'complete', type: 'submit', value: 'Complete', onClick: function onClick() {
+	              return _this.updateTicket();
+	            } })
+	        ),
+	        _react2.default.createElement('br', null)
 	      )
 	    );
 	  }
@@ -30250,6 +30247,7 @@
 	              return _react2.default.createElement(
 	                'li',
 	                { key: i },
+	                ' - ',
 	                comments.comments
 	              );
 	            })
@@ -30259,29 +30257,22 @@
 	            ref: function ref(input) {
 	              comment = input;
 	            } }),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/list' },
-	            _react2.default.createElement(
-	              'button',
-	              { className: 'button buttonRecip' },
-	              'back'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/list' },
-	            _react2.default.createElement('input', { className: 'button buttonRecip', type: 'submit', value: 'Complete', onClick: function onClick() {
-	                return _this.updateTicket();
-	              } })
-	          )
+	          _react2.default.createElement('br', null)
 	        ),
 	        _react2.default.createElement('iframe', {
 	          className: 'map-embed',
 	          width: '600',
 	          height: '450',
-	          src: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&q=' + ticket.address })
+	          src: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&q=' + ticket.address }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/list' },
+	          _react2.default.createElement('input', { className: 'button', id: 'complete', type: 'submit', value: 'Complete', onClick: function onClick() {
+	              return _this.updateTicket();
+	            } })
+	        ),
+	        _react2.default.createElement('br', null)
 	      )
 	    );
 	  }
@@ -30834,17 +30825,17 @@
 	      _react2.default.createElement(_Header2.default, null),
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'listWrapper' },
+	        { className: 'listWrapper donorList' },
 	        _react2.default.createElement(
 	          'h2',
 	          null,
-	          ' Here is a list of all the donors '
+	          '  '
 	        ),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          _reactRouter.Link,
-	          { to: '/createDonor', className: 'button' },
+	          { to: '/createDonor', className: 'addDonor button' },
 	          ' Add a New Donor '
 	        ),
 	        this.state.donors.map(function (donors) {
@@ -30954,17 +30945,17 @@
 	      _react2.default.createElement(_Header2.default, null),
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'listWrapper' },
+	        { className: 'listWrapper recipList' },
 	        _react2.default.createElement(
 	          'h2',
 	          null,
-	          ' Here is a list of all the recipients '
+	          ' '
 	        ),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          _reactRouter.Link,
-	          { to: '/createRecipient', className: 'button' },
+	          { to: '/createRecipient', className: 'button addRecip' },
 	          ' Add a New Recipient '
 	        ),
 	        this.state.recipients.map(function (recipients) {

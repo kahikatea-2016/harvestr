@@ -1,19 +1,19 @@
 /* Color Palette
 OzHarvest yellow: #FBDF06
-KiwiHarvest green: #3BAF29
+KiwiHarvest green: #65899a
 Steel Blue: #4C53BA
-Tomatoish: #FF4C4C
+Tomatoish: #1E6F85
 Grey: #A2AEBB
 
 Subpalette for form :
-lighter steel blue: #959EF9
-lighter tomatoish: #FF7F7F
+lighter steel blue: #4C53BA
+lighter tomatoish: #1E6F85
  */
 
 /* Notification CSS */
 
 div.notification-bar.notification-bar-active {
-  background-color: #3BAF29 !important;
+  background-color: #65899a !important;
 }
 
 .notification-bar-action {
@@ -87,14 +87,64 @@ body {
   margin: none;
 }
 
+/* #49b689 */
+
 .header {
   width: 100%;
-  height: 77px;
-  background-color: #3BAF29;
+  height: 60px;
+  background-color: #65899a;
   position: relative;
   z-index: 1;
+}
 
-  box-shadow: 0px 0px 10px grey;
+.header a {
+  text-decoration: none;
+}
+
+.listBanner {
+  text-decoration: none;
+}
+
+.listBanner p {
+  width: 60%;
+  background-color: white;
+  font-size: 1.5em;
+  margin: 25px auto 20px;
+
+  text-align: center;
+  border: 1px solid white;
+  padding: 5px;
+  border: 2px solid #65899a;
+  border-radius: 5px;
+
+  text-decoration: none;
+  color: #65899a;
+}
+
+.authButtonIndex {
+
+
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 5px 15px 5px 15px;
+  margin: 50px auto;
+
+  color: white;
+  text-decoration: none;
+  font-size: 1.5em;
+
+  overflow: auto;
+
+  transition: .3s;
+}
+
+.authButtonIndex:hover {
+  background-color: white;
+  color: #D9A04A;
+  text-shadow: none;
+
+
+  transition: .3s;
 }
 
 .logo {
@@ -110,6 +160,7 @@ body {
  float:right;
  width: auto;
  max-width: 500px;
+ margin: 0px 20px 0px 0px;
  height: auto;
 
  display: flex;
@@ -132,8 +183,8 @@ body {
 }
 
 .authButton {
-  color: #3BAF29;
-  background-color: white;
+  color: white;
+  background-color: #65899a;
   transition: .3s;
 
   text-decoration: none;
@@ -150,13 +201,13 @@ body {
 }
 
 .authButton:hover {
-  color: white;
-  background-color: #3BAF29;
+  color: #65899a;
+  background-color: white;
   transition: .3s;
 }
 
 .navButton:hover {
-  color: #3BAF29;
+  color: #65899a;
   background-color: white;
   transition: .3s;
 }
@@ -195,6 +246,16 @@ body {
     background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 250, from(#fff), to(rgba(0,0,0,0)));
 }
 
+.fade_line_home_lower {
+  margin: 15px 0px 40px 0px;
+  display:block;
+  border:none;
+  color:white;
+  height:1px;
+  background:black;
+  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 250, from(#fff), to(rgba(0,0,0,0)));
+}
+
 .homeText {
   margin: 6% 15%;
   width: 600px;
@@ -209,6 +270,7 @@ body {
 .homeText h1 {
   font-size: 4.5em;
   letter-spacing: 2px;
+  font-weight: 600;
 
   padding: 5px;
 }
@@ -302,12 +364,42 @@ span.buttonText {
 .listWrapper h2 {
   font-family: Raleway;
   font-weight: 400;
-  color: #3BAF29;
-  font-size: 2.3em;
+  color: #65899a;
+  font-size: 2em;
   letter-spacing: 3px;
   text-align: center;
   font-weight: 600;
 }
+
+.listWeights {
+  display: flex;
+  justify-content: space-around;
+  margin: 90px 20px 20px 20px;
+
+  background-color: #65899a;
+  color: white;
+
+  border-radius: 5px;
+}
+
+.listWeights h3 {
+  font-size: 2em;
+  padding: 10px;
+
+  text-align: center;
+}
+
+
+.map-embed {
+  width: 100%;
+  height: 300px;
+  padding: 30px 0px 30px 0px;
+
+  /*border: 1px solid black;*/
+}
+
+
+
 
 .ticketWrapper {
   margin: 20px 20px 40px 20px;
@@ -320,6 +412,11 @@ span.buttonText {
   color: white;
   font-family: Raleway;
   opacity: .8;
+}
+
+.navArrow {
+  width: 15px;
+  height: 15px;
 }
 
 .photoWrapper {
@@ -352,13 +449,13 @@ span.buttonText {
 }
 
 .dropOff {
-  border: 1px solid #FF4C4C;
-  background-color: #FF4C4C;
+  border: 1px solid #1E6F85;
+  background-color: #1E6F85;
 }
 
 .dropOff:active {
-  border: 1px solid #cc0000;
-  background-color: #cc0000;
+  border: 1px solid #325c67;
+  background-color: #325c67;
 }
 
 .complete {
@@ -490,6 +587,34 @@ span.buttonText {
   left: 8px;
 }
 
+.addDonor {
+  margin-left: 20px;
+  background-color: #4C53BA;
+  opacity: .8;
+}
+
+.donorList {
+  margin: 50px auto;
+}
+
+.donorList a {
+  text-decoration: none;
+}
+
+.addRecip {
+  margin-left: 20px;
+  background-color: #1E6F85;
+  opacity: .8;
+}
+
+.recipList {
+  margin: 50px auto;
+}
+
+.recipList a {
+  text-decoration: none;
+}
+
 .fade_line{
     margin: 15px 0px 15px 0px;
     display:block;
@@ -507,7 +632,7 @@ span.buttonText {
   color:white;
   height:1px;
   background:black;
-  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 150, from(#fff), to(#FF4C4C));
+  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 150, from(#fff), to(#1E6F85));
 }
 
 /* Single ticket page */
@@ -515,7 +640,13 @@ span.buttonText {
 .ticketWrapperSingle {
   max-width: 960px;
   background-color: #4C53BA;
-    text-align: center;
+  text-align: center;
+
+  margin: 77px auto;
+}
+
+.ticketWrapperSingle a {
+    text-decoration: none;
 }
 
 .ticketWrapperSingle h2 {
@@ -530,7 +661,7 @@ span.buttonText {
 }
 
 .recipColor {
-  background-color: #FF4C4C
+  background-color: #1E6F85
 }
 
 
@@ -561,18 +692,26 @@ span.buttonText {
   margin: 7px 0px 5px 15px;
 }
 
+.actualWeight {
+  display: flex;
+  justify-content: space-around;
+}
+
+.notes {
+  text-align: center;
+  margin: 0 auto;
+}
+
 .notes h2 {
   padding: 0px 0px 10px 10px;
   font-family: Raleway;
   font-weight: 400;
   color: white;
   font-size: 1.4em;
-  text-align: left;
 }
 
 .notes li {
   color: white;
-  text-align: left;
   font-family: Raleway;
   font-size: 1em;
 
@@ -584,7 +723,6 @@ span.buttonText {
   font-size: 1.4em;
   font-weight: 400;
 
-  text-align: left;
   letter-spacing: 1px;
   color: white;
   margin: 7px 0px 5px 15px;
@@ -593,11 +731,10 @@ span.buttonText {
 
 .comments li {
   color: white;
-  text-align: left;
   font-family: Raleway;
   font-size: .7em;
 
-  margin-left: 25px;
+  margin: 20px 0px 5px 25px ;
 }
 
 .button {
@@ -605,17 +742,27 @@ span.buttonText {
   font-size: 1em;
   border: 1px solid white;
   border-radius: 5px;
-  background-color: #4C53BA;
+  /*background-color: #4C53BA;*/
   padding: 5px 10px 5px 10px;
 }
 
+#buttonComplete {
+  color: white;
+  font-size: 1.4em;
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: #4C53BA;
+  padding: 5px 20px 5px 20px;
+}
+
 .donorForm {
-  width: 960px;
-  margin: 0px auto;
+  width: 50%;
+  margin: 80px auto;
   background-color: #4C53BA;
 
   color: white;
   text-align: center;
+  opacity: .8;
 }
 
 .donorForm h2 {
@@ -624,11 +771,12 @@ span.buttonText {
 }
 
 .recipientForm {
-  width: 960px;
-  margin: 0px auto;
-  background-color: #FF7F7F;
+  width: 50%;
+  margin: 80px auto;
+  background-color: #1E6F85;
   color: white;
   text-align: center;
+  opacity: .8;
 }
 
 .recipientForm h2 {
@@ -656,20 +804,20 @@ input[type="number"] {
 
 input[type="submit"] {
   color: white;
-  font-size: 1em;
-  border: 1px solid #3BAF29;
+  font-size: 1.5em;
+  border: 1px solid #65899a;
   border-radius: 5px;
-  background-color: #3BAF29;
-  padding: 5px 10px 5px 10px;
-  margin: 10px;
+  background-color: #65899a;
+  padding: 5px 20px 5px 20px;
+  margin: 10px 10px 30px 10px;
   font-family: Raleway;
   transition: .3s;
 }
 
 input[type="submit"]:hover {
-  color: #3BAF29;
+  color: #65899a;
   background-color: white;
-  border: 1px solid #3BAF29;
+  border: 1px solid #65899a;
   transition: .3s;
 }
 
@@ -699,7 +847,7 @@ input[type="submit"]:hover {
 .dropDownAddContent {
   display: none;
   position: absolute;
-  background-color: rgba(42, 124, 29, .9);
+  background-color: #65899a;
   height:auto;
   width: 250px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -713,7 +861,7 @@ input[type="submit"]:hover {
 }
 
 .dropDownAddContent p:hover {
-  color: #3BAF29;
+  color: #65899a;
   background-color: white;
 
   border-radius: 5px;
@@ -734,7 +882,7 @@ input[type="submit"]:hover {
 }
 
 .buttonRecip {
-  background-color: #FF4C4C;
+  background-color: #1E6F85;
 }
 
 /* Media Queries */
@@ -749,6 +897,9 @@ input[type="submit"]:hover {
   .ticketWrapper {
     padding: 0px;
   }
+  .logo {
+    font-size: 2.5em;
+  }
   .weight {
     font-size: 1.4em;
     margin: 20px 5px 5px 10px;
@@ -761,11 +912,14 @@ input[type="submit"]:hover {
   .orgInfo h2 {
     font-size: 1.4em;
   }
-  .auth {
+  .navButton {
     display: none;
   }
   .nav-icon {
     display: none;
+  }
+  .authButton {
+    margin: 3px 0px 0px 8px;
   }
   .homeText {
     max-width: 500px;
@@ -774,6 +928,68 @@ input[type="submit"]:hover {
   }
   .fade_line_home {
     background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, from(#fff), to(rgba(0,0,0,0)));
+  }
+  .listWeights {
+    margin: 40px 0px 0px 0px;
+  }
+  .listWeights h3 {
+    font-size: 1em;
+  }
+  .listBanner p {
+    width: 90%;
+  }
+  .ticketWrapperSingle {
+    max-width: 960px;
+    background-color: #4C53BA;
+    text-align: center;
+
+    margin: 50px 0px 0px 0px;
+  }
+  .recipColor {
+    background-color: #1E6F85;
+  }
+  .inventory {
+    width: 60%;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    padding: 0px 0px 0px 40px;
+  }
+  .inventory h2 {
+    text-align: center;
+  }
+  .inventory input {
+    width: 75px;
+  }
+  .expected {
+    margin: 0px 42px 0px 0px;
+    text-align: center;
+  }
+  .actualWeight {
+    margin: 0px 45px 0px 0px;
+  }
+
+  .donorForm {
+    width: 70%;
+    margin: 50px auto;
+  }
+  .recipientForm {
+    width: 70%;
+    margin: 50px auto;
+    background-color: #4b8b9d;
+  }
+}
+
+/*@media (max-width: 520px) {
+  .inventory {
+    display: block;
+  }
+}*/
+
+@media (max-width: 400px) {
+  .authButton {
+    font-size: 1.1em;
+    margin: 3px -15px 0px 0px;
   }
 }
 

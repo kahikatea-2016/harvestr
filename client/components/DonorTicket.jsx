@@ -80,16 +80,20 @@ export default React.createClass({
           </div>
           <span className="fade_line"></span>
           <div className="inventory">
-            <h2> Expected: {ticket.expected}kg </h2>
-            <h2>Actual:</h2>
-            <input type="number"
-              placeholder="Actual kg"
-              value={this.state.actualKg || 0}
-              onChange={(e) => this.onChange(e)}
-              ref={function (input) {
-                actualKg = input
-              }} />
-            <h2>kg</h2>
+            <div className="expected">
+              <h2> Expected: {ticket.expected}kg </h2>
+            </div>
+            <div className="actualWeight">
+              <h2>Actual:</h2>
+              <input type="number"
+                placeholder="Actual kg"
+                value={this.state.actualKg || 0}
+                onChange={(e) => this.onChange(e)}
+                ref={function (input) {
+                  actualKg = input
+                }} />
+              <h2>kg</h2>
+            </div>
           </div>
           <span className="fade_line"></span>
           <div className="notes">
@@ -115,10 +119,6 @@ export default React.createClass({
                 comment = input
               }}></textarea>
             <br/>
-            <Link to='/list'><button className="button">back</button></Link>
-            <Link to='/list'>
-            <input className="button" type="submit" value="Complete" onClick={() => this.updateTicket()}/>
-            </Link>
           </div>
           <iframe
             className="map-embed"
@@ -126,6 +126,11 @@ export default React.createClass({
             height="450"
             src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&q=${ticket.address}`}>
           </iframe>
+          <br/>
+          <Link to='/list'>
+            <input className="button" id="complete" type="submit" value="Complete" onClick={() => this.updateTicket()}/>
+          </Link>
+          <br/>
         </div>
     </div>
     )

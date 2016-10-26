@@ -9,12 +9,7 @@ import SignOutButton from './SignOutButton'
 export default React.createClass({
   render() {
     return (
-        <div className="header">
-          <span className="logo"> Harvestr </span>
-          <div className="auth">
-            <a href="/auth/google" className="authButton"> Login </a>
-          </div>
-        </div>
+        <div></div>
     )
   }
 })
