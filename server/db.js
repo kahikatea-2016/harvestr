@@ -2,6 +2,7 @@ var config = require('../knexfile')[process.env.NODE_ENV]
 var knex = require('knex')(config)
 
 module.exports = {
+  getDetailByAddress: getDetailByAddress,
   getDonors: getDonors,
   getRecipients: getRecipients,
   getDonor: getDonor,
@@ -74,6 +75,13 @@ function addTicket (ticket) {
   return knex('tickets').insert(ticket)
 }
 
+function getDetailByAddress (address)
+{
+  return knex('details')
+    .select('id')
+    .where('address', '=', address)
+}
+
 function getDonorTicket (ticketId) {
   return knex ('tickets')
  .join ('donors', 'tickets.donor_id', '=', 'donors.id')
@@ -97,53 +105,37 @@ function getTicketComments (ticketId) {
 }
 
 function createDonorProfile (donor) {
-  return new Promise((resolve, reject) => {
-  knex('details')
+  return knex('details')
     .insert({
       address: donor.address,
       contact_person: donor.contactPerson,
       phone: donor.phone,
       notes: donor.notes
     })
-    .then(detailId => createDonor(detailId, donor))
-    .then(resolve)
-    .catch(reject)
-  })
 }
 
-function createDonor (detailId, donor) {
+function createDonor (name, detailId) {
   return knex('donors')
-  .insert({
-    name: donor.name,
-    detail_id: detailId[0]
-  })
-  .then (() => {
-    return donorId
-  })
+    .insert({
+      name: name,
+      detail_id: detailId
+    })
 }
 
 function createRecipientProfile (recipient) {
-  return new Promise((resolve, reject) => {
-  knex('details')
+  return knex('details')
     .insert({
       address: recipient.address,
       contact_person: recipient.contactPerson,
       phone: recipient.phone,
       notes: recipient.notes
     })
-    .then(detailId => createRecipient(detailId, recipient))
-    .then(resolve)
-    .catch(reject)
-  })
 }
 
-function createRecipient (detailId, recipient) {
+function createRecipient (name, detailId) {
   return knex('recipients')
-  .insert({
-    name: recipient.name,
-    detail_id: detailId[0]
-  })
-  .then (() => {
-    return recipientId
-  })
+    .insert({
+      name: name,
+      detail_id: detailId
+    })
 }
