@@ -2,6 +2,7 @@ var config = require('../knexfile')[process.env.NODE_ENV]
 var knex = require('knex')(config)
 
 module.exports = {
+  getDetailByAddress: getDetailByAddress,
   getDonors: getDonors,
   getRecipients: getRecipients,
   getDonor: getDonor,
@@ -12,20 +13,21 @@ module.exports = {
   addTicket: addTicket,
   getDonorTicket: getDonorTicket,
   getRecipientTicket: getRecipientTicket,
-  getTicketComments: getTicketComments
+  getTicketComments: getTicketComments,
+  createDonorProfile: createDonorProfile,
+  createDonor: createDonor,
+  createRecipientProfile: createRecipientProfile,
+  createRecipient: createRecipient
 }
 
-// gets list of all donors
 function getDonors () {
   return knex('donors').select()
 }
 
-// gets list of all recipients
 function getRecipients () {
   return knex('recipients').select()
 }
 
-//gets details of donors
 function getDonor (id) {
   return knex('donors')
   .join('details', 'donors.detail_id', '=', 'details.id')
@@ -33,7 +35,6 @@ function getDonor (id) {
   .select('donors.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes', 'donors.detail_id as detailId')
 }
 
-//gets details of recipients
 function getRecipient (id) {
   return knex('recipients')
   .join('details', 'recipients.detail_id', '=', 'details.id')
@@ -41,7 +42,6 @@ function getRecipient (id) {
   .select('recipients.name as name', 'details.address as address', 'details.contact_person as contact', 'details.phone as phone', 'details.notes as notes', 'recipients.detail_id as detailId')
 }
 
-//Ops updates ticket
 function updateTicket (ticket) {
   return knex ('tickets')
  .where('tickets.id', ticket.id)
@@ -51,7 +51,6 @@ function updateTicket (ticket) {
  })
 }
 
-//driver updates comments
 function updateComment (comment) {
   return knex ('comments')
   .insert({
@@ -72,9 +71,15 @@ function getTickets () {
     .select('tickets.id as ticketId', 'donors.name as donorName', 'donors.id as donorId', 'recipients.name as recipientName', 'recipients.id as recipientId', 'expected_kg as expectedKg', 'actual_kg as actualKg', 'details.address as address', 'is_complete as isComplete')
   }
 
-//Ops adds a new ticket
 function addTicket (ticket) {
   return knex('tickets').insert(ticket)
+}
+
+function getDetailByAddress (address)
+{
+  return knex('details')
+    .select('id')
+    .where('address', '=', address)
 }
 
 function getDonorTicket (ticketId) {
@@ -97,4 +102,41 @@ function getTicketComments (ticketId) {
   return knex ('comments')
   .where ('ticket_id', ticketId)
   .select()
+}
+
+function createDonorProfile (donor) {
+  return knex('details')
+    .insert({
+      address: donor.address,
+      contact_person: donor.contactPerson,
+      phone: donor.phone,
+      notes: donor.notes
+    })
+}
+
+function createDonor (name, detailId) {
+  return knex('donors')
+    .insert({
+      name: name,
+      detail_id: detailId
+    })
+    .catch(console.error)
+}
+
+function createRecipientProfile (recipient) {
+  return knex('details')
+    .insert({
+      address: recipient.address,
+      contact_person: recipient.contactPerson,
+      phone: recipient.phone,
+      notes: recipient.notes
+    })
+}
+
+function createRecipient (name, detailId) {
+  return knex('recipients')
+    .insert({
+      name: name,
+      detail_id: detailId
+    })
 }

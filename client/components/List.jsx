@@ -2,10 +2,10 @@ import React from 'react'
 import {Link} from 'react-router'
 
 import api from '../api'
-
 import Header from './Header'
 import Banner from './Banner'
 import ListItem from './ListItem'
+import Notif from './Notif'
 
 let pickUpWeight = 0
 let dropOffWeight = 0
@@ -13,7 +13,8 @@ let dropOffWeight = 0
 export default React.createClass({
   getInitialState () {
     return {
-      tickets: []
+      tickets: [],
+      source: []
     }
   },
 
@@ -22,6 +23,24 @@ export default React.createClass({
   },
 
   renderResults (err, allTickets) {
+    let allRoutes = []
+    let mapSource = []
+
+    for (var i = 0; i < allTickets.length; i++) {
+      if(!allTickets[i].isComplete) {
+        allRoutes.push(allTickets[i].address)
+      }
+    }
+    let origin = allRoutes.shift()
+    let destination = allRoutes.pop()
+    let waypoints = allRoutes.join('|').replace(/\s/g, '+')
+
+    if(!waypoints) {
+      mapSource = `${origin}&destination=${destination}`
+    } else {
+      mapSource = `${origin}&destination=${destination}&waypoints=${waypoints}`
+    }
+
     pickUpWeight = 0
     dropOffWeight = 0
     for (var i = 0; i < allTickets.length; i++) {
@@ -40,7 +59,8 @@ export default React.createClass({
     }
 
     this.setState({
-      tickets: allTickets
+      tickets: allTickets,
+      source: mapSource
     })
   },
 
@@ -49,9 +69,16 @@ export default React.createClass({
       <div>
         <Header />
         <div className="listWrapper">
-          <h2>Today's Tickets</h2>
-          <h3>Total picked up: {pickUpWeight}kg</h3>
-          <h3>Total dropped off: {dropOffWeight}kg</h3>
+          <div className="listWeights">
+            <h3> Picked up: {pickUpWeight}kg</h3>
+            <h3> Dropped off: {dropOffWeight}kg</h3>
+          </div>
+          <iframe
+            className="map-embed"
+            width="600"
+            height="450"
+            src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&origin=${this.state.source}`}>
+          </iframe>
           {this.state.tickets.map((tickets) => {
             return <ListItem
             key={tickets.ticketId}
@@ -66,7 +93,9 @@ export default React.createClass({
             isComplete={tickets.isComplete}/>
           })}
         </div>
+        <Notif content={{ lastComment: 'hey you forgot the hummus'}} />
       </div>
+
     )
   }
 })

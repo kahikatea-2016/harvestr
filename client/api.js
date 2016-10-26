@@ -13,7 +13,9 @@ export default {
   getTickets: getTickets,
   getDonorTicket: getDonorTicket,
   getRecipientTicket: getRecipientTicket,
-  getTicketComments: getTicketComments
+  getTicketComments: getTicketComments,
+  createDonor: createDonor,
+  createRecipient: createRecipient
 }
 
   function getDonors(cb) {
@@ -61,14 +63,7 @@ export default {
         if (err) {
           cb(err)
         } else {
-          const donor = {
-            name: res.body.name,
-            address: res.body.address,
-            contact: res.body.contact,
-            phone: res.body.phone,
-            notes: res.body.notes
-          }
-          cb(null, donor)
+          cb(null, res.body[0])
         }
       })
   }
@@ -80,14 +75,7 @@ export default {
         if (err) {
           cb(err)
         } else {
-          const recipients = {
-            name: res.body.name,
-            address: res.body.address,
-            contact: res.body.contact,
-            phone: res.body.phone,
-            notes: res.body.notes
-          }
-          cb(null, recipient)
+          cb(null, res.body[0])
         }
       })
   }
@@ -99,18 +87,22 @@ export default {
       .end()
   }
 
-  function updateComment(comments) {
+  function updateComment (comments) {
     const updateUrl = `${url}/comments`
     request.put(updateUrl)
       .send(comments)
       .end()
   }
 
-  function addTicket( ticket) {
+  function addTicket (ticket) {
     const addUrl = `${url}/tickets`
     request.post(addUrl)
       .send(ticket)
-      .end()
+      .end((err, res) => {
+        if(res.status === 403) {
+          alert("not allowed")
+        }
+      })
   }
 
   function getTickets (cb) {
@@ -157,6 +149,28 @@ export default {
           cb(err)
         } else {
           cb(null, res.body)
+        }
+      })
+  }
+
+  function createDonor (donor) {
+    const addUrl = `${url}/createDonor`
+    request.post(addUrl)
+      .send(donor)
+      .end((err, res) => {
+        if(res.status === 403) {
+          alert("not allowed")
+        }
+      })
+  }
+
+  function createRecipient (recipient) {
+    const addUrl = `${url}/createRecipient`
+    request.post(addUrl)
+      .send(recipient)
+      .end((err, res) => {
+        if(res.status === 403) {
+          alert("not allowed")
         }
       })
   }

@@ -11,7 +11,9 @@ module.exports = {
   addTicket: addTicket,
   getDonorTicket: getDonorTicket,
   getRecipientTicket: getRecipientTicket,
-  getTicketComments: getTicketComments
+  getTicketComments: getTicketComments,
+  createDonor: createDonor,
+  createRecipient: createRecipient
 }
 
 function getDonors(req, res) {
@@ -84,9 +86,7 @@ function updateComment(req, res) {
     })
 }
 
-// "has to match table column name, use _": req.body.useCamelCase
   function addTicket(req, res) {
-    console.log(req.body.recipientId)
     if (!req.body.recipientId) {
       var ticket = {
         expected_kg: req.body.expectedKg,
@@ -102,7 +102,6 @@ function updateComment(req, res) {
         is_complete: 0
       }
     }
-    console.log(ticket)
     db.addTicket(ticket)
       .then(function () {
         res.json(ticket)
@@ -159,6 +158,38 @@ function getTicketComments(req, res) {
         }
       }
       res.json(singleTicketComments)
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
+
+function createDonor(req, res) {
+  db.createDonorProfile(req.body)
+    .then(() => {
+      return db.getDetailByAddress(req.body.address)
+        .then((result) => {
+          return db.createDonor(req.body.name, result[0].id)
+            .then(() => {
+              return res.status(201).json(req.body)
+            })
+        })
+    })
+    .catch(function (err) {
+      res.send(err.message).status(500)
+    })
+}
+
+function createRecipient(req, res) {
+  db.createRecipientProfile(req.body)
+    .then(() => {
+      return db.getDetailByAddress(req.body.address)
+        .then((result) => {
+          return db.createRecipient(req.body.name, result[0].id)
+            .then(() => {
+              return res.status(201).json(req.body)
+            })
+        })
     })
     .catch(function (err) {
       res.send(err.message).status(500)
