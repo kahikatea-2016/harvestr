@@ -585,6 +585,30 @@ span.buttonText {
   left: 8px;
 }
 
+.addDonor {
+  margin-left: 20px;
+}
+
+.donorList {
+  margin: 50px auto;
+}
+
+.donorList a {
+  text-decoration: none;
+}
+
+.addRecip {
+  margin-left: 20px;
+}
+
+.recipList {
+  margin: 50px auto;
+}
+
+.recipList a {
+  text-decoration: none;
+}
+
 .fade_line{
     margin: 15px 0px 15px 0px;
     display:block;
@@ -939,9 +963,12 @@ input[type="submit"]:hover {
 
   .donorForm {
     width: 70%;
+    margin: 50px auto;
   }
   .recipientForm {
     width: 70%;
+    margin: 50px auto;
+    background-color: #4b8b9d;
   }
 }
 

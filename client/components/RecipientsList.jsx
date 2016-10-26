@@ -26,9 +26,9 @@ export default React.createClass({
     return (
       <div>
         <Header />
-        <div className="listWrapper">
+        <div className="listWrapper recipList">
           <h2> </h2><br/><br/>
-          <Link to='/createRecipient' className="button"> Add a New Recipient </Link>
+          <Link to='/createRecipient' className="button addRecip"> Add a New Recipient </Link>
             {this.state.recipients.map((recipients) => {
               return <RecipientItem
                 key={recipients.id}

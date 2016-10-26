@@ -30825,7 +30825,7 @@
 	      _react2.default.createElement(_Header2.default, null),
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'listWrapper' },
+	        { className: 'listWrapper donorList' },
 	        _react2.default.createElement(
 	          'h2',
 	          null,
@@ -30835,7 +30835,7 @@
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          _reactRouter.Link,
-	          { to: '/createDonor', className: 'button' },
+	          { to: '/createDonor', className: 'addDonor button' },
 	          ' Add a New Donor '
 	        ),
 	        this.state.donors.map(function (donors) {
@@ -30945,7 +30945,7 @@
 	      _react2.default.createElement(_Header2.default, null),
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'listWrapper' },
+	        { className: 'listWrapper recipList' },
 	        _react2.default.createElement(
 	          'h2',
 	          null,
@@ -30955,7 +30955,7 @@
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          _reactRouter.Link,
-	          { to: '/createRecipient', className: 'button' },
+	          { to: '/createRecipient', className: 'button addRecip' },
 	          ' Add a New Recipient '
 	        ),
 	        this.state.recipients.map(function (recipients) {
