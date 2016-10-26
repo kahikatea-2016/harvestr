@@ -1,11 +1,9 @@
 exports.seed = function(knex, Promise) {
-  return Promise.all ([
-    knex('comments').del(),
-    knex('tickets').del(),
-    knex('donors').del(),
-    knex('recipients').del(),
-    knex('details').del()
-  ])
+  return knex('comments').del()
+  .then(() => knex('tickets').del())
+  .then(() => knex('donors').del())
+  .then(() => knex('recipients').del())
+  .then(() => knex('details').del())
   .then(function () {
     return knex ('details').insert([
       {id: 1, address: '76 Quay Street, Auckland CBD', contact_person: 'Amanda', phone: '092468792', notes: 'Do not pick up before 11am'},
