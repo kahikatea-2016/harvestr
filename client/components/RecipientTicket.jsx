@@ -105,7 +105,7 @@ export default React.createClass({
             <ul>
               {this.state.comments.map((comments, i) => {
                 return (
-                  <li key={i}>{comments.comments}</li>
+                  <li key={i}> - {comments.comments}</li>
                 )
               })}
             </ul>
@@ -115,10 +115,6 @@ export default React.createClass({
                 comment = input
               }}></textarea>
             <br/>
-            <Link to='/list'><button className="button buttonRecip">back</button></Link>
-            <Link to='/list'>
-            <input className="button buttonRecip" type="submit" value="Complete" onClick={() => this.updateTicket()}/>
-            </Link>
           </div>
           <iframe
             className="map-embed"
@@ -126,6 +122,11 @@ export default React.createClass({
             height="450"
             src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&q=${ticket.address}`}>
           </iframe>
+          <br/>
+          <Link to='/list'>
+            <input className="button" id="complete" type="submit" value="Complete" onClick={() => this.updateTicket()}/>
+          </Link>
+          <br/>
         </div>
     </div>
     )

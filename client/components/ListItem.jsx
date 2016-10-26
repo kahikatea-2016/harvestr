@@ -45,6 +45,7 @@ export default React.createClass({
             <h4> {name} </h4>
             <h2> {this.props.address} </h2>
           </div>
+          <img className="navArrow" src="../nav-arrow.png"/>
         </div>
       </Link>
     )

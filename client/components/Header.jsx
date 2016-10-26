@@ -10,9 +10,8 @@ export default React.createClass({
   render() {
     return (
         <div className="header">
-          <span className="logo"> Harvestr </span>
+          <Link to="/list"> <span className="logo"> Harvestr </span> </Link>
           <div className="auth">
-            <Link className="navButton" to='/list'> List </Link>
             <div className="dropdownAdd navButton">
               Tickets
               <div className="dropdownAddContent">
@@ -29,6 +28,8 @@ export default React.createClass({
             </div>
             <a href="/auth/logout" className="authButton"> Logout </a>
           </div>
+          <br/>
+          <Link className="listBanner" to="/list"><p> See Full List </p></Link>
         </div>
     )
   }
