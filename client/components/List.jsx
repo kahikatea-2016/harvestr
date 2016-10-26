@@ -92,9 +92,6 @@ export default React.createClass({
             actualKg={tickets.actualKg}
             isComplete={tickets.isComplete}/>
           })}
-
-
-
         </div>
         <Notif content={{ lastComment: 'hey you forgot the hummus'}} />
       </div>

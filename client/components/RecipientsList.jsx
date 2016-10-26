@@ -27,7 +27,7 @@ export default React.createClass({
       <div>
         <Header />
         <div className="listWrapper">
-          <h2> Here is a list of all the recipients </h2><br/><br/>
+          <h2> </h2><br/><br/>
           <Link to='/createRecipient' className="button"> Add a New Recipient </Link>
             {this.state.recipients.map((recipients) => {
               return <RecipientItem

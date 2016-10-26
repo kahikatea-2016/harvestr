@@ -29799,7 +29799,8 @@
 	            this.props.address,
 	            ' '
 	          )
-	        )
+	        ),
+	        _react2.default.createElement('img', { className: 'navArrow', src: '../nav-arrow.png' })
 	      )
 	    );
 	  }
@@ -29952,23 +29953,27 @@
 	            'kg '
 	          ),
 	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            'Actual:'
-	          ),
-	          _react2.default.createElement('input', { type: 'number',
-	            placeholder: 'Actual kg',
-	            value: this.state.actualKg || 0,
-	            onChange: function onChange(e) {
-	              return _this.onChange(e);
-	            },
-	            ref: function ref(input) {
-	              actualKg = input;
-	            } }),
-	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            'kg'
+	            'div',
+	            { className: 'actualWeight' },
+	            _react2.default.createElement(
+	              'h2',
+	              null,
+	              'Actual:'
+	            ),
+	            _react2.default.createElement('input', { type: 'number',
+	              placeholder: 'Actual kg',
+	              value: this.state.actualKg || 0,
+	              onChange: function onChange(e) {
+	                return _this.onChange(e);
+	              },
+	              ref: function ref(input) {
+	                actualKg = input;
+	              } }),
+	            _react2.default.createElement(
+	              'h2',
+	              null,
+	              'kg'
+	            )
 	          )
 	        ),
 	        _react2.default.createElement('span', { className: 'fade_line' }),
@@ -30018,29 +30023,22 @@
 	            ref: function ref(input) {
 	              comment = input;
 	            } }),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/list' },
-	            _react2.default.createElement(
-	              'button',
-	              { className: 'button' },
-	              'back'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/list' },
-	            _react2.default.createElement('input', { className: 'button', type: 'submit', value: 'Complete', onClick: function onClick() {
-	                return _this.updateTicket();
-	              } })
-	          )
+	          _react2.default.createElement('br', null)
 	        ),
 	        _react2.default.createElement('iframe', {
 	          className: 'map-embed',
 	          width: '600',
 	          height: '450',
-	          src: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&q=' + ticket.address })
+	          src: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&q=' + ticket.address }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/list' },
+	          _react2.default.createElement('input', { className: 'button', id: 'complete', type: 'submit', value: 'Complete', onClick: function onClick() {
+	              return _this.updateTicket();
+	            } })
+	        ),
+	        _react2.default.createElement('br', null)
 	      )
 	    );
 	  }
@@ -30838,7 +30836,7 @@
 	        _react2.default.createElement(
 	          'h2',
 	          null,
-	          ' Here is a list of all the donors '
+	          '  '
 	        ),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement('br', null),
@@ -30958,7 +30956,7 @@
 	        _react2.default.createElement(
 	          'h2',
 	          null,
-	          ' Here is a list of all the recipients '
+	          ' '
 	        ),
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement('br', null),

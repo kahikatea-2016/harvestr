@@ -2,12 +2,12 @@
 OzHarvest yellow: #FBDF06
 KiwiHarvest green: #3BAF29
 Steel Blue: #4C53BA
-Tomatoish: #FF4C4C
+Tomatoish: #1E6F85
 Grey: #A2AEBB
 
 Subpalette for form :
-lighter steel blue: #959EF9
-lighter tomatoish: #FF7F7F
+lighter steel blue: #4C53BA
+lighter tomatoish: #1E6F85
  */
 
 /* Notification CSS */
@@ -412,6 +412,11 @@ span.buttonText {
   opacity: .8;
 }
 
+.navArrow {
+  width: 15px;
+  height: 15px;
+}
+
 .photoWrapper {
   width: 100%;
   height: auto;
@@ -442,13 +447,13 @@ span.buttonText {
 }
 
 .dropOff {
-  border: 1px solid #FF4C4C;
-  background-color: #FF4C4C;
+  border: 1px solid #1E6F85;
+  background-color: #1E6F85;
 }
 
 .dropOff:active {
-  border: 1px solid #cc0000;
-  background-color: #cc0000;
+  border: 1px solid #325c67;
+  background-color: #325c67;
 }
 
 .complete {
@@ -597,7 +602,7 @@ span.buttonText {
   color:white;
   height:1px;
   background:black;
-  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 150, from(#fff), to(#FF4C4C));
+  background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 150, from(#fff), to(#1E6F85));
 }
 
 /* Single ticket page */
@@ -605,7 +610,9 @@ span.buttonText {
 .ticketWrapperSingle {
   max-width: 960px;
   background-color: #4C53BA;
-    text-align: center;
+  text-align: center;
+
+  margin: 77px auto;
 }
 
 .ticketWrapperSingle h2 {
@@ -620,7 +627,7 @@ span.buttonText {
 }
 
 .recipColor {
-  background-color: #FF4C4C
+  background-color: #1E6F85
 }
 
 
@@ -649,6 +656,11 @@ span.buttonText {
   letter-spacing: 1px;
   color: white;
   margin: 7px 0px 5px 15px;
+}
+
+.actualWeight {
+  display: flex;
+  justify-content: space-around;
 }
 
 .notes h2 {
@@ -699,6 +711,15 @@ span.buttonText {
   padding: 5px 10px 5px 10px;
 }
 
+#buttonComplete {
+  color: white;
+  font-size: 1.4em;
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: #4C53BA;
+  padding: 5px 20px 5px 20px;
+}
+
 .donorForm {
   width: 960px;
   margin: 0px auto;
@@ -716,7 +737,7 @@ span.buttonText {
 .recipientForm {
   width: 960px;
   margin: 0px auto;
-  background-color: #FF7F7F;
+  background-color: #1E6F85;
   color: white;
   text-align: center;
 }
@@ -746,12 +767,12 @@ input[type="number"] {
 
 input[type="submit"] {
   color: white;
-  font-size: 1em;
+  font-size: 1.5em;
   border: 1px solid #3BAF29;
   border-radius: 5px;
   background-color: #3BAF29;
-  padding: 5px 10px 5px 10px;
-  margin: 10px;
+  padding: 5px 20px 5px 20px;
+  margin: 10px 10px 30px 10px;
   font-family: Raleway;
   transition: .3s;
 }
@@ -824,7 +845,7 @@ input[type="submit"]:hover {
 }
 
 .buttonRecip {
-  background-color: #FF4C4C;
+  background-color: #1E6F85;
 }
 
 /* Media Queries */
@@ -880,7 +901,31 @@ input[type="submit"]:hover {
   .listBanner p {
     width: 90%;
   }
+  .ticketWrapperSingle {
+    max-width: 960px;
+    background-color: #4C53BA;
+    text-align: center;
+
+    margin: 50px 0px 0px 0px;
+  }
+  .inventory {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    text-align: center;
+  }
+  .actualWeight {
+    max-width: 60%;
+    text-align: center;
+  }
 }
+
+/*@media (max-width: 520px) {
+  .inventory {
+    display: block;
+  }
+}*/
 
 @media (max-width: 400px) {
   .authButton {

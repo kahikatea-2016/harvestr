@@ -27,7 +27,7 @@ export default React.createClass({
       <div>
         <Header />
           <div className="listWrapper">
-            <h2> Here is a list of all the donors </h2><br/><br/>
+            <h2>  </h2><br/><br/>
             <Link to='/createDonor' className="button"> Add a New Donor </Link>
               {this.state.donors.map((donors) => {
                 return <DonorItem
