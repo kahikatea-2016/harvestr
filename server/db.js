@@ -117,9 +117,9 @@ function createDonor (detailId, donor) {
     name: donor.name,
     detail_id: detailId[0]
   })
-  .then (() => {
-    return donorId
-  })
+  // .then (() => {
+  //   return donorId
+  // })
 }
 
 function createRecipientProfile (recipient) {
