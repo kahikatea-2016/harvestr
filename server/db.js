@@ -115,7 +115,7 @@ function createDonor (detailId, donor) {
   return knex('donors')
   .insert({
     name: donor.name,
-    detail_id: detailId[]
+    detail_id: detailId[0]
   })
   .then (() => {
     return donorId
