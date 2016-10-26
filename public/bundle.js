@@ -27596,9 +27596,15 @@
 	      'div',
 	      { className: 'header' },
 	      _react2.default.createElement(
-	        'span',
-	        { className: 'logo' },
-	        ' Harvestr '
+	        _reactRouter.Link,
+	        { to: '/list' },
+	        ' ',
+	        _react2.default.createElement(
+	          'span',
+	          { className: 'logo' },
+	          ' Harvestr '
+	        ),
+	        ' '
 	      ),
 	      _react2.default.createElement(
 	        'div',

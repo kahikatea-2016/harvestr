@@ -89,12 +89,14 @@ body {
 
 .header {
   width: 100%;
-  height: 77px;
+  height: 60px;
   background-color: #3BAF29;
   position: relative;
   z-index: 1;
+}
 
-  /*box-shadow: 0px 0px 10px grey;*/
+.header a {
+  text-decoration: none;
 }
 
 .listBanner {
@@ -102,14 +104,16 @@ body {
 }
 
 .listBanner p {
-  width: 100%;
+  width: 60%;
   background-color: white;
   font-size: 1.5em;
+  margin: 25px auto 20px;
 
   text-align: center;
   border: 1px solid white;
   padding: 5px;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  border: 2px solid #3BAF29;
+  border-radius: 5px;
 
   text-decoration: none;
   color: #3BAF29;
@@ -368,7 +372,7 @@ span.buttonText {
 .listWeights {
   display: flex;
   justify-content: space-around;
-  margin: 20px;
+  margin: 90px 20px 20px 20px;
 
   background-color: #3BAF29;
   color: white;
@@ -388,6 +392,8 @@ span.buttonText {
   width: 100%;
   height: 300px;
   padding: 30px 0px 30px 0px;
+
+  /*border: 1px solid black;*/
 }
 
 
@@ -833,6 +839,9 @@ input[type="submit"]:hover {
   .ticketWrapper {
     padding: 0px;
   }
+  .logo {
+    font-size: 2.5em;
+  }
   .weight {
     font-size: 1.4em;
     margin: 20px 5px 5px 10px;
@@ -851,6 +860,9 @@ input[type="submit"]:hover {
   .nav-icon {
     display: none;
   }
+  .authButton {
+    margin: 3px 0px 0px 8px;
+  }
   .homeText {
     max-width: 500px;
     width:auto;
@@ -860,7 +872,20 @@ input[type="submit"]:hover {
     background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, from(#fff), to(rgba(0,0,0,0)));
   }
   .listWeights {
-    display: block;
+    margin: 40px 0px 0px 0px;
+  }
+  .listWeights h3 {
+    font-size: 1em;
+  }
+  .listBanner p {
+    width: 90%;
+  }
+}
+
+@media (max-width: 400px) {
+  .authButton {
+    font-size: 1.1em;
+    margin: 3px -15px 0px 0px;
   }
 }
 
