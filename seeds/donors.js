@@ -4,6 +4,8 @@ exports.seed = function(knex, Promise) {
   .then(() => knex('donors').del())
   .then(() => knex('recipients').del())
   .then(() => knex('details').del())
+  .then(() => knex('permissions').del())
+  .then(() => knex('users').del())
   .then(function () {
     return knex ('details').insert([
       {id: 1, address: '76 Quay Street, Auckland CBD', contact_person: 'Amanda', phone: '092468792', notes: 'Do not pick up before 11am'},
