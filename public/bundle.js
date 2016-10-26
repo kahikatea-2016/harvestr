@@ -30247,6 +30247,7 @@
 	              return _react2.default.createElement(
 	                'li',
 	                { key: i },
+	                ' - ',
 	                comments.comments
 	              );
 	            })

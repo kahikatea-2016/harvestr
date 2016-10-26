@@ -105,7 +105,7 @@ export default React.createClass({
             <ul>
               {this.state.comments.map((comments, i) => {
                 return (
-                  <li key={i}>{comments.comments}</li>
+                  <li key={i}> - {comments.comments}</li>
                 )
               })}
             </ul>

@@ -667,18 +667,21 @@ span.buttonText {
   justify-content: space-around;
 }
 
+.notes {
+  text-align: center;
+  margin: 0 auto;
+}
+
 .notes h2 {
   padding: 0px 0px 10px 10px;
   font-family: Raleway;
   font-weight: 400;
   color: white;
   font-size: 1.4em;
-  text-align: left;
 }
 
 .notes li {
   color: white;
-  text-align: left;
   font-family: Raleway;
   font-size: 1em;
 
@@ -690,7 +693,6 @@ span.buttonText {
   font-size: 1.4em;
   font-weight: 400;
 
-  text-align: left;
   letter-spacing: 1px;
   color: white;
   margin: 7px 0px 5px 15px;
@@ -699,11 +701,10 @@ span.buttonText {
 
 .comments li {
   color: white;
-  text-align: left;
   font-family: Raleway;
   font-size: .7em;
 
-  margin-left: 25px;
+  margin: 20px 0px 5px 25px ;
 }
 
 .button {
@@ -725,8 +726,8 @@ span.buttonText {
 }
 
 .donorForm {
-  width: 960px;
-  margin: 0px auto;
+  width: 50%;
+  margin: 80px auto;
   background-color: #4C53BA;
 
   color: white;
@@ -739,8 +740,8 @@ span.buttonText {
 }
 
 .recipientForm {
-  width: 960px;
-  margin: 0px auto;
+  width: 50%;
+  margin: 80px auto;
   background-color: #1E6F85;
   color: white;
   text-align: center;
@@ -934,6 +935,13 @@ input[type="submit"]:hover {
   }
   .actualWeight {
     margin: 0px 45px 0px 0px;
+  }
+
+  .donorForm {
+    width: 70%;
+  }
+  .recipientForm {
+    width: 70%;
   }
 }
 
