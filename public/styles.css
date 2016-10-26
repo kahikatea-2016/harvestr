@@ -615,6 +615,10 @@ span.buttonText {
   margin: 77px auto;
 }
 
+.ticketWrapperSingle a {
+    text-decoration: none;
+}
+
 .ticketWrapperSingle h2 {
   text-align: center;
 }
@@ -908,16 +912,28 @@ input[type="submit"]:hover {
 
     margin: 50px 0px 0px 0px;
   }
+  .recipColor {
+    background-color: #1E6F85;
+  }
   .inventory {
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
-    text-align: center;
     display: block;
+    text-align: center;
+    padding: 0px 0px 0px 40px;
+  }
+  .inventory h2 {
+    text-align: center;
+  }
+  .inventory input {
+    width: 75px;
+  }
+  .expected {
+    margin: 0px 42px 0px 0px;
     text-align: center;
   }
   .actualWeight {
-    max-width: 60%;
-    text-align: center;
+    margin: 0px 45px 0px 0px;
   }
 }
 

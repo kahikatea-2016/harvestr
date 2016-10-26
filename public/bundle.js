@@ -27610,11 +27610,6 @@
 	        'div',
 	        { className: 'auth' },
 	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { className: 'navButton', to: '/list' },
-	          ' List '
-	        ),
-	        _react2.default.createElement(
 	          'div',
 	          { className: 'dropdownAdd navButton' },
 	          'Tickets',
@@ -29946,11 +29941,15 @@
 	          'div',
 	          { className: 'inventory' },
 	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            ' Expected: ',
-	            ticket.expected,
-	            'kg '
+	            'div',
+	            { className: 'expected' },
+	            _react2.default.createElement(
+	              'h2',
+	              null,
+	              ' Expected: ',
+	              ticket.expected,
+	              'kg '
+	            )
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -30257,29 +30256,22 @@
 	            ref: function ref(input) {
 	              comment = input;
 	            } }),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/list' },
-	            _react2.default.createElement(
-	              'button',
-	              { className: 'button buttonRecip' },
-	              'back'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/list' },
-	            _react2.default.createElement('input', { className: 'button buttonRecip', type: 'submit', value: 'Complete', onClick: function onClick() {
-	                return _this.updateTicket();
-	              } })
-	          )
+	          _react2.default.createElement('br', null)
 	        ),
 	        _react2.default.createElement('iframe', {
 	          className: 'map-embed',
 	          width: '600',
 	          height: '450',
-	          src: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&q=' + ticket.address })
+	          src: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDrUjwUTFH8bIxN6Aj93o1rL9Gw25vASpk&q=' + ticket.address }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/list' },
+	          _react2.default.createElement('input', { className: 'button', id: 'complete', type: 'submit', value: 'Complete', onClick: function onClick() {
+	              return _this.updateTicket();
+	            } })
+	        ),
+	        _react2.default.createElement('br', null)
 	      )
 	    );
 	  }

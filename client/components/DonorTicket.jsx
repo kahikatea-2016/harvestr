@@ -80,7 +80,9 @@ export default React.createClass({
           </div>
           <span className="fade_line"></span>
           <div className="inventory">
-            <h2> Expected: {ticket.expected}kg </h2>
+            <div className="expected">
+              <h2> Expected: {ticket.expected}kg </h2>
+            </div>
             <div className="actualWeight">
               <h2>Actual:</h2>
               <input type="number"

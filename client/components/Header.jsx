@@ -12,7 +12,6 @@ export default React.createClass({
         <div className="header">
           <Link to="/list"> <span className="logo"> Harvestr </span> </Link>
           <div className="auth">
-            <Link className="navButton" to='/list'> List </Link>
             <div className="dropdownAdd navButton">
               Tickets
               <div className="dropdownAddContent">
