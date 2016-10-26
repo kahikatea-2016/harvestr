@@ -59,7 +59,9 @@ function issueJwt (req, res, next) {
     const token = createToken(user, req.app.get('JWT_SECRET'))
     // Ideally use `secure: true` in production
     res.cookie('token', token, { httpOnly: true })
-    res.redirect('/#/list')
+
+    // Temporarily redirect users with level null back to index
+    res.redirect(user.level ? '/#/list' : '/')
   })(req, res, next)
 }
 
