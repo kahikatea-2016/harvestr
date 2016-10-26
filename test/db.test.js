@@ -11,7 +11,6 @@ const testConfig = {
 
 test('getDetails', function (t) {
   createTestData().then(testDb => {
-    // console.log(details)
    getDetails(testDb)
     .then(details => {
       t.equal(details.id, 1)

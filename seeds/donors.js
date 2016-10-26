@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
       {id: 3, address: '2 College Hill, Freemans Bay', contact_person: 'Olivia', phone: '092648732', notes: 'Call first before pick up'},
       {id: 4, address: '200 Dominion Road, Mount Eden', contact_person: 'Jack', phone: '0927684315', notes: 'Parking available at back'},
       {id: 5, address: '3/449 Richmond Road, Grey Lynn', contact_person: 'Stevie', phone: '092647351', notes: 'Look for the red building'},
-      {id: 6, address: '4 Warnock Street, Waitakere', contact_person: 'Sandy', phone: '092687493', notes: 'Ask for Carol if Sandy is not available'}
+      {id: 6, address: '4 Warnock Street, Grey Lynn', contact_person: 'Sandy', phone: '092687493', notes: 'Ask for Carol if Sandy is not available'}
     ])
   })
   .then(function () {
@@ -47,6 +47,26 @@ exports.seed = function(knex, Promise) {
       {id: 3, ticket_id: 3, comments: 'Delivered and helped move some meals'},
       {id: 4, ticket_id: 4, comments: 'We were late because of traffic'},
       {id: 5, ticket_id: 5, comments: 'They were happy with the potatos as well'}
+    ])
+  })
+  .then(function () {
+    return knex ('users').insert([
+      {id: 1, email: 'tinatrenkner@gmail.com', google_id: '112615148426911623293'},
+      {id: 2, email: 'andrew.james.hird@gmail.com', google_id: '114056495607785581130'},
+      {id: 3, email: 'jsmare@gmail.com', google_id: '106271496586390221277'},
+      {id: 4, email: 'samari.b.dj@gmail.com', google_id: '118018160081912906533'},
+      {id: 5, email: 'thcoomer@gmail.com', google_id: '112992150127876198177'},
+      {id: 6, email: 'tealiie@live.com', google_id: '106683677154329041656'},
+    ])
+  })
+  .then(function () {
+    return knex ('permissions').insert([
+      {id: 1, level: 'admin', user_id: 1},
+      {id: 2, level: 'admin', user_id: 2},
+      {id: 3, level: 'admin', user_id: 3},
+      {id: 4, level: 'admin', user_id: 4},
+      {id: 5, level: 'admin', user_id: 5},
+      {id: 6, level: 'admin', user_id: 6},
     ])
   })
 };

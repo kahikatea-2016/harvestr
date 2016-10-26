@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router'
+
 import Header from './Header'
 import api from '../api'
 
@@ -35,7 +36,6 @@ export default React.createClass({
         recipientId: selectRecipient.value,
         expectedKg: expectedKg.value
       }
-      console.log(newTicket)
       api.addTicket(newTicket)
     },
 
@@ -44,7 +44,7 @@ export default React.createClass({
         <div>
           <Header />
           <div className="recipientForm">
-            <h2> Create a Recipient Ticket </h2>
+            <h2> Create a Recipient Ticket </h2><br/><br/>
             <select value={this.state.value} id={this.state.id} onChange={this.handleChange} ref={function (input) {
                 selectRecipient = input
               }}>
@@ -57,13 +57,13 @@ export default React.createClass({
                 )
               })}
             </select>
-            <br/>
+            <br/><br/>
             <label htmlFor="weight"> Expected Weight: </label>
             <br/>
             <input name="weight" type="number" min="1" max="999" placeholder="Kilograms" ref={function (input) {
               expectedKg = input
             }} />
-            <br/>
+            <br/><br/>
             <Link to='/list'>
             <input className="button" type="submit" value="Submit" onClick={() => this.addRecipientTicket()}/>
             </Link>
