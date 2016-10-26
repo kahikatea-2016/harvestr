@@ -115,7 +115,6 @@ function createDonorProfile (donor) {
 }
 
 function createDonor (name, detailId) {
-  console.log('++++++', name, detailId)
   return knex('donors')
     .insert({
       name: name,
