@@ -166,8 +166,14 @@ function getTicketComments(req, res) {
 
 function createDonor(req, res) {
   db.createDonorProfile(req.body)
-    .then(function () {
-      res.json(donor)
+    .then(() => {
+      return db.getDetailByAddress(req.body.address)
+        .then((result) => {
+          return db.createDonor(req.body.name, result[0].id)
+            .then(() => {
+              return res.status(201).json(req.body)
+            })
+        })
     })
     .catch(function (err) {
       res.send(err.message).status(500)
@@ -176,8 +182,14 @@ function createDonor(req, res) {
 
 function createRecipient(req, res) {
   db.createRecipientProfile(req.body)
-    .then(function () {
-      res.json(recipient)
+    .then(() => {
+      return db.getDetailByAddress(req.body.address)
+        .then((result) => {
+          return db.createRecipient(req.body.name, result[0].id)
+            .then(() => {
+              return res.status(201).json(req.body)
+            })
+        })
     })
     .catch(function (err) {
       res.send(err.message).status(500)
