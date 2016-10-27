@@ -80,7 +80,7 @@ function createUser (profile) {
       return Promise.reject(new Error(`Can't find new user in database.`))
     })
     .catch(err => {
-      return Promise.reject(new Error(`Couldn't add user due to a server error: ${err.message}`))
+      return Promise.reject(new Error(`Couldn't add user due to a server error.`))
     })
 }
 
