@@ -11,8 +11,12 @@ var users = require('./lib/users')
 var routes = require('./routes')
 
 var PORT = process.env.PORT || 3000
-var app = express()
 
+process.on('unhandledRejection', (error, promise) => {
+  console.error('UNHANDLED REJECTION', error.stack)
+})
+
+var app = express()
 app.set('JWT_SECRET', 'THIS IS NOT A VERY SECRET VALUE! CHANGE IT IN PRODUCTION PLEASE!')
 app.use(passport.initialize())
 passport.use(new GoogleStrategy(auth.googleConfig, auth.verify))
