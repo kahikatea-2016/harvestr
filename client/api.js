@@ -15,7 +15,8 @@ export default {
   getRecipientTicket: getRecipientTicket,
   getTicketComments: getTicketComments,
   createDonor: createDonor,
-  createRecipient: createRecipient
+  createRecipient: createRecipient,
+  isStaffMember: isStaffMember
 }
 
   function getDonors(cb) {
@@ -174,3 +175,15 @@ export default {
         }
       })
   }
+
+function isStaffMember (nextState, replace, callback) {
+  const checkUrl = `${url}/tickets`
+  request.get(checkUrl)
+    .end((err, res) => {
+      if (err) {
+        replace(`/`)
+      }
+      callback()
+    })
+}
+
