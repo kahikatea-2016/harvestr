@@ -16,7 +16,7 @@ export default React.createClass({
               Coordinating between supermarkets and food banks, we make sure our drivers are able to deliver donations to those in need.
             </h2>
             <span className="fade_line_home_lower"></span>
-            <Link to="/list" className="authButtonIndex"> <span > Enter </span> </Link>
+            <Link to="/list" className="authButtonIndex"> <span> Enter </span> </Link>
             {/* Uncomment to turn Auth on */}
             {/* <a href="/auth/google" className="authButtonIndex"> Login </a> */}
           </div>
