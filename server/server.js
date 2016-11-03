@@ -39,18 +39,21 @@ function getSecret (req, payload, done) {
 }
 
 // Protect all routes beneath this point, do not move any app.use
-app.use(
-  verifyJwt({
-    getToken: auth.getTokenFromCookie,
-    secret: getSecret
-  }),
-  auth.handleError
-)
 
-app.use(
-  users.requiresDriver,
-  auth.handleError
-)
+// Uncomment to turn Auth on
+// app.use(
+//   verifyJwt({
+//     getToken: auth.getTokenFromCookie,
+//     secret: getSecret
+//   }),
+//   auth.handleError
+// )
+
+// Uncomment to turn Auth on
+// app.use(
+//   users.requiresDriver,
+//   auth.handleError
+// )
 
 app.get('/v1/donors', routes.getDonors)
 app.get('/v1/recipients', routes.getRecipients)
@@ -66,10 +69,11 @@ app.get('/v1/recipient/:id', routes.getRecipient)
 app.put('/v1/tickets', routes.updateTicket)
 app.put('/v1/comments', routes.updateComment)
 
-app.use(
-  users.requiresAdmin,
-  auth.handleError
-)
+// Uncomment to turn Auth on
+// app.use(
+//   users.requiresAdmin,
+//   auth.handleError
+// )
 
 app.post('/v1/createDonor', routes.createDonor)
 app.post('/v1/createRecipient', routes.createRecipient)
