@@ -26,7 +26,9 @@ export default React.createClass({
                 <Link to='/recipientsList'><p>List of Recipients</p></Link>
               </div>
             </div>
-            <a href="/auth/logout" className="authButton"> Logout </a>
+            <Link to="/"> <span className="authButton"> Exit </span> </Link>
+            {/* Uncomment to turn Auth on */}
+            {/* <a href="/auth/logout" className="authButton"> Logout </a> */}
           </div>
           <br/>
           <Link className="listBanner" to="/list"><p> See Full List </p></Link>
