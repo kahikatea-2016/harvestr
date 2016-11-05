@@ -29165,7 +29165,11 @@
 /* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 	"use strict";
+=======
+	'use strict';
+>>>>>>> dev
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -29175,6 +29179,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+<<<<<<< HEAD
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = _react2.default.createClass({
@@ -29210,6 +29215,51 @@
 	            "a",
 	            { href: "/auth/google", className: "authButtonIndex" },
 	            " Login "
+=======
+	var _reactRouter = __webpack_require__(172);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = _react2.default.createClass({
+	  displayName: 'Banner',
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'contentWrapper' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'homeWrapper' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'homeText' },
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            ' Harvestr '
+	          ),
+	          _react2.default.createElement(
+	            'h4',
+	            null,
+	            ' Picking up surplus food as soon as possible. '
+	          ),
+	          _react2.default.createElement('span', { className: 'fade_line_home' }),
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            'Coordinating between supermarkets and food banks, we make sure our drivers are able to deliver donations to those in need.'
+	          ),
+	          _react2.default.createElement('span', { className: 'fade_line_home_lower' }),
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/list', className: 'authButtonIndex' },
+	            ' ',
+	            _react2.default.createElement(
+	              'span',
+	              null,
+	              ' Enter '
+	            ),
+	            ' '
+>>>>>>> dev
 	          )
 	        )
 	      )
@@ -29443,9 +29493,21 @@
 	          )
 	        ),
 	        _react2.default.createElement(
+<<<<<<< HEAD
 	          'a',
 	          { href: '/auth/logout', className: 'authButton' },
 	          ' Logout '
+=======
+	          _reactRouter.Link,
+	          { to: '/' },
+	          ' ',
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'authButton' },
+	            ' Exit '
+	          ),
+	          ' '
+>>>>>>> dev
 	        )
 	      ),
 	      _react2.default.createElement('br', null),
