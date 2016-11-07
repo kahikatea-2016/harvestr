@@ -18,7 +18,6 @@ This app aims to help KiwiHarvest’s volunteers keep track of all off the super
 + Helps ops confirm when a delivery is complete by drivers en route
 + Tracks the weight of all the pickups and dropoffs for the day
 
-
 ## Credits
 
 Harvestr is a project by Enspiral Dev Academy Auckland’s Kahikatea cohort, created over a six-day hackathon. The team members include:
@@ -29,3 +28,7 @@ Harvestr is a project by Enspiral Dev Academy Auckland’s Kahikatea cohort, cre
 + Sam Mentink (@sam-mentink)
 + Jaive Smare (@JaivePNG)
 + Tina Trenkner-Meade (@tina-trenkner)
+
+## Good things to know
+
+Harvestr has Google authentication included in the code base. We turned off authentication as we show off Harvestr to more people. Please check out server/server.js for more information. When it's time to "turn on" authentication again, please "uncomment" out the code in server/server.js and change the buttons in client/components/Banner.jsx and lient/components/Header.jsx
